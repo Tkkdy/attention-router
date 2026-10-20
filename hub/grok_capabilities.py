@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 Tkkdy
 # SPDX-License-Identifier: MIT
 """Explicit D3 capabilities, independent of the Gateway's larger internal registry."""
+INTERRUPT_ACTIONS = frozenset({'show_interrupt'})
 TIBO_ACTIONS = frozenset({'show_tibo_page', 'ack_tibo_attention', 'get_tibo_attention'})
 READ_ACTIONS = frozenset({'list_todos', 'get_current_item', 'get_context'})
 WRITE_ACTIONS = READ_ACTIONS | frozenset({

@@ -102,7 +102,7 @@ class GrokAdapterTests(unittest.TestCase):
     def test_registry_contains_narrow_schema_only(self):
         definitions = tool_definitions()
         names = {tool['name'] for tool in definitions}
-        self.assertEqual(len(names), 18)
+        self.assertEqual(len(names), 19)
         self.assertTrue({"show_tibo_page", "get_tibo_attention", "ack_tibo_attention"} <= names)
         self.assertIn('publish_suggestion', names)
         self.assertNotIn('request_clarification', names)

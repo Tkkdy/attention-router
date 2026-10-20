@@ -220,7 +220,19 @@
       "role": "original-project-content"
     },
     {
+      "path": "examples/agent_http_demo.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
       "path": "examples/local_demo.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "examples/test_agent_http_demo.py",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
       "role": "original-project-content"
@@ -546,6 +558,12 @@
       "role": "original-project-content"
     },
     {
+      "path": "hub/interrupt_gateway.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
       "path": "hub/legacy_todo_guard.py",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
@@ -619,6 +637,12 @@
     },
     {
       "path": "hub/run_butler_shadow.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/run_interrupt_gateway.py",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
       "role": "original-project-content"
@@ -703,6 +727,12 @@
     },
     {
       "path": "hub/test_hub.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_interrupt_gateway.py",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
       "role": "original-project-content"

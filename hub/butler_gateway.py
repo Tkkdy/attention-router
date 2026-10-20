@@ -10,18 +10,19 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 from starlette.middleware.trustedhost import TrustedHostMiddleware
-from butler_models import Command, READS, BRIDGE_ACTIONS, TIBO_ACTIONS
+from butler_models import Command, READS, BRIDGE_ACTIONS, TIBO_ACTIONS, INTERRUPT_ACTIONS
 from todo_core import ButlerError
 
 class ButlerGateway:
-    def __init__(self, core, resolver=None, bridge=None, action_permissions=None, attention_port=None, activity_observer=None):
+    def __init__(self, core, resolver=None, bridge=None, action_permissions=None, attention_port=None, activity_observer=None, interrupt_port=None):
+        self.interrupt_port = interrupt_port
         self.attention_port = attention_port
         self.core, self.resolver, self.bridge = core, resolver, bridge
         self.action_permissions = {key: frozenset(value) for key, value in (action_permissions or {}).items()}
 
     def require_action(self, principal, action):
         allowed = self.action_permissions.get(principal)
-        if allowed is not None and action not in allowed:
+        if (action in INTERRUPT_ACTIONS and allowed is None) or (allowed is not None and action not in allowed):
             raise ButlerError('action_forbidden', 403)
 
     def finish(self, result, action):
@@ -45,6 +46,10 @@ class ButlerGateway:
             raise ButlerError('source_forbidden', 403)
         self.require_action(principal, command.action)
         self.require_bridge(command.action)
+        if command.action in INTERRUPT_ACTIONS:
+            if self.interrupt_port is None:
+                raise ButlerError('interrupt_unavailable', 503)
+            return self.interrupt_port(command)
         if command.action in TIBO_ACTIONS:
             if self.attention_port is None:
                 raise ButlerError('attention_unavailable', 503)
@@ -90,12 +95,12 @@ class ButlerGateway:
         return self.finish(result, action.action)
 
 
-def create_butler_app(core, tokens: dict[str, str], resolver=None, bridge=None, action_permissions=None, attention_port=None, activity_observer=None):
+def create_butler_app(core, tokens: dict[str, str], resolver=None, bridge=None, action_permissions=None, attention_port=None, activity_observer=None, interrupt_port=None):
     if not tokens or any(not isinstance(t, str) or len(t) < 32 or s not in {'deepseek', 'grok'}
                          for t, s in tokens.items()):
         raise ValueError('provider-bound credentials of at least 32 characters are required')
     credentials = dict(tokens)
-    gateway = ButlerGateway(core, resolver, bridge, action_permissions, attention_port)
+    gateway = ButlerGateway(core, resolver, bridge, action_permissions, attention_port, interrupt_port=interrupt_port)
     app = FastAPI(title='Butler Shadow Gateway', docs_url=None, redoc_url=None, openapi_url=None)
     app.state.gateway = gateway
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=['127.0.0.1', 'localhost', '::1', 'testserver'])

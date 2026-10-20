@@ -13,7 +13,7 @@ Check the [known limitations](docs/LIMITATIONS.md), [validation record](docs/VAL
 
 The launch target is a classic ESP32 with 4 MB Flash, a GDEY042Z98 400×300 black/white/red display, and a verified matching SPI adapter. Confirm the actual board, power supply, and wiring against the [English hardware guide](docs/INSTALL_EN.md). Seeed XIAO ESP32S3 is outside the launch support scope. Safe, limited hardware acceptance of the final candidate remains incomplete; private-device history and simulations do not substitute for it.
 
-Chinese task titles may fall back to short ASCII identifiers after an offline cold boot. This is a known limitation, and full NVS root-cause diagnosis is frozen. Report connectivity, whether this was a cold boot, and whether the screen actively refreshed. Do not erase NVS, repeatedly flash devices, or expand diagnostics just to file a report. Flashing the current private board remains No-Go.
+Chinese task titles may fall back to short ASCII identifiers after an offline cold boot. This is a known limitation, and full NVS root-cause diagnosis is frozen. Report connectivity, whether this was a cold boot, and whether the screen actively refreshed. Do not erase NVS, repeatedly flash devices, or expand diagnostics just to file a report. Device writes require the hardware owner’s approval.
 
 ## Protect data and devices
 

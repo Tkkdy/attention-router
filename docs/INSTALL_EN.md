@@ -4,9 +4,9 @@
 
 [English overview](../README_EN.md) · [中文安装说明](WINDOWS.md) · [中文硬件说明](HARDWARE.md)
 
-This guide is self-contained for an English-speaking installer. It describes future installation operations; **none of these device operations was performed for offline-final2**. The exact public candidate still needs safe core hardware acceptance. Historical software tests and observations on a private device do not prove that acceptance.
+This guide covers the published v0.1.0 source release. You can run the Web Console without a device, Bot or model. The hardware sections are instructions for your own approved test hardware; **those instructions are not proof of hardware acceptance**. The exact public firmware still needs safe core hardware acceptance. Historical software tests and private-device observations do not prove that acceptance.
 
-The current owner's in-use original board remains **No-Go for flashing**. Prefer a compatible spare board, a separate test network and synthetic tasks. Commands below do not authorize changes to an existing service, device or its data. This candidate contains source only, not ready-to-flash firmware.
+Use compatible test hardware, a separate test network and synthetic tasks. Commands below do not authorize changes to an existing service, device or its data. This candidate contains source only, not ready-to-flash firmware.
 
 ## 1. Hardware identity, pinout and power
 
@@ -67,7 +67,7 @@ If the port is occupied, choose an unused port and update the Hub, firmware URL 
 
 ## 3. Install a project-local Arduino toolchain
 
-Use the historically verified versions below; this documentation-only revision did not reinstall or rebuild them:
+Use the historically verified versions below; the post-release documentation and Agent example checks do not reinstall or rebuild this toolchain:
 
 | Tool / dependency | Version |
 | --- | --- |
@@ -140,11 +140,11 @@ Get-FileHash -Algorithm SHA256 .\SOURCE_MANIFEST.json
 Get-ChildItem -LiteralPath .build/firmware -Filter *.bin | Get-FileHash -Algorithm SHA256
 ```
 
-These commands record identity, not hardware acceptance or a rollback backup. Keep the artifacts private and use the same approved build for subsequent device checks. No firmware build was rerun for this documentation-only revision.
+These commands record identity, not hardware acceptance or a rollback backup. Keep the artifacts private and use the same approved build for subsequent device checks. No firmware build is implied by the post-release documentation and Agent example checks.
 
 ## 5. Upload and serial observation — future, separately approved operation
 
-**Do not execute this section on the current in-use original board.** Select a compatible spare board and have its owner approve the exact target and operation. Before writing, confirm its identity, Flash capacity, current/target partition layouts, active application, firmware identity, Flash encryption and secure-boot constraints, and the intended write range. Where data already exists, require a verified full application-and-necessary-data backup/rollback plan; restoring only the application does not restore NVS or credentials. Unknown critical conditions mean **No-Go**, not permission to force a write. This guide is not a full backup/recovery procedure.
+Select compatible test hardware and have its owner approve the exact target and operation. Before writing, confirm its identity, Flash capacity, current/target partition layouts, active application, firmware identity, Flash encryption and secure-boot constraints, and the intended write range. Where data already exists, require a verified full application-and-necessary-data backup/rollback plan; restoring only the application does not restore NVS or credentials. Unknown critical conditions mean **No-Go**, not permission to force a write. This guide is not a full backup/recovery procedure.
 
 Ensure any supervisor or other software that might reset/reflash/control that device cannot interfere under a separately approved isolation plan. Close only a serial monitor you own for the target before upload; do not stop unrelated services or blindly select the first COM port. Use Windows Device Manager together with Arduino's listing to identify the approved test board. The serial commands themselves access the device and belong to that later approved stage.
 
@@ -197,4 +197,4 @@ Chinese titles can fall back to ASCII short IDs after an offline cold boot; hist
 
 Optional device NTP/weather/Radar is experimental. `DASHBOARD_INTERNET_CHECK_URL`, `DASHBOARD_INTERNET_CHECK_STATUS` and `DASHBOARD_INTERNET_CHECK_LOCATION` must match a stable credential-free endpoint's status and Location header (empty if absent). An empty probe URL keeps Internet UNKNOWN and prevents new device NTP/weather/Radar acquisition even with working local Scene. NTP also requires a timezone and both NTP servers; weather requires coordinates and a valid local date and runs only in Standalone/Hub Home; native device Radar needs its URL and a valid date and runs only in Standalone. Probe success is only a prerequisite, not proof of those services. Hub-side Radar is a separate path. Leave all optional services unconfigured for the core test if not needed.
 
-Software evidence is deliberately limited: historical stability 9/9 and core 86/88; the two preserved legacy JSON migration failures are `test_atomic_migration_keeps_json_and_restarts` and `test_invalid_migration_is_atomic`. Existing limited CI passed 19/19 locally and in the supplied independent review, not on GitHub Actions. No complete suite, dependency installation, upload or hardware test was repeated for offline-final2. Existing product, runtime, test and CI code is unchanged; this revision adds installation documentation and corrects release licensing metadata only.
+Software validation remains limited; exact public firmware hardware acceptance is incomplete. Two legacy JSON migration failures are retained. See [current validation](VALIDATION.md), [CI scope](CI.md) and [Agent HTTP quickstart](AGENTS.md#agent-http-quickstart).

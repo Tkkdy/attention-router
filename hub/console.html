@@ -102,7 +102,8 @@ a{color:var(--info)}
 <label>五小时项 <select id="quota-override"><option value="preset">按套餐预设</option><option value="on">手动开启</option><option value="off">手动关闭</option></select></label>
 <button id="quota-save">保存</button><p id="quota-msg" class="op-msg" role="status"></p></details>
 <h3>Tibo · 公共重置公告与实验性预测</h3><div id="tibo"></div>
-<div class="btnrow"><button id="tibo-show">限时查看 Tibo 详情（60 秒）</button></div><p id="tibo-msg" class="op-msg" role="status"></p><div id="tibo-ack"></div>
+<div class="btnrow"><button id="tibo-automatic" disabled>自动重置页</button><button id="tibo-show">限时查看 Tibo 详情（60 秒）</button></div><p id="tibo-msg" class="op-msg" role="status"></p><div id="tibo-ack"></div>
+<p class="note">自动重置页：新鲜的未来 24 小时预测超过阈值后保持显示，直到手动关闭；开关状态会保存。需开启数据采集和概率预测。</p>
 <details><summary>Tibo 采集设置</summary>
 <label>数据采集 <select id="tibo-enabled"><option value="off">关闭</option><option value="on">开启</option></select></label>
 <label>概率预测 <select id="tibo-forecast"><option value="off">不接入</option><option value="on">接入 NextReset</option></select></label>
@@ -322,7 +323,7 @@ function preview(sc){
       h('div',{class:'lbl',text:'事件'}),h('div',{},'id ',pv(i.id),' · v',pv(i.revision),' · ',pv(i.type),' · 优先级 ',pv(i.priority)),
       h('div',{class:'lbl',text:'设备提示'}),h('div',{text:'请在 Hub Web 确认'}));
   }else if(page==='tibo'){const t=sc.tibo||{};
-    body.push(h('div',{class:'lbl',text:sc.tibo_mode==='detail'?'限时详情（主动查看，无需 ACK）':sc.tibo_mode==='attention'?'注意力事件（需确认）':'模式 '+(sc.tibo_mode??'缺失')}),
+    body.push(h('div',{class:'lbl',text:sc.tibo_mode==='detail'?'限时详情（主动查看，无需 ACK）':sc.tibo_mode==='attention'?'注意力事件（需确认）':sc.tibo_mode==='automatic'?'自动重置页（保持至手动关闭）':'模式 '+(sc.tibo_mode??'缺失')}),
       h('div',{},'公告数据：',pv(t.status),' · 最近记录：',pv(t.kind)),h('div',{},'原帖时间（UTC）：',pv(t.announced_at)),h('div',{},'待执行公告：',pv(t.pending)),
       h('div',{class:'lbl',text:'实验性预测'}),h('div',{},pv(t.forecast_status),' · 24h ',pv(t.p24),' / 48h ',pv(t.p48),' / 72h ',pv(t.p72)),
       h('div',{class:'lbl',text:'说明'}),h('div',{text:'社区数据，非官方承诺；不代表个人账号额度'}));
@@ -422,8 +423,10 @@ function renderTibo(){
       .flatMap(([k,v,f])=>[h('dt',{text:k}),h('dd',{},show(v,f))])));
     if(ev.error||fc.error)nodes.push(h('p',{class:'note',text:'数据源请求或校验失败；旧记录仅供参考。'}));
     if(!tiboDirty&&!$('tibo-enabled').matches(':focus')&&!$('tibo-forecast').matches(':focus')&&t.preferences){$('tibo-enabled').value=t.preferences.enabled?'on':'off';$('tibo-forecast').value=t.preferences.forecast_enabled?'on':'off'}}
-  if(lc){nodes.push(h('p',{class:'muted'},'自动注意力策略：'+(lc.automatic_strategy==='unconfigured'||!lc.policy||!lc.policy.automatic_enabled?'未配置（本页不提供开启开关）':String(lc.automatic_strategy)),
+  if(lc){nodes.push(h('p',{class:'muted'},'自动重置页：'+(lc.policy&&lc.policy.automatic_enabled?(lc.automatic_active?'已触发，保持显示':'监测中'):'已关闭')+' · 24h 概率 > '+((lc.policy&&lc.policy.threshold_percent)??70)+'%',
       lc.detail?h('span',{},' · 限时详情进行中，至 ',show(pick(lc.detail,'expires_at'),T)):null));
+    $('tibo-automatic').disabled=false;
+    $('tibo-automatic').textContent=lc.policy&&lc.policy.automatic_enabled?'关闭自动重置页，恢复正常显示':'开启自动重置页';
     $('tibo-show').textContent='限时查看 Tibo 详情（'+((lc.policy&&lc.policy.detail_seconds)||60)+' 秒）';
     put('tibo-ack',(lc.events||[]).filter(e=>e.acknowledgment==='unacknowledged').map(e=>h('button',{on:{click:()=>tiboAck(e)}},'确认 Tibo 事件 '+e.id+' · v'+e.revision)))}
   put('tibo',nodes.length?nodes:h('p',{class:'empty',text:'读取中…'}));
@@ -439,6 +442,9 @@ async function action(btn,id,fn,okText){btn.disabled=true;msg(id,'','提交中�
 $('refresh').addEventListener('click',()=>load(true));
 $('profile').addEventListener('change',()=>{S.profile=$('profile').value;render();load(true)});
 for(const t of ['preview','json','meta'])$('tab-'+t).addEventListener('click',()=>{S.tab=t;renderScene()});
+$('tibo-automatic').addEventListener('click',()=>{const lc=S.ov&&S.ov.tibo_lifecycle;if(!lc||!lc.policy)return;
+  const enabled=!lc.policy.automatic_enabled;
+  action($('tibo-automatic'),'tibo-msg',()=>api('/api/tibo/attention-policy',{...lc.policy,automatic_enabled:enabled}),enabled?'自动重置页已开启；等待新鲜预测超过阈值。':'自动重置页已关闭；已请求恢复正常显示。')});
 let tiboShowId=null;
 $('tibo-show').addEventListener('click',()=>{tiboShowId=tiboShowId||crypto.randomUUID();const id=tiboShowId;
   action($('tibo-show'),'tibo-msg',async()=>{await api('/api/tibo/show',{request_id:id});tiboShowId=null},'已请求限时详情；页面是否切换仍由后端决定。')});

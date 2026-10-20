@@ -66,7 +66,7 @@ class EventInput(Input):
     priority: int = Field(default=5, ge=0, le=9)
     starts_at: datetime | None = None
     expires_at: datetime | None = None
-    provenance: Literal["SIMULATED", "USER"] = "SIMULATED"
+    provenance: Literal["SIMULATED", "USER", "AGENT"] = "SIMULATED"
 
     @field_validator("title", "message", "detail")
     @classmethod
@@ -573,6 +573,7 @@ class AttentionService:
                     "detail": active["detail"], "priority": active["priority"], "behavior": "until_change"})
                 visible["stale"] = False  # A current interrupt is independent of optional Home providers.
                 visible["simulated"] = active["provenance"] == "SIMULATED"
+            automatic = self.tibo_lifecycle.automatic(persist=persist) if tibo_supported else None
             detail = self.tibo_lifecycle.detail()
             tibo_event = active and active["kind"] == "tibo_reset"
             if tibo_supported and (tibo_event or (detail and not active)):
@@ -580,7 +581,11 @@ class AttentionService:
                 visible.update(page="tibo", tibo=data, tibo_mode="attention" if tibo_event else "detail",
                                attention_required=bool(tibo_event), acknowledgment="unacknowledged" if tibo_event else "not_required")
                 visible["stale"] = data["status"] != "FRESH"
-            if tibo_supported and not active and not detail and not self.db.read("tibo_lifecycle").get("enabled"):
+            if tibo_supported and not active and not detail and automatic is not None:
+                visible.update(page="tibo", tibo=automatic, tibo_mode="automatic",
+                               attention_required=False, acknowledgment="not_required", simulated=False)
+                visible["stale"] = automatic["status"] != "FRESH" or automatic["forecast_status"] != "FRESH"
+            if tibo_supported and not active and not detail and automatic is None and not self.db.read("tibo_lifecycle").get("enabled"):
                 prefs = self.tibo.preferences()
                 if prefs["enabled"] and prefs["show_page"]:
                     visible.update(page="tibo", tibo=self.tibo.device(), simulated=False)

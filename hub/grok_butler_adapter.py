@@ -32,7 +32,8 @@ def tool_definitions():
         if action not in _READS:
             required_envelope.append('expected_revision')
         result.append({'name': action, 'description': (
-            'Show Tibo Detail only on explicit user request; no acknowledgment required.' if action == 'show_tibo_page'
+            'Autonomously choose when to show an Interrupt and its content under owner-delegated permission. Use printable English ASCII title/message, each at most 47 characters. No per-message reminder request is required. No Todo changes or automatic ACK. Reuse request_id and identical text only for retries; accepted does not prove physical display.' if action == 'show_interrupt'
+            else 'Show Tibo Detail only on explicit user request; no acknowledgment required.' if action == 'show_tibo_page'
             else 'Acknowledge only the exact Tibo event the user explicitly said they saw; never infer from refresh/time/activity. No Todo mutation.' if action == 'ack_tibo_attention'
             else 'Read Tibo event ids, revisions and acknowledgment stages; never infer seen from display.' if action == 'get_tibo_attention'
             else 'Resolve original, ambiguous user intent via the shared Semantic Resolver.' if action == 'resolve_intent'

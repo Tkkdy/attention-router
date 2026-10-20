@@ -7,14 +7,11 @@
   "license_selected": true,
   "license_scope_file": "LICENSE_MAP.json",
   "distribution": "PUBLIC_SOURCE_ONLY",
-  "parent_zip_sha256": "3c6fda164a413dc15d1d69f7402ccc102c80a924e1d9052ff03a774e7218c265",
-  "parent_candidate": "offline-final2",
   "git_history_included": false,
   "inherited_commits": 0,
   "private_history_audited": false,
   "hardware_acceptance": "NOT_COMPLETED_FOR_EXACT_PUBLIC_CANDIDATE",
-  "private_device_nvs_diagnosis": "FROZEN_NO_GO",
-  "software_validation": "HISTORICAL_LOCAL_EVIDENCE_REUSED; LIVE_CI_SEE_GITHUB_ACTIONS",
+  "software_validation": "LOCAL: basic 48/48; targeted 67/67 (overlap); Agent HTTP 7/7; DeepSeek adapter 11/11; Console contract PASS; LIVE_CI_SEE_GITHUB_ACTIONS",
   "firmware_build": "FIRMWARE_BYTES_UNCHANGED_FROM_PARENT; HISTORICAL_BUILD_REUSED; NOT_REBUILT_OR_FLASHED",
   "files": [
     {
@@ -44,8 +41,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 1332,
-      "sha256": "0806719d1cf4fd58f3e36b8818f2520869437da5b48127c3333fd1e9e749baf5"
+      "bytes": 1573,
+      "sha256": "c35031b8a7bd744b2edd2a74fb5bccf1a36db4871eff77bbd9a54e58c8ba404a"
     },
     {
       "path": ".gitignore",
@@ -54,18 +51,18 @@
     },
     {
       "path": "CONTRIBUTING.md",
-      "bytes": 3351,
-      "sha256": "42f173ebc363fad8455c5235f9976ffd9737b95d39d7313c989ed5bc5b5de568"
+      "bytes": 3360,
+      "sha256": "b1327048b67e845b898ed1cafc9a6964f63ed41203124fffe914ae090beb445c"
     },
     {
       "path": "CONTRIBUTING_EN.md",
-      "bytes": 4123,
-      "sha256": "6a12652ff5a8aa0520277b46495763a002852da9d172d73194f353709caf52b9"
+      "bytes": 4128,
+      "sha256": "53af5614c789af0bdbe2b96157cf88e595c285cbb45f0224fe563076ca5d3082"
     },
     {
       "path": "GIT_FILES.txt",
-      "bytes": 4998,
-      "sha256": "79e69c5d0252523cd44211d8766a68feea6eb2274c9cbd43dcfc15d2ae6aa53c"
+      "bytes": 5148,
+      "sha256": "68e415c736ead6512758f444b351bb956c4a40d1df7d533a0eac00566746a037"
     },
     {
       "path": "LICENSE",
@@ -74,23 +71,23 @@
     },
     {
       "path": "LICENSE_MAP.json",
-      "bytes": 39481,
-      "sha256": "7f771048d03a467e8baa43c69d8d6f4f946aae166b4b36bca7ac890975fba818"
+      "bytes": 40526,
+      "sha256": "f2cb364a567b01b284c9636843a028af627ede458d36f7e93a493ad94d943669"
     },
     {
       "path": "README.md",
-      "bytes": 11279,
-      "sha256": "d0b149d1fdf6bbd430e4afd10f1d4e8c29e2adf2bc524a0d07ae94f82316ab2c"
+      "bytes": 5190,
+      "sha256": "a81a633b9632a2c426113d464186ca59f1c359cf4420aacf68d0e4788fb27169"
     },
     {
       "path": "README_EN.md",
-      "bytes": 13661,
-      "sha256": "7b114ca6e1fcb68e937353916e09e896665b8191d6b5b06b65481eb354a0e202"
+      "bytes": 5627,
+      "sha256": "26d2a1ed977fd5cd5c86dfd9f57f1d5d8f59dc3cc17116f2a97fcf4651798cb0"
     },
     {
       "path": "RELEASE_NOTES.md",
-      "bytes": 5367,
-      "sha256": "6b86ca99d649872c5fd0f994b5ab78e930965f334f81eee19789f984309630dd"
+      "bytes": 5162,
+      "sha256": "ae32f3daadd453ffb310ff64b877b4b1c4b922a86c57036a3875201ae3bac308"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -99,8 +96,8 @@
     },
     {
       "path": "assets/ASSET_INDEX.md",
-      "bytes": 2594,
-      "sha256": "63811ae2a374a966a653ab8c52fcb4e3922020bcbf26a5a4c4fdf2d39d7c6d49"
+      "bytes": 2465,
+      "sha256": "44647987dfa679bf02ea4b8edea34941fdaec08e485879382ae4200c37f1dc7d"
     },
     {
       "path": "assets/architecture.mmd",
@@ -119,8 +116,8 @@
     },
     {
       "path": "ci/run_basic.py",
-      "bytes": 4035,
-      "sha256": "041f5c6daa9f4baddf693c888fcf75ecf402ab908dda03ee242e4096e07220f3"
+      "bytes": 4108,
+      "sha256": "849598c1d4111026e9dc1106cd83c8f4b7da33f2a6267a1bb98903203c9a25ed"
     },
     {
       "path": "compile_firmware.ps1",
@@ -134,28 +131,28 @@
     },
     {
       "path": "docs/AGENTS.md",
-      "bytes": 6379,
-      "sha256": "549050bc747eb2e4402db907083e76803dc2bfa1e44792700ffcbfa3ba7c4c9a"
+      "bytes": 14978,
+      "sha256": "5e4636956b0ce726b8a2bdcfa4fd8b3249af582c5677f0c9347e467d3db15fe6"
     },
     {
       "path": "docs/CI.md",
-      "bytes": 7022,
-      "sha256": "8999b80c27b5e617d21c19c2baae9498cbf527023adc562ea2ff527fb0e80dcd"
+      "bytes": 3290,
+      "sha256": "285f59821af7bfa40845c01715fead724c14830ec4dac0f5666ee562e209386c"
     },
     {
       "path": "docs/FEATURES.md",
-      "bytes": 16252,
-      "sha256": "300c42a95eb537542c9de062f92eaa90ec10a57c274fb0de796774083aecb557"
+      "bytes": 16571,
+      "sha256": "8fb6cdf03ebb5025f7c1729b49c4a22cab7fc692011c643791029e47af97d014"
     },
     {
       "path": "docs/HARDWARE.md",
-      "bytes": 4875,
-      "sha256": "8866f365affe2987f6e9053a0a8c1de54217a16be14a0e625c5f3ed316b697fa"
+      "bytes": 3448,
+      "sha256": "7a9eb7ee7d07d5de08f5b8dad0d1bed6e1ba0fd57caffaa3b2c72c2907ad4137"
     },
     {
       "path": "docs/INSTALL_EN.md",
-      "bytes": 18522,
-      "sha256": "84365da1d7540918512c038c65479c47c7eee6230ae4e8623b107c30f691cbb6"
+      "bytes": 18180,
+      "sha256": "27666c8aa0b81b14dcd139c91ad525405078b433d0bb5b723b51f781b91855a1"
     },
     {
       "path": "docs/LICENSING.md",
@@ -164,33 +161,43 @@
     },
     {
       "path": "docs/LIMITATIONS.md",
-      "bytes": 5421,
-      "sha256": "68946260543b506cf1339ed05f1c23a8f9bbac653370d99a70096e00b0c7ff6d"
+      "bytes": 3830,
+      "sha256": "eee3809e2e3ef3c596941e7e8d6df474e508f1f184ff7c0cd61fca86d16f7bf9"
     },
     {
       "path": "docs/NETWORK.md",
-      "bytes": 2979,
-      "sha256": "84f8e92e3ddd4361faad04ae095e31daed62abc8be465186b94c014737d6dfb4"
+      "bytes": 2985,
+      "sha256": "5594faf88b1f357d8909c85e26dcd8111144c9ec2660b01be787a3cdf97f256b"
     },
     {
       "path": "docs/PUBLISHING.md",
-      "bytes": 2687,
-      "sha256": "630c1541f36c629ddcb70ce16dc4a43869596ed60edf0ab7539c2ddaa005477f"
+      "bytes": 1296,
+      "sha256": "c968a5fde4ce41f4d3c13cfe1d394b8e8f06ce2de00f69641c06618dbd2cbf53"
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 12248,
-      "sha256": "39e95fc4c76488d6ebca49e7157956caaa86e008449acf73f3f3f95c34da11b4"
+      "bytes": 2407,
+      "sha256": "6a98d239ec1b249d442d57fbe87cefe2555aede72a0ac7c3157b825e92523595"
     },
     {
       "path": "docs/WINDOWS.md",
-      "bytes": 12043,
-      "sha256": "856e7946ab9b1144b9da9ebee8476b64f7c25a83745e1605123e15260fb7a9e9"
+      "bytes": 11887,
+      "sha256": "f6365d677988a4318b5a8de87cf9864348b782f4f59bf4c49674b93d417e30ad"
+    },
+    {
+      "path": "examples/agent_http_demo.py",
+      "bytes": 7258,
+      "sha256": "613097d2a4a964057aec88e839919626bde06ffeb7680b584acda184321bd907"
     },
     {
       "path": "examples/local_demo.py",
       "bytes": 2401,
       "sha256": "4e813dda2471b2234e2886b168d35d63cf409201b78d899ef79f1565115de9f0"
+    },
+    {
+      "path": "examples/test_agent_http_demo.py",
+      "bytes": 9323,
+      "sha256": "2c3dc8e59298608588d0520313abd77636adeca28103a3c45622442c3143cd63"
     },
     {
       "path": "experiments/oauth_spike/__init__.py",
@@ -384,8 +391,8 @@
     },
     {
       "path": "hub/attention.py",
-      "bytes": 42571,
-      "sha256": "78ac84b74d0777b7cdc27ad646ff4b97cdcb4b1dca563955866891828480feaa"
+      "bytes": 43090,
+      "sha256": "f33cbfb654591b385335a36cc39fb5406e797ff4984c976a15344dfddf3fb1e8"
     },
     {
       "path": "hub/browser_site_marker.ps1",
@@ -404,13 +411,13 @@
     },
     {
       "path": "hub/butler_gateway.py",
-      "bytes": 8265,
-      "sha256": "947351edd5355e835bdb79d51a2616e014ee972bd4ecebd98b0f3aa81cd0d4a0"
+      "bytes": 8661,
+      "sha256": "68b51ba08db2319c10689f808c9d1daa9969975ff718627287282d482a49b63b"
     },
     {
       "path": "hub/butler_models.py",
-      "bytes": 6231,
-      "sha256": "ef0b21ca80e6a37e0235aee5f83f9e8cf4ad55ea6543986368d6d10ec20164be"
+      "bytes": 6761,
+      "sha256": "b9bf37b55c2f33d82eacb46355ff313e05799228e300d9d685db7edabb024d54"
     },
     {
       "path": "hub/butler_todo_projection.py",
@@ -419,8 +426,8 @@
     },
     {
       "path": "hub/console.html",
-      "bytes": 44449,
-      "sha256": "477ee6cdbe2ae124b2bbb296031c54bee6c79cbebf9604e89ae2841df70f229a"
+      "bytes": 45384,
+      "sha256": "8776c0a2627456b654c191564c46d2043a526c032c96e92dd3abca96f3762dc8"
     },
     {
       "path": "hub/context_monitor.py",
@@ -439,13 +446,13 @@
     },
     {
       "path": "hub/grok_butler_adapter.py",
-      "bytes": 6099,
-      "sha256": "3f7ab306269003e2c0b088e2a3603a99ab399e074c914f72ed1db4737d694a6d"
+      "bytes": 6490,
+      "sha256": "3eee4e92a9c3863df50a37b20402fce42748aeb449c0daf65911514fd5a2e8a6"
     },
     {
       "path": "hub/grok_capabilities.py",
-      "bytes": 924,
-      "sha256": "6d33c9660edd7d5b1bec7e65ca7f14184c8f3a58f614418525006258aa9b2e9c"
+      "bytes": 974,
+      "sha256": "c95cb809d8b57c205a2c10672d13b9e26f6c669981e1741e7307698692ac5eea"
     },
     {
       "path": "hub/hub_models.py",
@@ -456,6 +463,11 @@
       "path": "hub/import_todo_shadow.py",
       "bytes": 1170,
       "sha256": "0653a08be9a7210ecba4180bd55dcd4019622a79eae7834728428796acfd5b5b"
+    },
+    {
+      "path": "hub/interrupt_gateway.py",
+      "bytes": 3805,
+      "sha256": "b6f33466b7c5ba93e8dd89930e69e15afc27ea6e594da9f813aa4e0fbee1d015"
     },
     {
       "path": "hub/legacy_todo_guard.py",
@@ -509,8 +521,8 @@
     },
     {
       "path": "hub/router_api.py",
-      "bytes": 12618,
-      "sha256": "e0bd0dccfbccdd30adc07203161f72907a8e0296fb2388bac4525efe47a3fd52"
+      "bytes": 12609,
+      "sha256": "96a933f2be0e4725ec4bf15f3d8182a0123b866be9011596049e675c8db0db8a"
     },
     {
       "path": "hub/router_store.py",
@@ -521,6 +533,11 @@
       "path": "hub/run_butler_shadow.py",
       "bytes": 3295,
       "sha256": "c2e49efe8d9f1cc8c06f4494ddf155cf648a58125e9374cf3b2d7c4b3d60e51c"
+    },
+    {
+      "path": "hub/run_interrupt_gateway.py",
+      "bytes": 2480,
+      "sha256": "3bb50399f8f001d84ec471de123e55e40a415ef678fffe982c97f5029f715596"
     },
     {
       "path": "hub/run_preview.py",
@@ -579,18 +596,23 @@
     },
     {
       "path": "hub/test_context_v2.py",
-      "bytes": 11862,
-      "sha256": "d5729bad0edb83bcb8418658b877548b919bcb5376be44fdced66cfaa04d9041"
+      "bytes": 11865,
+      "sha256": "0c90097f422219753a91f487299eb8d663a19c5696ea2788283474cafea97845"
     },
     {
       "path": "hub/test_grok_butler.py",
       "bytes": 10808,
-      "sha256": "bcacbc6efdbbdcc3a317cbf3834f5e3c0e0afb8843e56f72fb42b0b52f186732"
+      "sha256": "6bd2d145259df188c392799deb3d6065e76055c8c034fd7ad104b8e7fb7c555d"
     },
     {
       "path": "hub/test_hub.py",
       "bytes": 17570,
       "sha256": "a0c9729329a33be1364af684a7a43c4cef8525d23a7063148f7e1777beb71b9a"
+    },
+    {
+      "path": "hub/test_interrupt_gateway.py",
+      "bytes": 8754,
+      "sha256": "9a56261dfb39c3a2a0ecba954551e80a97040240b12bfa18b62ffb9289f6b766"
     },
     {
       "path": "hub/test_m2.py",
@@ -654,8 +676,8 @@
     },
     {
       "path": "hub/test_tibo.py",
-      "bytes": 8952,
-      "sha256": "f886f92b8b9f33c871ca8c112f13f285b906aaa13ea9fa28c70e40af366f57c9"
+      "bytes": 12692,
+      "sha256": "6e7dc9fc7403bb641b13eaeefa2dfb438e3bf39bc2bf210b165c5e4955113a67"
     },
     {
       "path": "hub/tibo.py",
@@ -664,8 +686,8 @@
     },
     {
       "path": "hub/tibo_attention.py",
-      "bytes": 5600,
-      "sha256": "aee5274a6d9f097a06eec1e7ce62edd714e33aed34fd2d3e415cc7e6a02daa13"
+      "bytes": 6521,
+      "sha256": "2cf7c6f89ac682683725e9a112473441079b367306dbcd5ccd6e94dfacc0f203"
     },
     {
       "path": "hub/tibo_gateway.py",
@@ -709,13 +731,13 @@
     },
     {
       "path": "integrations/deepseek_bot/gateway-client.mjs",
-      "bytes": 3486,
-      "sha256": "2690c25a09b5e440d2a566e9fa39894841056ca05e1659e92358f2112b78648e"
+      "bytes": 3504,
+      "sha256": "a3dd1b9d7dcfed7e1c6df7953236216f7b84318490ffeddb6846ea2e4507dc82"
     },
     {
       "path": "integrations/deepseek_bot/gateway-client.test.mjs",
-      "bytes": 11430,
-      "sha256": "b08012685a6d41c91b303cb92bb3780dda8ed140bffd4f2e2e73870809a30859"
+      "bytes": 12296,
+      "sha256": "b168251201f98bfcab16d402649bf2de8ecd40c81e98cff279d994f820326eca"
     },
     {
       "path": "integrations/deepseek_bot/gateway-live.mjs",
@@ -724,8 +746,8 @@
     },
     {
       "path": "integrations/deepseek_bot/register-tools.mjs",
-      "bytes": 8536,
-      "sha256": "1574675b935c7e7dacd8568e3b0a98a2b8b97f001bfff3af008c7a51bf896349"
+      "bytes": 9044,
+      "sha256": "b69d8f176bba26fca7a3e6e3df35d0c35dc57c89467d2428561e0705bcbbcf2c"
     },
     {
       "path": "integrations/deepseek_bot/test_gateway_integration.py",
@@ -734,8 +756,8 @@
     },
     {
       "path": "integrations/deepseek_bot/ux-contract.mjs",
-      "bytes": 2336,
-      "sha256": "fd1315677aa3040a27282bf0ed4a352f5579bdbb252c936423d0c46e1dd22c33"
+      "bytes": 3145,
+      "sha256": "d271217a3365eab8e2858bc04b34bf7ebd136c894b5d41922802dd33c5faed76"
     },
     {
       "path": "integrations/deepseek_bot/ux-contract.test.mjs",
@@ -779,8 +801,8 @@
     },
     {
       "path": "release-metadata.json",
-      "bytes": 1239,
-      "sha256": "cc1f3fda73cae1a03abf4914d5dbd50b470048ff2cf98881fd3e379db00cb6ec"
+      "bytes": 1208,
+      "sha256": "de0a6ec56a0b24b5f31f132c1c5297e250886dea047ebfc203d853149c80a19a"
     },
     {
       "path": "remote_mcp_access.ps1",
@@ -902,5 +924,6 @@
   ],
   "revision_scope": "Only per-component release license metadata, English installation documentation, related navigation and regenerated inventories",
   "revision_validation": "TARGETED_STATIC_CHECKS; ALL_EXISTING_CODE_BYTES_IDENTICAL; PRIOR_SOFTWARE_RESULTS_REUSED; NO_INSTALL_BUILD_HARDWARE_OR_ACTIONS_RUN",
-  "git_history_policy": "Fresh initial commit; no private history"
+  "git_history_policy": "Fresh initial commit; no private history",
+  "source_baseline_commit": "3ba371afbabbb72b11acb0b52c636d08112d0c14"
 }
