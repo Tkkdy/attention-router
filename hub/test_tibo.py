@@ -169,6 +169,70 @@ class TiboTests(unittest.TestCase):
             client.post('/api/tibo/preferences',json=command,headers=headers)
             self.assertEqual(client.get('/scene?capabilities=tibo-v1').json()['page'],'home')
 
+    def set_probability(self, chance):
+        record = self.service.db.read('tibo_forecast')
+        record['sample']['probabilities'] = {'24': chance, '48': max(chance, 80), '72': max(chance, 90)}
+        self.service.db.write('tibo_forecast', record)
+
+    def test_automatic_threshold_latch_disable_and_restart(self):
+        from tibo_attention import TiboAttentionPolicy
+        self.enable(page=False)
+        for source in URLS:
+            self.module.sample(source)
+        lifecycle = self.service.tibo_lifecycle
+        before = self.service.task_store.read()
+        lifecycle.configure(TiboAttentionPolicy(automatic_enabled=True))
+        self.set_probability(70)
+        self.assertEqual(self.service.scene(tibo_supported=True)['page'], 'home')
+        self.set_probability(71)
+        # Read-only previews cannot consume/persist the trigger.
+        self.assertEqual(self.service.scene(tibo_supported=True, persist=False)['tibo_mode'], 'automatic')
+        self.assertEqual(self.service.db.read('tibo_automatic'), {})
+        self.assertEqual(self.service.scene()['page'], 'home')
+        scene = self.service.scene(tibo_supported=True)
+        self.assertEqual(scene['tibo_mode'], 'automatic')
+        self.assertFalse(scene['attention_required'])
+        self.set_probability(12)
+        again = AttentionService(self.path)
+        self.assertEqual(again.scene(tibo_supported=True)['tibo_mode'], 'automatic')
+        self.service.publish(EventInput(id='auto-alarm', revision=1, title='TEST', message='Action needed',
+                                       kind='reminder', authorization='user_reminder'))
+        self.assertEqual(self.service.scene(tibo_supported=True)['page'], 'interrupt')
+        self.service.acknowledge('auto-alarm', AckInput(revision=1, command_id='auto-ack'))
+        self.assertEqual(self.service.scene(tibo_supported=True)['tibo_mode'], 'automatic')
+        self.now += timedelta(minutes=20)
+        stale = self.service.scene(tibo_supported=True)
+        self.assertEqual(stale['tibo_mode'], 'automatic')
+        self.assertIsNone(stale['tibo']['p24'])
+        self.assertTrue(stale['stale'])
+        # Turning the switch off also closes any outstanding manual detail.
+        lifecycle.show('manual-before-disable')
+        lifecycle.configure(TiboAttentionPolicy(automatic_enabled=False))
+        self.assertIsNone(lifecycle.detail())
+        self.now -= timedelta(minutes=20)
+        self.set_probability(99)
+        again = AttentionService(self.path)
+        self.assertFalse(again.tibo_lifecycle.policy().automatic_enabled)
+        self.assertEqual(again.scene(tibo_supported=True)['page'], 'home')
+        self.assertEqual(before, self.service.task_store.read())
+
+    def test_stale_forecast_cannot_trigger_and_manual_still_expires(self):
+        from tibo_attention import TiboAttentionPolicy
+        self.enable(page=False)
+        self.module.sample('forecast')
+        self.set_probability(99)
+        lifecycle = self.service.tibo_lifecycle
+        lifecycle.configure(TiboAttentionPolicy(automatic_enabled=True))
+        self.now += timedelta(minutes=20)
+        self.assertEqual(self.service.scene(tibo_supported=True)['page'], 'home')
+        detail = lifecycle.show('manual-60')
+        duration = datetime.fromisoformat(detail['expires_at']) - datetime.fromisoformat(detail['requested_at'])
+        self.assertAlmostEqual(duration.total_seconds(), 60, delta=1)
+        self.assertEqual(self.service.scene(tibo_supported=True)['tibo_mode'], 'detail')
+        detail['expires_at'] = (datetime.now(timezone.utc)-timedelta(seconds=1)).isoformat()
+        self.service.db.write('tibo_detail', detail)
+        self.assertEqual(self.service.scene(tibo_supported=True)['page'], 'home')
+
     def test_worker_stops_cleanly(self):
         async def check():
             task=asyncio.create_task(self.module.run())

@@ -146,7 +146,7 @@ class ContextV2Tests(unittest.TestCase):
             s.tibo_lifecycle.show("later-manual")
             s.tibo_lifecycle.acknowledge(event["id"],1,"ack")
             self.assertEqual(s.tibo_lifecycle.detail()["request_id"],"later-manual")
-            with self.assertRaises(ValueError):s.tibo_lifecycle.configure(TiboAttentionPolicy(automatic_enabled=True))
+            self.assertTrue(s.tibo_lifecycle.configure(TiboAttentionPolicy(automatic_enabled=True))["automatic_enabled"])
 
     def test_gateway_tibo_never_calls_todo_and_permissions_remain_narrow(self):
         from butler_gateway import ButlerGateway
@@ -187,7 +187,7 @@ class ContextV2Tests(unittest.TestCase):
                 self.assertEqual(c.post("/api/tibo/show",json={"request_id":"test"},headers=h).status_code,200)
                 self.assertEqual(c.get("/api/overview").json()["runtime"]["context_monitor"]["status"],"Stopped")
                 self.assertEqual(c.post("/api/context",json={"mode":"CODING"},headers=h).json()["effective"],"CODING")
-                self.assertEqual(c.post("/api/tibo/attention-policy",json={"automatic_enabled":True},headers=h).status_code,409)
+                self.assertEqual(c.post("/api/tibo/attention-policy",json={"automatic_enabled":True},headers=h).status_code,200)
                 self.assertEqual(c.post("/api/context/config",json=WorkSessionConfig(enter_seconds=10).model_dump(),headers=h).status_code,200)
             self.assertEqual(AttentionService(Path(d)).context_detector.enter_seconds,10)
 

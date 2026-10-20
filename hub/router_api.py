@@ -244,8 +244,6 @@ def create_router_app(data_dir: Path | None = None, *, start_monitor: bool = Tru
 
     @application.post("/api/tibo/attention-policy")
     def tibo_policy(command: TiboAttentionPolicy):
-        if command.automatic_enabled:
-            raise HTTPException(409, "automatic strategy unconfigured")
         return service.tibo_lifecycle.configure(command)
 
     @application.post("/api/tibo/test-event")
