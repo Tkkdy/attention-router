@@ -2,11 +2,37 @@
 
 [中文](README.md) | **English**
 
+**Keep tasks, work context and important alerts in view on your desk.**
+
 A local-first desktop attention router. A Windows Hub stores tasks, work context and alerts; Agents connect through authenticated HTTP; the Web Console provides inspection and acknowledgment; an ESP32 e-paper display polls the resulting Scene. Console-only use needs no hardware or model subscription. Routing is deterministic, without LLM calls.
+
+![Real ESP32, adapter and e-paper desktop prototype showing Home](assets/hardware-overview.jpg)
+
+*The physical prototype: ESP32, adapter and 4.2-inch e-paper. Home keeps a small ordered task list visible; the full list stays in the Hub.*
+
+[Quickstart](#windows-quickstart) · [Hardware](docs/HARDWARE.md) · [Agent integration](docs/AGENTS.md) · [Features and plans](docs/FEATURES.md)
+
+## See it in use
+
+- **Home:** Keep the first three pending tasks in view.
+- **Workspace:** See Current and Next while you work.
+- **Interrupt:** Surface an alert for manual acknowledgment in Hub Web. ACK never completes the task.
+
+<table>
+<tr><th>Workspace · Current and Next</th><th>Interrupt · Manual acknowledgment</th></tr>
+<tr><td><img src="assets/device-workspace.jpg" alt="Physical Workspace page with SIMULATED and STALE labels retained" width="460"></td><td><img src="assets/device-interrupt.jpg" alt="Physical Interrupt page with an ASCII message and ACK IN HUB WEB" width="460"></td></tr>
+</table>
+
+These owner-supplied photographs show real hardware. Visible `SIMULATED` / `STALE` labels describe demo or freshness state; the photos do not prove live data, forecast accuracy or acceptance of the exact public firmware. The Workspace photo retains prototype text overlap; Interrupt shows ASCII text. See the limits below.
+
+<details>
+<summary>Web Console: inspect and acknowledge on your computer</summary>
 
 ![Real Console with synthetic data](assets/console-demo.png)
 
-This is not hardware acceptance. [Asset provenance](assets/ASSET_INDEX.md).
+Rendered by a real browser against an isolated Hub using synthetic data. It does not prove a connected device or completed display. [Asset provenance](assets/ASSET_INDEX.md).
+
+</details>
 
 ## Core capabilities
 
@@ -49,6 +75,15 @@ It creates a synthetic Todo, links Current by its returned ID, publishes an auth
 
 GrokBot, DeepSeekBot, MCP/OAuth, Todo Core projection, Codex quota, Radar and weather are optional experiments. DeepSeekBot adapters are included; complete independent chat-web installation remains unaccepted. Basic HTTP is independent. [Integration boundaries and optional Interrupt MCP facade](docs/AGENTS.md) · [Features](docs/FEATURES.md). General Agent lifecycle, execution-completion detection and physical ACK buttons are unimplemented.
 
+<details>
+<summary>Tibo on hardware: community Reset status and experimental forecasts</summary>
+
+<img src="assets/device-tibo.jpg" alt="Physical Tibo Reset Watch page retaining the SIMULATED label" width="680">
+
+A photographed Tibo page with community sources and experimental forecasts. Dates, probabilities and the `SIMULATED` label are preserved; this is not a current reset announcement or a personal quota guarantee.
+
+</details>
+
 ## Hardware, security and limits
 
 - Target: classic ESP32 (4 MB Flash) + **GDEY042Z98 4.2-inch 400×300 black/white/red SSD1683** with matching adapter. Other same-size panels are not interchangeable; ESP32S3 is unsupported. [Wiring/voltage/build](docs/HARDWARE.md).
@@ -58,6 +93,12 @@ GrokBot, DeepSeekBot, MCP/OAuth, Todo Core projection, Codex quota, Radar and we
 - Fresh data directories only; two legacy JSON migration failures remain. Existing STALE, worker/cancellation and cache fixes are retained. [Limits](docs/LIMITATIONS.md) · [Validation](docs/VALIDATION.md) · [CI](docs/CI.md).
 
 Existing v0.1.0 Tag/Release remains; main may include subsequent maintenance. Verify hardware and complete backups before device writes. Builds may embed Wi-Fi credentials; never commit private configuration, databases, logs or personal firmware.
+
+## From desktop prototype to attention assistant
+
+![Grok Bot concept showing multi-source task organization and a desktop display](assets/grok-bot-concept.png)
+
+**Concept illustration, not a current product screenshot.** This owner-supplied Grok Bot demo illustrates “describe a task → organize it → keep it visible.” Automatic integration of email, calendars, team messages, knowledge bases and browsers is a vision, not a claim of shipped connectors or complete workflows. Available and experimental paths are described above and in [Features](docs/FEATURES.md). Third-party marks do not imply affiliation.
 
 ## Contribution and licensing
 

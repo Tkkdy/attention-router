@@ -2,11 +2,37 @@
 
 **中文** | [English](README_EN.md)
 
+**把任务、工作上下文和重要提醒，放到桌面上的一块墨水屏。**
+
 Attention Router 是本地优先的桌面注意力路由器。Windows Hub 保存任务、工作上下文和提醒；Agent 通过鉴权 HTTP 接入；Web Console 提供查看与确认；ESP32 墨水屏定期拉取 Hub 的 Scene。也可只用 Console，无需硬件或模型订阅。路由使用确定性规则，不调用 LLM。
+
+![ESP32、转接板与墨水屏的真实桌面原型，显示 Home 页面](assets/hardware-overview.jpg)
+
+*真实桌面原型：ESP32、转接板与 4.2 英寸墨水屏。Home 将有序待办放在视线里，完整列表留在 Hub。*
+
+[快速安装](#windows-快速安装) · [硬件接线](docs/HARDWARE.md) · [Agent 接入](docs/AGENTS.md) · [功能与计划](docs/FEATURES.md)
+
+## 看看它如何工作
+
+- **Home：** 看当前顺序中的前三条待办，减少反复打开任务列表。
+- **Workspace：** 保留 Current 与 Next，工作时抬眼就能看到上下文。
+- **Interrupt：** 用醒目的提醒页面请求回应，在 Hub Web 手动 ACK；确认提醒不会完成任务。
+
+<table>
+<tr><th>Workspace · 当前事项与下一步</th><th>Interrupt · 等待手动确认</th></tr>
+<tr><td><img src="assets/device-workspace.jpg" alt="真实墨水屏 Workspace 页面，保留 SIMULATED 和 STALE 标记" width="460"></td><td><img src="assets/device-interrupt.jpg" alt="真实墨水屏 Interrupt 页面，显示英文 ASCII 提醒和 ACK IN HUB WEB" width="460"></td></tr>
+</table>
+
+以上为作者提供的真机照片；屏上保留的 `SIMULATED` / `STALE` 是演示或数据新鲜度标记，拍到实物不代表数据实时、预测准确或精确公开固件验收通过。Workspace 照片也保留原型中的文字重叠，Interrupt 展示 ASCII 文案；后文说明支持范围与限制。
+
+<details>
+<summary>查看 Web Console：在电脑上管理与确认</summary>
 
 ![真实 Console，合成数据](assets/console-demo.png)
 
-截图不代表硬件显示验收。[素材说明](assets/ASSET_INDEX.md)。
+真实浏览器与隔离 Hub 渲染，使用合成数据；不代表设备已连接或显示完成。[素材来源与处理](assets/ASSET_INDEX.md)。
+
+</details>
 
 ## 核心能力
 
@@ -49,6 +75,15 @@ Copy-Item config.example.json config.local.json
 
 GrokBot、DeepSeekBot、MCP/OAuth、Todo Core 投影、Codex 额度、Radar 与天气是可选实验集成。DeepSeekBot 已含适配器，完整独立聊天网页安装尚未验收；基础 HTTP 不依赖它。[集成边界及可选 Interrupt MCP facade](docs/AGENTS.md) · [功能矩阵](docs/FEATURES.md)。通用 Agent 生命周期、执行完成感知、实体 ACK 按钮尚未实现。
 
+<details>
+<summary>Tibo 实拍：社区 Reset 状态与实验预测</summary>
+
+<img src="assets/device-tibo.jpg" alt="真机 Tibo Reset Watch 页面，保留 SIMULATED 标记" width="680">
+
+真实屏幕上的 Tibo 页面示例，含社区来源和实验预测。照片中的时间、概率与 `SIMULATED` 标记均原样保留，不是当前重置消息，也不是个人额度保证。
+
+</details>
+
 ## 硬件、安全与限制
 
 - 目标：经典 ESP32（4 MB Flash）+ **GDEY042Z98 4.2 英寸、400×300 黑白红、SSD1683** 及匹配转接板；其他同尺寸屏不可直接替换，ESP32S3 未支持。[接线、电压与构建](docs/HARDWARE.md)。
@@ -58,6 +93,12 @@ GrokBot、DeepSeekBot、MCP/OAuth、Todo Core 投影、Codex 额度、Radar 与�
 - 仅支持新数据目录，两项旧 JSON 迁移失败保留；公开版 STALE、线程、取消与缓存修复均保留。[限制](docs/LIMITATIONS.md) · [验证](docs/VALIDATION.md) · [CI](docs/CI.md)。
 
 v0.1.0 Tag/Release 保留；main 可包含后续源码维护。操作硬件前确认目标与完整备份；构建产物可能含 Wi-Fi 凭据，禁止提交私人配置、数据库、日志和个人固件。
+
+## 从桌面原型到注意力助手
+
+![Grok Bot 多源任务整理与桌面终端的概念愿景图](assets/grok-bot-concept.png)
+
+**概念愿景图，非当前产品截图。** 这张用户提供的 Grok Bot 演示图表达了“说出任务 → 理解整理 → 桌面可见”的方向；图中的邮件、日历、团队消息、知识库与浏览器等多源自动整合，不代表本项目已经提供对应连接器或完整工作流。当前可用入口与实验能力以上文和[功能矩阵](docs/FEATURES.md)为准；图中第三方标识不表示官方合作。
 
 ## 贡献与许可
 
