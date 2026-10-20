@@ -57,3 +57,9 @@ checkout 通过该 step 的临时 Git 配置关闭自动换行转换，以保留
 This is a **limited offline regression suite**, not a full test pass or hardware acceptance. It parses Python syntax without importing applications, checks the reviewed manifest/file inventory, runs 19 named synthetic regressions in a disposable Hub copy, and exercises the real Console script with a mock DOM/transport. No system font, device, credential or paid model is required. Child process configuration is isolated; application socket IO is rejected, except the standard library's internal Windows asyncio wakeup socketpair.
 
 The two named legacy JSON migration failures above remain unchanged and are explicitly outside this basic set. Font-presence tests, long contention tests, live integrations, firmware builds and hardware acceptance are also outside this workflow. Historical local commands passed; consult [GitHub Actions](https://github.com/Tkkdy/attention-router/actions) for the actual result of each published commit. The workflow uses hosted Windows, Python 3.13, Node 24, pinned dependency versions, SHA-pinned official actions, read-only contents permission and no persisted checkout credential. A future clean runner still needs network access to download public tools/dependencies. New legitimate files require reviewed manifest/list updates, not removal merely because they are new.
+
+## 首次平台配置修正 / Initial platform configuration fix
+
+首次 GitHub Actions 在启动 job 前报告第 31 行 YAML 语法错误：未加引号的 `--only-binary=:all:` 含冒号与空格组合。现仅给完整 run 字符串加引号，命令、依赖、测试与权限不变。首次失败记录保留，修正后的状态以对应提交 Actions 为准。
+
+The first platform run failed YAML parsing before any job started. Quoting the dependency-install command fixes its colon-space syntax without changing the command, dependencies, tests, or permissions.

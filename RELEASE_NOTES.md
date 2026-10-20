@@ -16,7 +16,7 @@ Attention Router是Personal Agent在物理世界的注意力交互终端：通�
 - 完整中文/英文README、安装排查、精简Roadmap、真实合成数据Console截图和源码架构图、轻量CI及社区模板。
 - Copyright (c) 2026 Tkkdy；独立自有Hub/Web/工具MIT，原创固件GPL-3.0-only，第三方许可保持。允许按适用条款商业使用。
 
-正式发布相对 offline-final2 仅更新发布状态文档和对应清单；不改变业务、固件、测试或 CI 逻辑。此前稳定性、STALE、字体降级及数据隔离修订完整保留。
+正式发布相对 offline-final2 更新发布状态文档和对应清单，并给 CI 依赖安装命令添加 YAML 引号，修复首次 Actions 解析失败；实际命令、依赖版本、业务、固件和测试逻辑不变。此前稳定性、STALE、字体降级及数据隔离修订完整保留。
 
 ## 验证与限制 / Validation and limits
 

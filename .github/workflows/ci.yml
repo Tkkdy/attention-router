@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: '24'
       - name: Install pinned Python dependencies
-        run: python -m pip install --disable-pip-version-check --only-binary=:all: -r requirements.lock.txt
+        run: "python -m pip install --disable-pip-version-check --only-binary=:all: -r requirements.lock.txt"
       - name: Python syntax and published-file checks
         run: python -B ci/check_source.py
       - name: Limited synthetic basic regressions

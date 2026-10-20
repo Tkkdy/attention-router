@@ -44,8 +44,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 1330,
-      "sha256": "3e4c06e179c7eec7e37340afdb94bb604d02d6641582502a36af2b2912ddcc52"
+      "bytes": 1332,
+      "sha256": "0806719d1cf4fd58f3e36b8818f2520869437da5b48127c3333fd1e9e749baf5"
     },
     {
       "path": ".gitignore",
@@ -89,8 +89,8 @@
     },
     {
       "path": "RELEASE_NOTES.md",
-      "bytes": 5265,
-      "sha256": "64ab475eafd48c0f131e63e7fe3c19eebd07b49cd4cecf6edfba09eccd08f2cf"
+      "bytes": 5367,
+      "sha256": "6b86ca99d649872c5fd0f994b5ab78e930965f334f81eee19789f984309630dd"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -139,8 +139,8 @@
     },
     {
       "path": "docs/CI.md",
-      "bytes": 6449,
-      "sha256": "7438612cb25e9fb9c30b3fbab01f93eadb289345dea7fec027004a292770f15a"
+      "bytes": 7022,
+      "sha256": "8999b80c27b5e617d21c19c2baae9498cbf527023adc562ea2ff527fb0e80dcd"
     },
     {
       "path": "docs/FEATURES.md",
