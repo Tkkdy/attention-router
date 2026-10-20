@@ -18,9 +18,9 @@ PNG逐块检查只有IHDR/IDAT/IEND，没有EXIF、文本、GPS、创建软件�
 
 ## 本次素材处理 / Supplied images (2026-10-20)
 
-仅选择四张互补实拍和一张概念图；其余重复照片未复制进仓库。原始附件未修改。JPEG 副本仅移除 EXIF/XMP、IPTC 与注释段，PNG 副本仅移除 EXIF、文本与时间块；不重编码、不裁剪、不改变像素，保留 ICC 颜色配置。照片中的个人任务、公开账号名及背景来自用户明确提供并要求展示的画面；未附带私人配置、数据库、日志或固件。
+仅选择四张互补实拍和一张概念图；其余重复照片未复制进仓库。原始附件未修改。JPEG 副本移除相机、位置等 EXIF/XMP、IPTC 与注释元数据；Interrupt 照片仅保留方向标签（Orientation=6），按原始竖向显示，PNG 副本仅移除 EXIF、文本与时间块；不重编码、不裁剪、不改变像素，保留 ICC 颜色配置。照片中的个人任务、公开账号名及背景来自用户明确提供并要求展示的画面；未附带私人配置、数据库、日志或固件。
 
-Four complementary hardware photos and one concept illustration were selected. Original attachments are untouched. Published copies remove metadata without re-encoding or altering pixels; ICC profiles are retained. Supplied screen content is shown under the owner's explicit README request. No private runtime files are included.
+Four complementary hardware photos and one concept illustration were selected. Original attachments are untouched. Published copies remove private metadata without re-encoding or altering pixels; ICC profiles are retained. Interrupt retains only its original orientation tag (6) for upright display. Supplied screen content is shown under the owner's explicit README request. No private runtime files are included.
 
 照片证明实物及所拍页面存在，不证明运行固件对应公开提交，不覆盖 NVS/断电恢复、长期稳定性或端到端验收。概念图中的多源整合与完成状态不代表已实现能力。素材展示许可不自动扩大为对照片、概念图或其中第三方标识的独立再许可；代码许可范围仍以项目许可文件为准。
 
