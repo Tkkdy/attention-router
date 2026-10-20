@@ -1,0 +1,46 @@
+Attention Router — component-specific licenses
+Copyright (c) 2026 Tkkdy (original project contributions only)
+
+This repository is not offered under a repository-wide MIT OR GPL choice.
+
+1. Independent, original Hub, Web Console, tools, examples, tests and project
+   documentation are licensed under MIT, as reproduced below and in
+   licenses/MIT.txt. See docs/LICENSING.md for the exact scope and exceptions.
+2. Original firmware/esp32_dashboard/ source is licensed under GPL-3.0-only.
+   See firmware/LICENSING.md and firmware/LICENSE (the full GPL version 3).
+   The public certificate in weather_ca.h is a third-party exception.
+3. integrations/deepseek_bot/fork-wiring.patch retains Apache-2.0 for its
+   upstream context and project modifications. See UPSTREAM-LICENSE and
+   UPSTREAM-NOTICE in that directory.
+4. All third-party code, data, notices and license texts retain their own
+   terms. No ownership or additional license is claimed over them.
+   See THIRD_PARTY_NOTICES.md.
+
+Commercial use is permitted subject to each applicable license, including
+notice and corresponding-source obligations when distributing covered works.
+This source-only release does not contain third-party toolchains, firmware
+binaries, font files or private configuration.
+
+The following MIT text applies only to the MIT scope defined above:
+
+MIT License
+
+Copyright (c) 2026 Tkkdy
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

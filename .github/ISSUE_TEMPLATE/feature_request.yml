@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2026 Tkkdy
+# SPDX-License-Identifier: MIT
+name: "功能建议 / Feature request"
+description: "说明实际问题和最小可行改进 / Describe a concrete problem and a small improvement."
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先查看 README 的 Implemented / Experimental / Planned 分类与已有 Issue。功能建议不代表已支持或承诺交付日期。
+        Check the README's Implemented / Experimental / Planned sections and existing issues. A request is not a support claim or delivery commitment.
+        使用合成例子，不提供私人任务、账号、Token、网络配置或设备备份。首发目标为经典 ESP32 + GDEY042Z98；新硬件或集成应单独说明范围。
+        Use synthetic examples without private tasks, accounts, tokens, network configuration, or device backups. The launch target is classic ESP32 + GDEY042Z98; scope new hardware or integrations explicitly.
+  - type: textarea
+    id: problem
+    attributes:
+      label: "要解决的问题 / Problem to solve"
+      description: "谁在什么场景遇到什么困难？只用合成例子 / Who encounters what difficulty, and when? Use synthetic examples."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: "最小改进与验收方式 / Smallest improvement and acceptance criteria"
+      description: "说明边界，不默认要求大规模重构 / State the boundary; avoid assuming a broad redesign."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: "已有办法与代价（可选）/ Alternatives and trade-offs (optional)"
+      description: "如涉及依赖、付费模型、权限、硬件或数据，请说明但勿提供凭据 / Note dependencies, paid models, permissions, hardware, or data needs without credentials."

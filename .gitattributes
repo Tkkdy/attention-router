@@ -1,0 +1,4 @@
+# SPDX-FileCopyrightText: 2026 Tkkdy
+# SPDX-License-Identifier: MIT
+# Preserve the exact reviewed bytes during future Git checkouts.
+* -text

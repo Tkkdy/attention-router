@@ -1,0 +1,16 @@
+LicenseRef-ISRG-Public-Certificate
+
+Scope: the complete, unmodified ISRG Root X1 public certificate embedded in
+firmware/esp32_dashboard/weather_ca.h. Project wrapper code remains GPL-3.0-only.
+
+Source of certificate: https://letsencrypt.org/certificates/
+Applicable upstream permission: ISRG CP/CPS v5.5, section 9.5
+https://letsencrypt.org/documents/isrg-cp-cps-v5.5/#95-intellectual-property-rights
+
+Summary (not a replacement for the upstream terms): ISRG permits certificates
+to be reproduced and distributed in full on a non-exclusive, royalty-free
+basis. Keep the certificate complete and unmodified. ISRG retains its rights;
+this project claims no ownership of the certificate and does not relicense it.
+
+This LicenseRef labels that upstream condition for the file inventory. It is
+not a new project license or a standard SPDX short identifier.

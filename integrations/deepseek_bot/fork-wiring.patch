@@ -1,0 +1,54 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 3711f2a..a5e80e1 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -4,6 +4,10 @@ All notable changes to DS Bot are listed here. The format follows [Keep a Change
+ 
+ ## [Unreleased]
+ 
++### Added
++
++- Local Attention Router fork: opt-in, Bot-allowlisted Todo Butler tools through an authenticated loopback Gateway. Structured actions bypass semantic resolution; Todo authority remains shadow.
++
+ ## [0.1.2] - 2026-10-11
+ 
+ ### Added
+diff --git a/ds-bot/index.js b/ds-bot/index.js
+index b88cb0a..0104866 100644
+--- a/ds-bot/index.js
++++ b/ds-bot/index.js
+@@ -13,6 +13,7 @@ import * as roster from './src/host/roster.js'
+ import * as agents from './src/host/agents.js'
+ import * as prompt from './src/host/prompt.js'
+ import * as tools from './src/host/tools.js'
++import * as butler from './src/host/butler.js'
+ import * as chatIndex from './src/host/chat-index.js'
+ import * as groups from './src/host/groups.js'
+ import * as memory from './src/host/memory.js'
+@@ -36,7 +37,7 @@ export const inject = ['llm', 'tools', 'systemPrompt', 'sessionController', 'ses
+ // the functions other modules call; they call them through `rt` at run time, never during
+ // install. Listeners run and tools are listed in registration order, so this order holds:
+ // usage meters model requests after every listener that rewrites them.
+-const MODULES = [diagnostics, store, models, permissions, turns, delivery, roster, agents, prompt, tools, chatIndex, groups, memory, parts, images, secrets, connectors, schedules, browser, usage, update, dshUpdate, channel]
++const MODULES = [diagnostics, store, models, permissions, turns, delivery, roster, agents, prompt, tools, butler, chatIndex, groups, memory, parts, images, secrets, connectors, schedules, browser, usage, update, dshUpdate, channel]
+ 
+ export function apply(ctx, config = {}) {
+   const home = config.home ?? join(process.env.DSH_HOME ?? join(homedir(), '.dsh'), 'bot')
+diff --git a/ds-bot/src/host/agents.js b/ds-bot/src/host/agents.js
+index 2ca06f2..f8f4ac1 100644
+--- a/ds-bot/src/host/agents.js
++++ b/ds-bot/src/host/agents.js
+@@ -1,3 +1,4 @@
++import { TOOL_NAMES } from './register-tools.mjs'
+ // The DSH Agent: a team's one plain dsh entry, listed beside the Bots but not one of
+ // them. Its Sessions are ordinary root Sessions in the DS Bot workspace, so they get
+ // the whole dsh conversation surface and none of the team tools.
+@@ -50,7 +51,7 @@ export function install(rt) {
+     }
+     // Unknown names make restrict() throw, so only deny what this profile serves.
+     const known = new Set(ctx.tools.schemas(agent).map(schema => schema.name))
+-    const deny = TEAM_TOOLS.filter(name => known.has(name))
++    const deny = [...TEAM_TOOLS, ...(rt.config.butlerGateway ? TOOL_NAMES : [])].filter(name => known.has(name))
+     // An empty list can mean the schemas are not up yet, and a missing restrict
+     // hook means the Agent is still being put together; both retry.
+     if (deny.length === 0 || typeof agent.ctx?.tools?.restrict !== 'function') {

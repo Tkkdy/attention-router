@@ -1,0 +1,64 @@
+# SPDX-FileCopyrightText: 2026 Tkkdy
+# SPDX-License-Identifier: MIT
+name: "问题报告 / Bug report"
+description: "使用合成数据和脱敏证据报告问题 / Report a bug with synthetic data and redacted evidence."
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先查看已知限制与验证记录。最终公开候选尚未完成真机验收；经典 ESP32 + GDEY042Z98 是首发目标，XIAO ESP32S3 尚不支持。
+        Read the known limitations and validation record first. Final-candidate hardware acceptance remains incomplete; the launch target is classic ESP32 + GDEY042Z98, not XIAO ESP32S3.
+        不要上传真实任务/窗口标题、Token、Wi-Fi、账号、私人域名、数据库或原始 NVS/Flash。无需为提交 Issue 刷机或擦除缓存。
+        Do not upload real task/window titles, tokens, Wi-Fi settings, accounts, private domains, databases, or raw NVS/Flash. Filing an issue does not require flashing or erasing caches.
+  - type: input
+    id: version
+    attributes:
+      label: "版本 / Version"
+      description: "版本号或源码哈希；请勿填写私人路径 / Release or source hash; no private paths."
+      placeholder: "v0.1.0 / source SHA-256"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: "环境 / Environment"
+      description: "系统、Python/浏览器版本；涉及硬件时写芯片/屏/转接板型号，不要写序列号或网络凭据 / OS, Python/browser; chip/display/adapter models if relevant, no serial numbers or credentials."
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence_type
+    attributes:
+      label: "观察来源 / Evidence source"
+      options:
+        - "隔离软件测试 / Isolated software test"
+        - "最终候选真机观察 / Hardware observation of the final candidate"
+        - "其他或未知固件真机观察 / Hardware observation of another or unknown build"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "最小复现 / Minimal reproduction"
+      description: "只用合成任务。离线标题问题请写联网/冷启动/主动刷新情况，不提交任务标题 / Use synthetic tasks. For offline titles, describe connectivity, cold boot, and active refresh without task titles."
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: "期望与实际结果 / Expected and actual results"
+      description: "区分失败、未测与无法确认 / Distinguish failures, untested behavior, and unknowns."
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: "必要的脱敏证据（可选）/ Minimal redacted evidence (optional)"
+      description: "只保留错误码、阶段、耗时及合成复现输出；不要粘贴完整私人日志或备份 / Include only error codes, stages, timings, and synthetic reproduction output; no full private logs or backups."
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: "提交前检查 / Before submitting"
+      options:
+        - label: "我已移除私人内容与凭据，且未上传真实 NVS/Flash / I removed private content and credentials and did not upload real NVS/Flash."
+          required: true

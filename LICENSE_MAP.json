@@ -1,0 +1,1085 @@
+{
+  "format": "Attention Router file-license map v1; uses SPDX expressions, not an SPDX SBOM or REUSE certification",
+  "scope": "Exact candidate file list; third-party terms and notices take precedence over project-original annotations",
+  "custom_license_refs": {
+    "LicenseRef-ISRG-Public-Certificate": {
+      "terms_file": "licenses/ISRG-Public-Certificate.txt",
+      "upstream": "https://letsencrypt.org/documents/isrg-cp-cps-v5.5/#95-intellectual-property-rights"
+    }
+  },
+  "noassertion_meaning": "Used for license/notice documents themselves, not an assertion that project source lacks a license. See license_identifier_described and original terms.",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": ".gitignore",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "CONTRIBUTING_EN.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "GIT_FILES.txt",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "LICENSE",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "component-scope-notice",
+      "notes": "Preserve full original notices and license terms; this metadata does not relicense them."
+    },
+    {
+      "path": "LICENSE_MAP.json",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "README.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "README_EN.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "RELEASE_NOTES.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "SOURCE_MANIFEST.json",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "assets/ASSET_INDEX.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "assets/architecture.mmd",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "assets/console-demo.png",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "ci/check_source.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "ci/run_basic.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "compile_firmware.ps1",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "config.example.json",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/AGENTS.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/CI.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/FEATURES.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/HARDWARE.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/INSTALL_EN.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/LICENSING.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/LIMITATIONS.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/NETWORK.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/PUBLISHING.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/WINDOWS.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "examples/local_demo.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "experiments/oauth_spike/__init__.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "experiments/oauth_spike/oauth.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/LICENSE",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "GPL-3.0-only",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "firmware/LICENSING.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/config.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/connectivity_manager.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/connectivity_manager.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/display_scheduler.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/display_scheduler.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/esp32_dashboard.ino",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/hub_client.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/hub_client.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/internet_monitor.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/internet_monitor.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/ntp_clock.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/ntp_clock.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/pages.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/pages.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/private_config.example.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/radar_adapter.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/radar_adapter.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/runtime_config.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_cache.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_cache.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_composer.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_composer.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/todo_cache.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/todo_cache.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/utf8_text.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/weather_adapter.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/weather_adapter.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/weather_ca.h",
+      "spdx_license_expression": "GPL-3.0-only AND LicenseRef-ISRG-Public-Certificate",
+      "copyright": "2026 Tkkdy (original wrapper only); ISRG retains rights in the public certificate",
+      "role": "original-wrapper-and-unchanged-public-certificate"
+    },
+    {
+      "path": "firmware/esp32_dashboard/wifi_manager.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/wifi_manager.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/app.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/async_worker.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/attention.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/browser_site_marker.ps1",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/butler_bridge.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/butler_device_bridge.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/butler_gateway.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/butler_models.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/butler_todo_projection.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/console.html",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/context_monitor.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/device_text.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/durable_oauth.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/grok_butler_adapter.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/grok_capabilities.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/hub_models.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/import_todo_shadow.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/legacy_todo_guard.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/mcp_auth.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/mcp_policy.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/mcp_readonly.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/quota_collector.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/quota_policy.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/radar_client.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/reminder_compatibility.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/reminder_delivery.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/requirements_mcp.txt",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/router_api.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/router_store.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/run_butler_shadow.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/run_preview.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/runtime_view.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/semantic_resolver.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/slow_diagnostics.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/storage.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_attention.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_butler_bridge.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_butler_core.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_butler_device_bridge.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_butler_todo_projection.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_console_runtime.cjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_context_v2.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_grok_butler.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_hub.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_m2.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_m3.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_mcp.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_mcp_phase2.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_mcp_security.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_monitor.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_preview_revision.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_preview_stability.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_radar_client.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_reminder_delivery.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_scene_snapshot.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_semantic_resolver.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/test_tibo.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/tibo.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/tibo_attention.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/tibo_gateway.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/todo_core.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/todo_shadow.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "hub/work_context.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/UPSTREAM-LICENSE",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "Apache-2.0",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "integrations/deepseek_bot/UPSTREAM-NOTICE",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "upstream-notice",
+      "notes": "Preserve full original notices and license terms; this metadata does not relicense them."
+    },
+    {
+      "path": "integrations/deepseek_bot/butler.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/fork-wiring.patch",
+      "spdx_license_expression": "Apache-2.0",
+      "copyright": "2026 FeiZhuLulu and the DS Bot contributors (upstream); 2026 Tkkdy (project modifications)",
+      "role": "upstream-context-and-project-modifications"
+    },
+    {
+      "path": "integrations/deepseek_bot/gateway-client.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/gateway-client.test.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/gateway-live.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/register-tools.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/test_gateway_integration.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/ux-contract.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/ux-contract.test.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "integrations/deepseek_bot/verify-sdk.mjs",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "licenses/Adafruit-BusIO-MIT.txt",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "MIT",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "licenses/Adafruit-GFX-BSD-2-Clause.txt",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "BSD-2-Clause",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "licenses/ArduinoJson-MIT.txt",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "MIT",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "licenses/GxEPD2-GPL-3.0.txt",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "GPL-3.0-only",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "licenses/ISRG-Public-Certificate.txt",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "LicenseRef-ISRG-Public-Certificate",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "licenses/MIT.txt",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "license-text-or-upstream-terms",
+      "license_identifier_described": "MIT",
+      "copyright": "Retained upstream or license-text notice; no blanket Tkkdy replacement",
+      "notes": "Reproduction under the applicable original text terms, not a new grant over the license document."
+    },
+    {
+      "path": "release-metadata.json",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "remote_mcp_access.ps1",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "requirements.lock.txt",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "requirements.txt",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "run_host_checks.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "setup_mcp_auth.ps1",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "start_mcp.ps1",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/authority_state.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/cache_recovery.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/display_contract.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/fakes/Arduino.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/fakes/ArduinoJson.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/fakes/HTTPClient.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/fakes/Preferences.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/fakes/WiFiClientSecure.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/fault_recovery.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/graphics_fakes/GxEPD2_3C.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/graphics_fakes/SPI.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/hub_parser.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/optional_fakes/HTTPClient.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/optional_sources.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/parser_fakes/ArduinoJson.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/radar_detail.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+%% SPDX-FileCopyrightText: 2026 Tkkdy
+%% SPDX-License-Identifier: MIT
+flowchart LR
+  subgraph local[Trusted local deployment]
+    Browser[Local Web Console and ACK] -->|loopback session| Hub[Python Hub: context and routing]
+    Agent[Own local scripts / Agents] -->|Bearer HTTP API| Hub
+    Windows[Optional Windows foreground signals] --> Hub
+    Hub --> DB[(Isolated SQLite / task state)]
+    ESP[Classic ESP32 + specified e-paper] -->|LAN GET /scene and /health| Hub
+    Hub -->|Scene data| ESP
+  end
+  subgraph advanced[Experimental: separate configuration and validation]
+    Bot[GrokBot / DeepSeekBot] -.-> Gateway[Gateway and isolated Todo Core]
+    Remote[Remote client] -.-> HTTPS[HTTPS / Tunnel + OAuth MCP layer]
+    HTTPS -.->|scoped MCP tools| Hub
+    Gateway -.->|explicit adapters / projection| Hub
+    Sources[Codex quota / Tibo / Radar] -.-> Hub
+  end

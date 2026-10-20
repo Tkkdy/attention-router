@@ -1,0 +1,906 @@
+{
+  "name": "Attention Router",
+  "candidate_version": "v0.1.0",
+  "copyright_holder": "Tkkdy",
+  "copyright_year": 2026,
+  "copyright_holder_confirmed": true,
+  "license_selected": true,
+  "license_scope_file": "LICENSE_MAP.json",
+  "distribution": "PUBLIC_SOURCE_ONLY",
+  "parent_zip_sha256": "3c6fda164a413dc15d1d69f7402ccc102c80a924e1d9052ff03a774e7218c265",
+  "parent_candidate": "offline-final2",
+  "git_history_included": false,
+  "inherited_commits": 0,
+  "private_history_audited": false,
+  "hardware_acceptance": "NOT_COMPLETED_FOR_EXACT_PUBLIC_CANDIDATE",
+  "private_device_nvs_diagnosis": "FROZEN_NO_GO",
+  "software_validation": "HISTORICAL_LOCAL_EVIDENCE_REUSED; LIVE_CI_SEE_GITHUB_ACTIONS",
+  "firmware_build": "FIRMWARE_BYTES_UNCHANGED_FROM_PARENT; HISTORICAL_BUILD_REUSED; NOT_REBUILT_OR_FLASHED",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 145,
+      "sha256": "afcb3567f51c74e53c4302b983edc827cb849a028f36489bd2a0d824b0850267"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "bytes": 3442,
+      "sha256": "97637130f4e38f866a5fe01b777888e935cfb3c47dfc81ea4a7fb8fc3ec10be7"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "bytes": 253,
+      "sha256": "414c814568352052834a024f5807ab982f927cbe413d55a6f196c5a0e69c6bec"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "bytes": 1957,
+      "sha256": "04340f2a85e7f9fef02ac143e81c4d4e2d14006317d9e4cc878e40f1ff419017"
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "bytes": 2089,
+      "sha256": "5b400dfe7e23ab00aee0debd8095dc3fa3c6e2550f2dae89c9006dbea42d175d"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 1330,
+      "sha256": "3e4c06e179c7eec7e37340afdb94bb604d02d6641582502a36af2b2912ddcc52"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 218,
+      "sha256": "5c4ec03f2cbeb9e6e6c1e0ce0f25511141c4a41a4aa77cb0a2ef3d7d3876c818"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "bytes": 3351,
+      "sha256": "42f173ebc363fad8455c5235f9976ffd9737b95d39d7313c989ed5bc5b5de568"
+    },
+    {
+      "path": "CONTRIBUTING_EN.md",
+      "bytes": 4123,
+      "sha256": "6a12652ff5a8aa0520277b46495763a002852da9d172d73194f353709caf52b9"
+    },
+    {
+      "path": "GIT_FILES.txt",
+      "bytes": 4998,
+      "sha256": "79e69c5d0252523cd44211d8766a68feea6eb2274c9cbd43dcfc15d2ae6aa53c"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 2444,
+      "sha256": "a0149ac4c3a1f5a73037680ed29f6e2496f61992f4f6eee875bbf809ba02694c"
+    },
+    {
+      "path": "LICENSE_MAP.json",
+      "bytes": 39481,
+      "sha256": "7f771048d03a467e8baa43c69d8d6f4f946aae166b4b36bca7ac890975fba818"
+    },
+    {
+      "path": "README.md",
+      "bytes": 11279,
+      "sha256": "d0b149d1fdf6bbd430e4afd10f1d4e8c29e2adf2bc524a0d07ae94f82316ab2c"
+    },
+    {
+      "path": "README_EN.md",
+      "bytes": 13661,
+      "sha256": "7b114ca6e1fcb68e937353916e09e896665b8191d6b5b06b65481eb354a0e202"
+    },
+    {
+      "path": "RELEASE_NOTES.md",
+      "bytes": 5265,
+      "sha256": "64ab475eafd48c0f131e63e7fe3c19eebd07b49cd4cecf6edfba09eccd08f2cf"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 5729,
+      "sha256": "3c8db802cc964b25076a5942d71b1c2300b87cca94f1548e4616409051cc699a"
+    },
+    {
+      "path": "assets/ASSET_INDEX.md",
+      "bytes": 2594,
+      "sha256": "63811ae2a374a966a653ab8c52fcb4e3922020bcbf26a5a4c4fdf2d39d7c6d49"
+    },
+    {
+      "path": "assets/architecture.mmd",
+      "bytes": 887,
+      "sha256": "05e042337f7b843d13ee4aee4a3df4970bfd453a6f843859a1a5ab803b4e4cbb"
+    },
+    {
+      "path": "assets/console-demo.png",
+      "bytes": 256653,
+      "sha256": "3c284910ddc72a95baf12bb00114787c075945f366e4eda861b04b2fc4475348"
+    },
+    {
+      "path": "ci/check_source.py",
+      "bytes": 3325,
+      "sha256": "7287e183d40f37d9ea49c49eca783127c7cf618e5bbf32bf49135d0ece4624af"
+    },
+    {
+      "path": "ci/run_basic.py",
+      "bytes": 4035,
+      "sha256": "041f5c6daa9f4baddf693c888fcf75ecf402ab908dda03ee242e4096e07220f3"
+    },
+    {
+      "path": "compile_firmware.ps1",
+      "bytes": 611,
+      "sha256": "bff1ccb5564968a44edd9aa85da4bed69613246ef01e9970f0e04b8ba58ed342"
+    },
+    {
+      "path": "config.example.json",
+      "bytes": 66,
+      "sha256": "5892f6797e42eaf1e46c870a9f0f94eb1712e437e21a64af81d20ca812ae9f8d"
+    },
+    {
+      "path": "docs/AGENTS.md",
+      "bytes": 6379,
+      "sha256": "549050bc747eb2e4402db907083e76803dc2bfa1e44792700ffcbfa3ba7c4c9a"
+    },
+    {
+      "path": "docs/CI.md",
+      "bytes": 6449,
+      "sha256": "7438612cb25e9fb9c30b3fbab01f93eadb289345dea7fec027004a292770f15a"
+    },
+    {
+      "path": "docs/FEATURES.md",
+      "bytes": 16252,
+      "sha256": "300c42a95eb537542c9de062f92eaa90ec10a57c274fb0de796774083aecb557"
+    },
+    {
+      "path": "docs/HARDWARE.md",
+      "bytes": 4875,
+      "sha256": "8866f365affe2987f6e9053a0a8c1de54217a16be14a0e625c5f3ed316b697fa"
+    },
+    {
+      "path": "docs/INSTALL_EN.md",
+      "bytes": 18522,
+      "sha256": "84365da1d7540918512c038c65479c47c7eee6230ae4e8623b107c30f691cbb6"
+    },
+    {
+      "path": "docs/LICENSING.md",
+      "bytes": 2975,
+      "sha256": "b6d3c12ad9b6c9020f21f8c85cff3203c5ebac8535f97e91f3e1c435ef44d118"
+    },
+    {
+      "path": "docs/LIMITATIONS.md",
+      "bytes": 5421,
+      "sha256": "68946260543b506cf1339ed05f1c23a8f9bbac653370d99a70096e00b0c7ff6d"
+    },
+    {
+      "path": "docs/NETWORK.md",
+      "bytes": 2979,
+      "sha256": "84f8e92e3ddd4361faad04ae095e31daed62abc8be465186b94c014737d6dfb4"
+    },
+    {
+      "path": "docs/PUBLISHING.md",
+      "bytes": 2687,
+      "sha256": "630c1541f36c629ddcb70ce16dc4a43869596ed60edf0ab7539c2ddaa005477f"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "bytes": 12248,
+      "sha256": "39e95fc4c76488d6ebca49e7157956caaa86e008449acf73f3f3f95c34da11b4"
+    },
+    {
+      "path": "docs/WINDOWS.md",
+      "bytes": 12043,
+      "sha256": "856e7946ab9b1144b9da9ebee8476b64f7c25a83745e1605123e15260fb7a9e9"
+    },
+    {
+      "path": "examples/local_demo.py",
+      "bytes": 2401,
+      "sha256": "4e813dda2471b2234e2886b168d35d63cf409201b78d899ef79f1565115de9f0"
+    },
+    {
+      "path": "experiments/oauth_spike/__init__.py",
+      "bytes": 155,
+      "sha256": "03505c56187389a02a45e6a7cf771da0eae94d99cd0761f119d93d2a617d7c9b"
+    },
+    {
+      "path": "experiments/oauth_spike/oauth.py",
+      "bytes": 21764,
+      "sha256": "ca06a0cddf442de11905aa494609e1de9fe625275ed77e2cfe1eab33d96fe17a"
+    },
+    {
+      "path": "firmware/LICENSE",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "path": "firmware/LICENSING.md",
+      "bytes": 2411,
+      "sha256": "917acd34e63be83a37d6aa123bfb1a7081df8f23aa60ee5d3c178dd9e2b0f981"
+    },
+    {
+      "path": "firmware/esp32_dashboard/config.h",
+      "bytes": 457,
+      "sha256": "6545e828d4e41f97462bed5021de716eca38a22d2e0413dc7f40e7d69f18f50a"
+    },
+    {
+      "path": "firmware/esp32_dashboard/connectivity_manager.cpp",
+      "bytes": 5577,
+      "sha256": "7ebd2cbd47bcdf3b5cb1e8626c4d430dcacd8ef530124534b3c3f2c7586c7d42"
+    },
+    {
+      "path": "firmware/esp32_dashboard/connectivity_manager.h",
+      "bytes": 1358,
+      "sha256": "4edb5a724c86ce5d933b4cc7e92d266e0589af981e86576a367f1a31e197d8fa"
+    },
+    {
+      "path": "firmware/esp32_dashboard/display_scheduler.cpp",
+      "bytes": 2448,
+      "sha256": "f6d748af91c14def18e69238caadf330fd4a77e7437c862de87243577ab88927"
+    },
+    {
+      "path": "firmware/esp32_dashboard/display_scheduler.h",
+      "bytes": 690,
+      "sha256": "3790993c9812d4d8a3b4cca6189b4d8d53df7b2ada8c986e04d501c3ce2998e0"
+    },
+    {
+      "path": "firmware/esp32_dashboard/esp32_dashboard.ino",
+      "bytes": 8202,
+      "sha256": "fe0a034ddaaff3f467d9b0a4061b93dd8590dce30139603d456fe265e455b039"
+    },
+    {
+      "path": "firmware/esp32_dashboard/hub_client.cpp",
+      "bytes": 13151,
+      "sha256": "938e2b026e5b3b13c6e2629b5f6b328c51f153ba6845e82ff24617a2258e6ba7"
+    },
+    {
+      "path": "firmware/esp32_dashboard/hub_client.h",
+      "bytes": 555,
+      "sha256": "438ad0499fe87163f1daebbef5999dae0a46f57a862dcfef8fbc45383a727550"
+    },
+    {
+      "path": "firmware/esp32_dashboard/internet_monitor.cpp",
+      "bytes": 2676,
+      "sha256": "3d4b97d57f43554398f51c9b86cbb3b7ca9c599aedf512782f83c1257ad6b96c"
+    },
+    {
+      "path": "firmware/esp32_dashboard/internet_monitor.h",
+      "bytes": 485,
+      "sha256": "49b388e71a1ce56c327be8de47b22cc80ddf5dba59226a556966453191ab0639"
+    },
+    {
+      "path": "firmware/esp32_dashboard/ntp_clock.cpp",
+      "bytes": 2277,
+      "sha256": "26da3f9af82467ab758da0ed6edd02dc58926237b6a6c8f81b48038c368284cb"
+    },
+    {
+      "path": "firmware/esp32_dashboard/ntp_clock.h",
+      "bytes": 536,
+      "sha256": "53374982e8173c155a0fef518ad6b5b87ce3aa6268e85b9cb3a89cd9b0cc707f"
+    },
+    {
+      "path": "firmware/esp32_dashboard/pages.cpp",
+      "bytes": 9642,
+      "sha256": "8819f9aac2d0577321b6472bdbd8a5f9ed252f21863bab3ae96c104534f23f0d"
+    },
+    {
+      "path": "firmware/esp32_dashboard/pages.h",
+      "bytes": 203,
+      "sha256": "4ac86d4382d1e1100fb31a17c1bb29de98b59b9b8c0cc44b1eae9720dda432e8"
+    },
+    {
+      "path": "firmware/esp32_dashboard/private_config.example.h",
+      "bytes": 886,
+      "sha256": "ead66316ff8311c5f39859285b8907b0596473e5730340fb5263487bede55d01"
+    },
+    {
+      "path": "firmware/esp32_dashboard/radar_adapter.cpp",
+      "bytes": 5051,
+      "sha256": "645a70ee222c0dbb2fe839f773f5d8836cd902e8b2bcae4515d2731a48fe1b7b"
+    },
+    {
+      "path": "firmware/esp32_dashboard/radar_adapter.h",
+      "bytes": 735,
+      "sha256": "241e5a6742e3c7754a8cc4b52525818323d1b000f03b5b4997064c80bcfbc2f9"
+    },
+    {
+      "path": "firmware/esp32_dashboard/runtime_config.h",
+      "bytes": 525,
+      "sha256": "8c559a376f16bb7d5a009e048289aeb1077409f5f08dec330fb7cf957b0ac7e6"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene.cpp",
+      "bytes": 6755,
+      "sha256": "dc7e18a721226942fe1e95110ccb14052f5ccaea78139ddab98f22a392a156b3"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene.h",
+      "bytes": 4248,
+      "sha256": "27251eb8623c70231ed8cdde686dda6002f49f21efbb3c3260dd17aedaa80e34"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_cache.cpp",
+      "bytes": 7074,
+      "sha256": "e26a9ffc1c3b9ad04a4d4d3e4468d34eefb6a39a2573e2a083e1861674878a7a"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_cache.h",
+      "bytes": 289,
+      "sha256": "38892b2b65004413bd4ac3c8ecf159f378d721500aab7673d56b6e4f47a45fff"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_composer.cpp",
+      "bytes": 4110,
+      "sha256": "930bd69a424f9248661bf44f55ee76e664c1f55e20ad0a41031e1197fd6de661"
+    },
+    {
+      "path": "firmware/esp32_dashboard/scene_composer.h",
+      "bytes": 871,
+      "sha256": "271c5afd098abe02a01372802ebec9fbe946bab171a3b8fb66858180892e61f3"
+    },
+    {
+      "path": "firmware/esp32_dashboard/todo_cache.cpp",
+      "bytes": 4560,
+      "sha256": "34ef7345c6b5e43b3dd24bbdefb92aaca34730b9c02de3f74d5eb51b95fbe19c"
+    },
+    {
+      "path": "firmware/esp32_dashboard/todo_cache.h",
+      "bytes": 408,
+      "sha256": "07e636ba540ae7d9b2a2d509ea778daa5fb58c4b904d7320d9799251e13d84af"
+    },
+    {
+      "path": "firmware/esp32_dashboard/utf8_text.h",
+      "bytes": 1039,
+      "sha256": "d412c25fe94f4db1d955b35fe2f03ab78c92bbb93a7d8cf4e795f28e903c4ca2"
+    },
+    {
+      "path": "firmware/esp32_dashboard/weather_adapter.cpp",
+      "bytes": 5272,
+      "sha256": "14ba70ea7b2655308d00f7ef753071fd8fc53cddd66bc86feeb41599f9baa692"
+    },
+    {
+      "path": "firmware/esp32_dashboard/weather_adapter.h",
+      "bytes": 841,
+      "sha256": "414c8b3fa243a44ad39fc4d3710513ef050c088be942cb39c4822c62e1506ee1"
+    },
+    {
+      "path": "firmware/esp32_dashboard/weather_ca.h",
+      "bytes": 2409,
+      "sha256": "5a29bacfa77cc209b5046a18594a2272b5dee6581917855c7e201fd1ac76d019"
+    },
+    {
+      "path": "firmware/esp32_dashboard/wifi_manager.cpp",
+      "bytes": 2017,
+      "sha256": "6294cfe3cae634982a05af5036d63c5104958eb21f14e9f7b6b64b94bb22216e"
+    },
+    {
+      "path": "firmware/esp32_dashboard/wifi_manager.h",
+      "bytes": 186,
+      "sha256": "7575491a1f82e33427fe1a8bc2630de6cae5415fd98ddabcc6479e5927204e00"
+    },
+    {
+      "path": "hub/app.py",
+      "bytes": 24043,
+      "sha256": "d0957e594d5193e5a4d7f1bdfda602e83dbc7611f4b47a2363ec578c0761e374"
+    },
+    {
+      "path": "hub/async_worker.py",
+      "bytes": 897,
+      "sha256": "fa764f991403343148dc97302760821eb37cb57f1a0c4456940f44ad2c921ff2"
+    },
+    {
+      "path": "hub/attention.py",
+      "bytes": 42571,
+      "sha256": "78ac84b74d0777b7cdc27ad646ff4b97cdcb4b1dca563955866891828480feaa"
+    },
+    {
+      "path": "hub/browser_site_marker.ps1",
+      "bytes": 1917,
+      "sha256": "2e8f2703bdfb26595d60ef15011717f1f0b890cbed2fdfb94fd9bb5caffe8f53"
+    },
+    {
+      "path": "hub/butler_bridge.py",
+      "bytes": 4010,
+      "sha256": "f1b46ed86ec2d6d5c47567982a27a97b564987686418bf56c6be8abbfb2968b3"
+    },
+    {
+      "path": "hub/butler_device_bridge.py",
+      "bytes": 2381,
+      "sha256": "9a7d94412f7b89b8f84353937e52ee890bc0eae4454706d9ccaeb0c5ea677413"
+    },
+    {
+      "path": "hub/butler_gateway.py",
+      "bytes": 8265,
+      "sha256": "947351edd5355e835bdb79d51a2616e014ee972bd4ecebd98b0f3aa81cd0d4a0"
+    },
+    {
+      "path": "hub/butler_models.py",
+      "bytes": 6231,
+      "sha256": "ef0b21ca80e6a37e0235aee5f83f9e8cf4ad55ea6543986368d6d10ec20164be"
+    },
+    {
+      "path": "hub/butler_todo_projection.py",
+      "bytes": 4228,
+      "sha256": "bad86889e5478c12645da15f350bf136bd98e08b6b66e11e9b5325091f4c71de"
+    },
+    {
+      "path": "hub/console.html",
+      "bytes": 44449,
+      "sha256": "477ee6cdbe2ae124b2bbb296031c54bee6c79cbebf9604e89ae2841df70f229a"
+    },
+    {
+      "path": "hub/context_monitor.py",
+      "bytes": 6223,
+      "sha256": "9cd2b0c1cf8d15b3442dc6b2d521936aa5aeb501b8f840bbb585a8d14410a4a4"
+    },
+    {
+      "path": "hub/device_text.py",
+      "bytes": 1387,
+      "sha256": "bfceba484e94f278b16a6a0c5afa878826314950c74b546f15d87b27097c2337"
+    },
+    {
+      "path": "hub/durable_oauth.py",
+      "bytes": 11321,
+      "sha256": "8eff6a999cf8c859a1d12142e39d0e3d3d7b073bcbc354e3079adfeb1ab26616"
+    },
+    {
+      "path": "hub/grok_butler_adapter.py",
+      "bytes": 6099,
+      "sha256": "3f7ab306269003e2c0b088e2a3603a99ab399e074c914f72ed1db4737d694a6d"
+    },
+    {
+      "path": "hub/grok_capabilities.py",
+      "bytes": 924,
+      "sha256": "6d33c9660edd7d5b1bec7e65ca7f14184c8f3a58f614418525006258aa9b2e9c"
+    },
+    {
+      "path": "hub/hub_models.py",
+      "bytes": 6304,
+      "sha256": "584dea99f5ce71d3124cff998c4c2b90a24c84eb0d9f33d3a75b9b3b4d67c0d4"
+    },
+    {
+      "path": "hub/import_todo_shadow.py",
+      "bytes": 1170,
+      "sha256": "0653a08be9a7210ecba4180bd55dcd4019622a79eae7834728428796acfd5b5b"
+    },
+    {
+      "path": "hub/legacy_todo_guard.py",
+      "bytes": 2074,
+      "sha256": "aa1562fa26c1e9b444f89ca48c836f59957896ea4adff3ff5e9d2accf1704cd0"
+    },
+    {
+      "path": "hub/mcp_auth.py",
+      "bytes": 6559,
+      "sha256": "b799a3054e5fdbe7da614158c62317cb7a40f01d4cfe36d09834cf2b94ddcc0a"
+    },
+    {
+      "path": "hub/mcp_policy.py",
+      "bytes": 14433,
+      "sha256": "d2d64bdb4c196cebbb23b06a9cb86af06de7e8a29b6d873efc0fd35a0c41cff2"
+    },
+    {
+      "path": "hub/mcp_readonly.py",
+      "bytes": 17156,
+      "sha256": "0ee6f4058521a261dce12dbee1d909e8a9100a08505af8a3f0537a2a612f62b4"
+    },
+    {
+      "path": "hub/quota_collector.py",
+      "bytes": 5712,
+      "sha256": "68267bb3e53e7491026285baa1908bf76172af09dbf4aa79323a01fe490b024b"
+    },
+    {
+      "path": "hub/quota_policy.py",
+      "bytes": 2666,
+      "sha256": "d7ecea6f39df5dd362ca6d48fb264932b42dd133d717681a6aab81ee5f521a24"
+    },
+    {
+      "path": "hub/radar_client.py",
+      "bytes": 2868,
+      "sha256": "69cfce299fcef6224edfe77eb29f38e2c32975564580e568511b974d3a03480b"
+    },
+    {
+      "path": "hub/reminder_compatibility.py",
+      "bytes": 2593,
+      "sha256": "417d4397adc60f8246da66fde4f1c57aa97d5e41a7999561838779ede9d03b4c"
+    },
+    {
+      "path": "hub/reminder_delivery.py",
+      "bytes": 5887,
+      "sha256": "d05fcdf572af0010bc61647c9891a1b64c3dc8602c0d293430c23d9da95acff4"
+    },
+    {
+      "path": "hub/requirements_mcp.txt",
+      "bytes": 648,
+      "sha256": "4d5654ac32f2ab8866dd8c12c02e3e3f827c9ebb3101bb1c8749b5dae3ee1b4d"
+    },
+    {
+      "path": "hub/router_api.py",
+      "bytes": 12618,
+      "sha256": "e0bd0dccfbccdd30adc07203161f72907a8e0296fb2388bac4525efe47a3fd52"
+    },
+    {
+      "path": "hub/router_store.py",
+      "bytes": 7007,
+      "sha256": "cee479c2456ad59ecf313c9fb1449891279aacecfd02ea7725fe5813fa917188"
+    },
+    {
+      "path": "hub/run_butler_shadow.py",
+      "bytes": 3295,
+      "sha256": "c2e49efe8d9f1cc8c06f4494ddf155cf648a58125e9374cf3b2d7c4b3d60e51c"
+    },
+    {
+      "path": "hub/run_preview.py",
+      "bytes": 2724,
+      "sha256": "819088efd4e501fe36de38df0961bed36d89cd4a991328cc2fa05f47f0bcefa8"
+    },
+    {
+      "path": "hub/runtime_view.py",
+      "bytes": 3145,
+      "sha256": "8ce3361ee973e422ee1a7a1510a12e87ceedffff516e17e891c3216c1581c7b9"
+    },
+    {
+      "path": "hub/semantic_resolver.py",
+      "bytes": 12498,
+      "sha256": "5eb535d771623af89143c895726872a283aece77e024b48e122012fe3c0bcad6"
+    },
+    {
+      "path": "hub/slow_diagnostics.py",
+      "bytes": 3163,
+      "sha256": "5df6a43fc3c93be795579322dc6ff0cf1115605e81ccf3166c32097ebafe1a34"
+    },
+    {
+      "path": "hub/storage.py",
+      "bytes": 1228,
+      "sha256": "0df028a43b369300e0df4c59c59d60d220d7d776148ac0da0433258e5bbe1ed5"
+    },
+    {
+      "path": "hub/test_attention.py",
+      "bytes": 10739,
+      "sha256": "70ff5f27374870e388cbe3f02db1644d005464f47beef9955f7fa85d63d9c5eb"
+    },
+    {
+      "path": "hub/test_butler_bridge.py",
+      "bytes": 11872,
+      "sha256": "897dcf77452c58e1746ba050ec8d117f70428577d75fe21bc10950d5d5b6f2da"
+    },
+    {
+      "path": "hub/test_butler_core.py",
+      "bytes": 20219,
+      "sha256": "c47c1a85bfe3301c3455a884239e36872a93d8017d5dffb3835f8c3855798f01"
+    },
+    {
+      "path": "hub/test_butler_device_bridge.py",
+      "bytes": 3122,
+      "sha256": "4dda691bac1282983840ca857b316337a6ecc2c998205e8d9456682c0a865cda"
+    },
+    {
+      "path": "hub/test_butler_todo_projection.py",
+      "bytes": 3416,
+      "sha256": "ebf2e4e1a4a7b856f8d5000b363dfa797a78bb5f8a7c93ef5338a35b1f1d19b0"
+    },
+    {
+      "path": "hub/test_console_runtime.cjs",
+      "bytes": 9984,
+      "sha256": "e43420ed6b7ba7041599b8f73b1dcc694dd3a7e7d6b4223d3fccf0b72ff5e017"
+    },
+    {
+      "path": "hub/test_context_v2.py",
+      "bytes": 11862,
+      "sha256": "d5729bad0edb83bcb8418658b877548b919bcb5376be44fdced66cfaa04d9041"
+    },
+    {
+      "path": "hub/test_grok_butler.py",
+      "bytes": 10808,
+      "sha256": "bcacbc6efdbbdcc3a317cbf3834f5e3c0e0afb8843e56f72fb42b0b52f186732"
+    },
+    {
+      "path": "hub/test_hub.py",
+      "bytes": 17570,
+      "sha256": "a0c9729329a33be1364af684a7a43c4cef8525d23a7063148f7e1777beb71b9a"
+    },
+    {
+      "path": "hub/test_m2.py",
+      "bytes": 15681,
+      "sha256": "3b8ea423a370bf67a676868faf12a9e67874963d598e6eb9adae4fc6468ec326"
+    },
+    {
+      "path": "hub/test_m3.py",
+      "bytes": 4192,
+      "sha256": "8efb25831dd1e5002c2508998cf8dc7ccaac592b3ece6608fe3ea58e7e505504"
+    },
+    {
+      "path": "hub/test_mcp.py",
+      "bytes": 23654,
+      "sha256": "0aad2f574799638f85d5fa3a1f8bf547346223f4e49d91529b3a7ae65f9f3588"
+    },
+    {
+      "path": "hub/test_mcp_phase2.py",
+      "bytes": 9273,
+      "sha256": "22454825b533cdd4bdf9938a9639e651a3e428982fd923142bfc83549cdbf8ed"
+    },
+    {
+      "path": "hub/test_mcp_security.py",
+      "bytes": 13160,
+      "sha256": "ac3ff8c53d87637d564b39e31c07995e779501d3b992e779e677af062084a8bc"
+    },
+    {
+      "path": "hub/test_monitor.py",
+      "bytes": 1914,
+      "sha256": "d6230eff7eb60ccd97424d1607e54a2e58a953c3aae6d159c4c0752e823acd78"
+    },
+    {
+      "path": "hub/test_preview_revision.py",
+      "bytes": 3154,
+      "sha256": "c2708cfabb2b0df4c2715a29bac61fd87e4b01beac1e8896ad9b3459b938e65b"
+    },
+    {
+      "path": "hub/test_preview_stability.py",
+      "bytes": 21450,
+      "sha256": "f5614b3444b724855702b62c1a2dd49a294759b65745ecb8f2d6994208e26404"
+    },
+    {
+      "path": "hub/test_radar_client.py",
+      "bytes": 2476,
+      "sha256": "a30ea11f21a3cab0093f3b2983db605038d9f385557623d2c6eba85fd4ea815c"
+    },
+    {
+      "path": "hub/test_reminder_delivery.py",
+      "bytes": 5160,
+      "sha256": "7299b6320d1ce45ded9bb902bb5cc15eaed4e110825ca8e66dc7bf3b086a2cf5"
+    },
+    {
+      "path": "hub/test_scene_snapshot.py",
+      "bytes": 7274,
+      "sha256": "c9d7bb34cceadcf682a55752c4fd6501a272e49a095a757f4449c9c02ae138a1"
+    },
+    {
+      "path": "hub/test_semantic_resolver.py",
+      "bytes": 14911,
+      "sha256": "63bf463d256d530f4876fc4344830649dcb29af04a3cca2ea639582e06da6145"
+    },
+    {
+      "path": "hub/test_tibo.py",
+      "bytes": 8952,
+      "sha256": "f886f92b8b9f33c871ca8c112f13f285b906aaa13ea9fa28c70e40af366f57c9"
+    },
+    {
+      "path": "hub/tibo.py",
+      "bytes": 10292,
+      "sha256": "65e20b72710a88691b6d888a0f90207a7fd10b6ab0e54d735475165d704c1470"
+    },
+    {
+      "path": "hub/tibo_attention.py",
+      "bytes": 5600,
+      "sha256": "aee5274a6d9f097a06eec1e7ce62edd714e33aed34fd2d3e415cc7e6a02daa13"
+    },
+    {
+      "path": "hub/tibo_gateway.py",
+      "bytes": 984,
+      "sha256": "1f98956a83ac4149b6fe553d50175fe8d1d0afe221e6d9edee469e9b70b9f0c3"
+    },
+    {
+      "path": "hub/todo_core.py",
+      "bytes": 16174,
+      "sha256": "7cdc00e8f25856b5a0daa3255c643ee8ad683e6970f10ee70406f0e2fbbfd10e"
+    },
+    {
+      "path": "hub/todo_shadow.py",
+      "bytes": 3061,
+      "sha256": "4044de6b3cc4ef3fd36ecfbe463ec96650515bf4323b281855964ad691f823de"
+    },
+    {
+      "path": "hub/work_context.py",
+      "bytes": 7013,
+      "sha256": "aba7717875f158875517fd78ad50a24abc5968e7521515672c659f62549c4ad6"
+    },
+    {
+      "path": "integrations/deepseek_bot/UPSTREAM-LICENSE",
+      "bytes": 11558,
+      "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+    },
+    {
+      "path": "integrations/deepseek_bot/UPSTREAM-NOTICE",
+      "bytes": 3909,
+      "sha256": "b938a72282b7f3f7e233e7a4b6608a37e3451019d1352dec16398f92546926f6"
+    },
+    {
+      "path": "integrations/deepseek_bot/butler.mjs",
+      "bytes": 409,
+      "sha256": "44b86ad33c84a1116bc4a06d9f6b4a5a27ed7f1969f5dedf3d38291f2de261b3"
+    },
+    {
+      "path": "integrations/deepseek_bot/fork-wiring.patch",
+      "bytes": 3051,
+      "sha256": "27cb3b86af58f2c596bc46799fa0347d3aeb8bc9a6ec8fe919d3f22c98c2a020"
+    },
+    {
+      "path": "integrations/deepseek_bot/gateway-client.mjs",
+      "bytes": 3486,
+      "sha256": "2690c25a09b5e440d2a566e9fa39894841056ca05e1659e92358f2112b78648e"
+    },
+    {
+      "path": "integrations/deepseek_bot/gateway-client.test.mjs",
+      "bytes": 11430,
+      "sha256": "b08012685a6d41c91b303cb92bb3780dda8ed140bffd4f2e2e73870809a30859"
+    },
+    {
+      "path": "integrations/deepseek_bot/gateway-live.mjs",
+      "bytes": 2538,
+      "sha256": "d17f88025c0183f132e20d4e42a57213dd56c96dac89c589b9ef9f69bdc6dc35"
+    },
+    {
+      "path": "integrations/deepseek_bot/register-tools.mjs",
+      "bytes": 8536,
+      "sha256": "1574675b935c7e7dacd8568e3b0a98a2b8b97f001bfff3af008c7a51bf896349"
+    },
+    {
+      "path": "integrations/deepseek_bot/test_gateway_integration.py",
+      "bytes": 2232,
+      "sha256": "44fbd11a5f60fe89dfa071c5d2bc33ef613f866c72a5ec916407094d8fb564f3"
+    },
+    {
+      "path": "integrations/deepseek_bot/ux-contract.mjs",
+      "bytes": 2336,
+      "sha256": "fd1315677aa3040a27282bf0ed4a352f5579bdbb252c936423d0c46e1dd22c33"
+    },
+    {
+      "path": "integrations/deepseek_bot/ux-contract.test.mjs",
+      "bytes": 812,
+      "sha256": "b59e93ac45bc813a46af42a0e4dcbdf7311a0390c9b22b9d83c3eb67b9e0b8fb"
+    },
+    {
+      "path": "integrations/deepseek_bot/verify-sdk.mjs",
+      "bytes": 1467,
+      "sha256": "00d199ec4184df559de405c0b0e58b5f59b38faf84c013935138e9b702b80582"
+    },
+    {
+      "path": "licenses/Adafruit-BusIO-MIT.txt",
+      "bytes": 1085,
+      "sha256": "86e9fafdb50d2a85d8fef369b4635b5a1b89160603e5b1f95484df0804b49508"
+    },
+    {
+      "path": "licenses/Adafruit-GFX-BSD-2-Clause.txt",
+      "bytes": 1344,
+      "sha256": "3e7bede50526352926c2283e640f2823d9f9f2165d1852044c4fb1bbac283106"
+    },
+    {
+      "path": "licenses/ArduinoJson-MIT.txt",
+      "bytes": 1117,
+      "sha256": "ebba0906d6c8b3daa8a1b59acb2d3a416485dd77fc10f6dd4c9ed2cbe467ee2d"
+    },
+    {
+      "path": "licenses/GxEPD2-GPL-3.0.txt",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "path": "licenses/ISRG-Public-Certificate.txt",
+      "bytes": 869,
+      "sha256": "cdd9684f61e0cd191b560060e93cc7533b0523bcbd2bccfd95887ced81e60714"
+    },
+    {
+      "path": "licenses/MIT.txt",
+      "bytes": 1083,
+      "sha256": "070612307785bc857fe524b17ab5cdcbaa4aee77c54dce2de230ace882afb163"
+    },
+    {
+      "path": "release-metadata.json",
+      "bytes": 1239,
+      "sha256": "cc1f3fda73cae1a03abf4914d5dbd50b470048ff2cf98881fd3e379db00cb6ec"
+    },
+    {
+      "path": "remote_mcp_access.ps1",
+      "bytes": 771,
+      "sha256": "24e4a495ff0f18cf7aae2127ec284d8e45f1ace33bee10c5317545700bff7669"
+    },
+    {
+      "path": "requirements.lock.txt",
+      "bytes": 331,
+      "sha256": "ed376ac0242aabd4a4fd1f4fa6f8b4b4d5e493fbce9baf09aa42c58dd108fb98"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 82,
+      "sha256": "2fffc4ec093319f48583d1a4273cb864136ad80f0e41ef5f97abf08afb8476ef"
+    },
+    {
+      "path": "run_host_checks.py",
+      "bytes": 3954,
+      "sha256": "75d100ba6170dc5f5882d962c3b73f89fc2d8234e8f8de2aff2804aeeacdcde4"
+    },
+    {
+      "path": "setup_mcp_auth.ps1",
+      "bytes": 2167,
+      "sha256": "564a1a0aa3f84acd9a34f2aa8f82e2febabafff6a5452237162db5b51078a013"
+    },
+    {
+      "path": "start_mcp.ps1",
+      "bytes": 1014,
+      "sha256": "219a4bf33673f4cb2495807a99766343122869337f7369e0d87df6ea158242c0"
+    },
+    {
+      "path": "tests/authority_state.cpp",
+      "bytes": 2126,
+      "sha256": "1354be7551a5de46a96d81bcdefa13916470dd346563dd51465ad185dcc13c6e"
+    },
+    {
+      "path": "tests/cache_recovery.cpp",
+      "bytes": 5465,
+      "sha256": "1928fc61d577040a3909e3dabf21790518a7ce313119864bcfaaf222159ad28d"
+    },
+    {
+      "path": "tests/display_contract.cpp",
+      "bytes": 6390,
+      "sha256": "bb1820324b0817993937a107a4a9bc4b9c2bd1bdb836352ce5aac9babb2fe1a0"
+    },
+    {
+      "path": "tests/fakes/Arduino.h",
+      "bytes": 1345,
+      "sha256": "037b51775755e899de345641665923c974785ebeae43e162eac741e2749c6513"
+    },
+    {
+      "path": "tests/fakes/ArduinoJson.h",
+      "bytes": 1327,
+      "sha256": "6500a01d0ec6fc19b166df31ed189998f18667fde83c9f1030e520cef91f59be"
+    },
+    {
+      "path": "tests/fakes/HTTPClient.h",
+      "bytes": 884,
+      "sha256": "b34fffad02dedb452ce669d88021cd3be63643e90c2df7089c640c9dbc4e29f3"
+    },
+    {
+      "path": "tests/fakes/Preferences.h",
+      "bytes": 1295,
+      "sha256": "3215cb26e4435847323cdb5f52844319f353d3adc6725a7bc0b15e1933dfb65e"
+    },
+    {
+      "path": "tests/fakes/WiFiClientSecure.h",
+      "bytes": 146,
+      "sha256": "6d71469fd0fa9c77bd7c2a85c6c2b69250e155d897f0b1e38d15049ac3d59c5b"
+    },
+    {
+      "path": "tests/fault_recovery.cpp",
+      "bytes": 6525,
+      "sha256": "2d62c71267d08437af6448b1d40168b788a8ebab19840a04156decc702459938"
+    },
+    {
+      "path": "tests/graphics_fakes/GxEPD2_3C.h",
+      "bytes": 1493,
+      "sha256": "7043d95e2ba550728bfdf4b6eff4fa5fe8c202118738595fed9ef0a6af6ea64e"
+    },
+    {
+      "path": "tests/graphics_fakes/SPI.h",
+      "bytes": 83,
+      "sha256": "4a769676028a24f4c9f85443068963dc4fad3a1f808a173480e7395597dbcca9"
+    },
+    {
+      "path": "tests/hub_parser.cpp",
+      "bytes": 5095,
+      "sha256": "b84190f6fc37e689fbfb10381701322587aa73e66d8d2d047ebf8a91dc30015e"
+    },
+    {
+      "path": "tests/optional_fakes/HTTPClient.h",
+      "bytes": 479,
+      "sha256": "20fee766382f01603881cfdde88c2dbb2d08368a8ba5a1b2c9a1b00fad4038f5"
+    },
+    {
+      "path": "tests/optional_sources.cpp",
+      "bytes": 2238,
+      "sha256": "b228ce960678b49c5583f87479d2af6959adeab7d808b43d6e22d2817c70bd38"
+    },
+    {
+      "path": "tests/parser_fakes/ArduinoJson.h",
+      "bytes": 4995,
+      "sha256": "0ba2eafbb9e0d27f8098448975e090c27d6aa53e6991de2909b62918de42059f"
+    },
+    {
+      "path": "tests/radar_detail.cpp",
+      "bytes": 1297,
+      "sha256": "ed09ae1ee8e28d0946d0c6ede994aabd398a506ae42adcd51f111c15aab0cafc"
+    }
+  ],
+  "release_version": "v0.1.0",
+  "release_prerelease": false,
+  "publication_requires": [
+    "Independent review",
+    "Final exact candidate core hardware acceptance",
+    "Separate explicit owner authorization"
+  ],
+  "revision_scope": "Only per-component release license metadata, English installation documentation, related navigation and regenerated inventories",
+  "revision_validation": "TARGETED_STATIC_CHECKS; ALL_EXISTING_CODE_BYTES_IDENTICAL; PRIOR_SOFTWARE_RESULTS_REUSED; NO_INSTALL_BUILD_HARDWARE_OR_ACTIONS_RUN",
+  "git_history_policy": "Fresh initial commit; no private history"
+}

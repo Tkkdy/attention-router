@@ -1,0 +1,39 @@
+{
+  "schema": "Attention Router source release v1",
+  "repository": "Tkkdy/attention-router",
+  "description": "A local-first AI attention router powered by ESP32 e-paper, bringing tasks, work context, and important alerts into focus.",
+  "topics": [
+    "esp32",
+    "e-paper",
+    "python",
+    "fastapi",
+    "local-first",
+    "iot",
+    "attention-management",
+    "web-console"
+  ],
+  "version": "v0.1.0",
+  "candidate": "offline-final2",
+  "prerelease": false,
+  "published": true,
+  "issues": true,
+  "pull_requests": true,
+  "discussions": false,
+  "firmware_binaries": [],
+  "release_notes": "RELEASE_NOTES.md",
+  "publication_requires": [
+    "Independent software review completed for offline-final2",
+    "Explicit owner publication authorization received",
+    "Passing CI on the main commit before tagging"
+  ],
+  "copyright": "Copyright (c) 2026 Tkkdy",
+  "license_scope": {
+    "model": "per-component",
+    "overview": "LICENSE",
+    "file_map": "LICENSE_MAP.json",
+    "third_party_notices": "THIRD_PARTY_NOTICES.md"
+  },
+  "hardware_acceptance": "NOT_COMPLETED_FOR_EXACT_PUBLIC_FIRMWARE",
+  "hardware_photo": "OUTSTANDING",
+  "source_archives": "GitHub-generated archives only"
+}

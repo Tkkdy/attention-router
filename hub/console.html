@@ -1,0 +1,455 @@
+<!-- SPDX-FileCopyrightText: 2026 Tkkdy -->
+<!-- SPDX-License-Identifier: MIT -->
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily Driver Console · Attention Router Hub</title>
+<style>
+:root{--bg:#0f141c;--panel:#161d28;--panel2:#1c2533;--line:#2b3747;--text:#e6ebf2;--muted:#94a1b3;--dim:#6f7c8f;--ok:#7fb69c;--warn:#f0b35a;--warnbg:#3a2a12;--bad:#ff8a7a;--badbg:#3d1a17;--info:#8cb4ff;--paper:#f5f2e8;--ink:#1d2026;color-scheme:dark;font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.5;color:var(--text);background:var(--bg)}
+*{box-sizing:border-box}body{margin:0;padding:14px 18px 40px}
+h1{font-size:18px;margin:0;font-weight:650;letter-spacing:.2px}h2{font-size:14px;margin:0 0 8px;font-weight:650;color:#cdd6e2}h3{font-size:13px;margin:12px 0 6px;color:var(--muted);font-weight:600}
+p{margin:6px 0}small,.muted{color:var(--muted)}.dim{color:var(--dim)}code,pre,.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.45;margin:0;background:#0c1118;border:1px solid var(--line);border-radius:6px;padding:10px;max-height:420px;overflow:auto}
+button,select{font:inherit;border:1px solid #4a5b73;border-radius:6px;background:#22314a;color:var(--text);padding:5px 11px;cursor:pointer}button:hover:not(:disabled){background:#2b3d5c}button:disabled{opacity:.5;cursor:not-allowed}button[aria-pressed=true]{background:#33507a;border-color:var(--info)}button.danger{border-color:#7a3a33}button.quiet{background:transparent}
+.topbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:10px}.topbar .grow{flex:1}
+#hub-banner{display:none;margin:0 0 10px;padding:9px 12px;border-radius:6px;border:1px solid var(--bad);background:var(--badbg);color:#ffd6cf}#hub-banner.show{display:block}
+.runtime{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 14px;padding:0;list-style:none}
+.chip{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px 6px;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:var(--panel);font-size:12.5px;max-width:100%}
+.chip b{font-weight:600}.chip .st{font-weight:600}
+.lv-ok{color:var(--muted)}.lv-ok .st{color:var(--ok)}
+.lv-unknown{color:var(--muted);border-style:dashed}.lv-unknown .st{color:#c2cad6}
+.lv-warn{border-color:var(--warn);background:var(--warnbg)}.lv-warn .st{color:var(--warn)}
+.lv-bad{border-color:var(--bad);background:var(--badbg)}.lv-bad .st{color:var(--bad)}
+.layout{display:grid;gap:14px;grid-template-columns:minmax(250px,1fr) minmax(0,1.7fr) minmax(290px,1.15fr);grid-template-areas:"left center right";align-items:start}
+.col{display:flex;flex-direction:column;gap:14px;min-width:0}#col-left{grid-area:left}#col-center{grid-area:center}#col-right{grid-area:right}
+@media (max-width:1180px){.layout{grid-template-columns:minmax(0,1fr) minmax(280px,.9fr);grid-template-areas:"center right" "left right"}}
+@media (max-width:780px){body{padding:10px}.layout{display:flex;flex-direction:column}.col{display:contents}.o1{order:1}.o2{order:2}.o3{order:3}.o4{order:4}.o5{order:5}.o6{order:6}.o7{order:7}.o8{order:8}}
+section.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+body.stale section.card{border-style:dashed}body.stale section.card>h2::after{content:" · 上次快照 · 未核验";color:var(--warn);font-weight:500;font-size:12px}
+dl.kv{display:grid;grid-template-columns:minmax(96px,max-content) minmax(0,1fr);gap:3px 10px;margin:0;font-size:12.5px}dl.kv dt{color:var(--muted)}dl.kv dd{margin:0;overflow-wrap:anywhere}
+.v-missing{color:var(--dim);font-style:italic}.v-null{color:var(--dim)}.v-unknown{color:#c9b6ff}
+.note{font-size:12px;color:var(--muted);border-left:2px solid var(--line);padding-left:8px;margin:8px 0}
+.alert{padding:8px 10px;border-radius:6px;font-size:12.5px;margin:8px 0}.alert.warn{border:1px solid var(--warn);background:var(--warnbg);color:#ffe2b8}.alert.bad{border:1px solid var(--bad);background:var(--badbg);color:#ffd6cf}.alert.info{border:1px solid #34507a;background:#15233a;color:#cfe0ff}
+.tag{display:inline-block;font-size:11px;padding:0 6px;border-radius:4px;border:1px solid var(--line);color:var(--muted);margin-left:4px;vertical-align:1px}.tag.warn{border-color:var(--warn);color:var(--warn)}.tag.bad{border-color:var(--bad);color:var(--bad)}
+.btnrow{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:10px 0}.tabs button{border-radius:6px 6px 0 0;border-bottom:none;background:transparent}.tabs button[aria-selected=true]{background:var(--panel2);border-color:var(--info)}
+.paper{background:var(--paper);color:var(--ink);border-radius:4px;padding:14px 16px;min-height:220px;font:13px/1.55 ui-monospace,Consolas,monospace;overflow-wrap:anywhere}
+.paper .pg{display:flex;justify-content:space-between;gap:8px;border-bottom:2px solid var(--ink);padding-bottom:4px;margin-bottom:10px;font-weight:700}
+.paper .big{font-size:17px;font-weight:700;margin:4px 0}.paper .lbl{color:#5a5f69;font-size:11.5px;margin-top:8px}.paper ul{margin:2px 0;padding-left:18px}.paper .unk{color:#7a4cc2}
+.route-group{border-top:1px solid var(--line);padding-top:8px;margin-top:8px}.route-group h3{display:flex;justify-content:space-between;margin:0 0 6px;color:#cdd6e2}
+.ev{border:1px solid var(--line);border-radius:6px;padding:7px 9px;margin:5px 0;background:var(--panel2)}.ev .t{font-weight:600;overflow-wrap:anywhere}.ev .m{font-size:12px;color:var(--muted)}
+.now{border:1px solid var(--warn);background:#2a2214;border-radius:8px;padding:10px 12px}.now .t{font-size:15px;font-weight:700}
+.empty{color:var(--muted);font-style:italic;padding:6px 0}
+.op-msg{font-size:12px;margin:4px 0}.op-msg.bad{color:var(--bad)}.op-msg.ok{color:var(--ok)}
+details>summary{cursor:pointer;color:var(--muted);font-size:12.5px;margin:6px 0}
+.win{border:1px solid var(--line);border-radius:6px;padding:6px 9px;margin:5px 0}
+textarea{width:100%;min-height:110px;background:#0c1118;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:8px;font:12px ui-monospace,monospace}
+a{color:var(--info)}
+</style></head><body>
+<div class="topbar">
+<h1>Daily Driver Console <span class="tag">Attention Router Hub</span></h1>
+<span id="env" class="muted"></span>
+<span class="grow"></span>
+<span id="updated" class="muted">尚未成功读取 overview</span>
+<button id="refresh">刷新</button>
+</div>
+<p id="hub-banner" role="alert"></p>
+<ul id="runtime" class="runtime" aria-label="运行状态（各模块独立观测）"></ul>
+<main class="layout">
+<div id="col-left" class="col">
+<section class="card o5" aria-labelledby="h-wc"><h2 id="h-wc">Work Context · 上下文判断</h2>
+<div id="wc-alert"></div><dl id="wc" class="kv"></dl>
+<p class="note">会话时长是工作会话的持续时间，不是当前应用的运行时长；数值截至后端采样时刻，页面不会自行累加。CODING 只是上下文判断，不代表专注程度。</p></section>
+<section class="card o6" aria-labelledby="h-ov"><h2 id="h-ov">Context Override · 人工覆盖</h2>
+<p class="muted">当前覆盖：<b id="ov-current">未知</b></p>
+<div class="btnrow" id="ov-buttons"></div>
+<p id="ov-msg" class="op-msg" role="status"></p>
+<p class="note">CODING 通常对应工作区上下文，IDLE 通常对应 Home 上下文，QUIET 表示少打扰。覆盖只改变上下文输入；最终页面仍由后端根据 Router NOW、Tibo 生命周期等决定，不保证切到某一页。选 AUTO 恢复自动观察。</p></section>
+<section class="card o8" aria-labelledby="h-todos"><h2 id="h-todos">完整 Todo · 用户顺序</h2>
+<p class="note">来源：overview.todos.tasks（当前 Hub 全量清单）；独立于已发布的 Scene snapshot，输入更新后两者可能不同。</p>
+<p id="todo-status" class="muted"></p><ol id="todos"></ol></section>
+<section class="card o8"><h2>开发与维护</h2>
+<details><summary>重新同步 Radar</summary><p class="note">调用 <code>POST /api/radar/sync</code>，只同步 Radar 数据源状态。</p><button id="radar">重新同步 Radar</button><p id="radar-msg" class="op-msg" role="status"></p></details>
+<details><summary>结构化输入 · 显式业务操作</summary><p class="note">省略字段保留；清单 [] 清空；旧 revision 拒绝。测试输入必须标为 SIMULATED。事件文本需 ASCII。</p>
+<select id="input-kind" aria-label="输入类型"><option value="workspace/sync">项目／事项／建议</option><option value="todos/sync">有序 Todo</option><option value="events">事件</option></select>
+<textarea id="input" aria-label="结构化输入" placeholder='{"revision":1,"command_id":"unique-id","project":"Demo","provenance":"SIMULATED"}'></textarea>
+<button id="submit-input">提交明确输入</button><p id="input-msg" class="op-msg" role="status"></p></details>
+</section>
+</div>
+<div id="col-center" class="col">
+<section class="card o3" aria-labelledby="h-scene"><h2 id="h-scene">Scene Inspector · 期望内容预览 <span class="tag">非设备实拍</span></h2>
+<p class="note">显示 Hub 在 <code>/scene</code> 提交路径上最近一次发布的 canonical 快照。设备可能补入本地时间、天气，或执行离线回退；本页不是固件渲染截图，也不代表设备已收到或已显示。</p>
+<div class="btnrow"><label>能力组合 <select id="profile" aria-label="能力组合">
+<option value="bitmap-titles-v1,tibo-v1">bitmap-titles-v1,tibo-v1（当前固件请求）</option><option value="tibo-v1">tibo-v1</option><option value="bitmap-titles-v1">bitmap-titles-v1</option><option value="base">base（无能力标记）</option></select></label></div>
+<div id="snap-status"></div>
+<dl id="snap-head" class="kv"></dl>
+<div class="tabs" role="tablist"><button role="tab" id="tab-preview" aria-selected="true">内容预览</button><button role="tab" id="tab-json" aria-selected="false">Scene JSON</button><button role="tab" id="tab-meta" aria-selected="false">Scene Meta</button></div>
+<div id="panel-preview" role="tabpanel"></div><pre id="panel-json" role="tabpanel" hidden></pre><div id="panel-meta" role="tabpanel" hidden></div>
+<details><summary>对照：当前只读计算预览（overview.desired_scene，非 canonical）</summary><p class="note">由 <code>/api/overview</code> 只读计算，<code>preview_only=true</code>，未提交投影，按 tibo-v1 能力、无 UTF-8 位图计算。它反映此刻的输入，但不是设备会收到的已发布快照。</p><pre id="compute-preview"></pre></details>
+</section>
+</div>
+<div id="col-right" class="col">
+<section class="card o1" aria-labelledby="h-now"><h2 id="h-now">当前 NOW 事件</h2><div id="now"></div></section>
+<section class="card o2" aria-labelledby="h-routes"><h2 id="h-routes">按路由结果分类</h2>
+<p class="note">route 是后端 Router 的当前决策，取决于授权、上下文、时间、优先级和其他事件，最多一个 NOW；它和事件持久状态不是同一个字段。DROP 可能来自取消、确认或过期。</p>
+<div id="routes"></div></section>
+<section class="card o4" aria-labelledby="h-detail"><h2 id="h-detail">事件详情与决策记录</h2><div id="detail"><p class="empty">选择事件查看详情（GET /api/events/{id}）。</p></div></section>
+<section class="card o7" aria-labelledby="h-tel"><h2 id="h-tel">Runtime Telemetry</h2>
+<h3>ESP32 · 设备请求</h3><dl id="esp32" class="kv"></dl>
+<h3>显示回执</h3><p id="display" class="muted"></p>
+<h3>Codex 额度</h3><div id="codex"></div>
+<details><summary>Codex 显示设置</summary><p class="note">手动开关持久化；关闭只隐藏五小时项，七天项独立。</p>
+<label>手动套餐 <select id="quota-plan"><option value="pro">Pro</option><option value="plus">Plus</option><option value="unknown">未知</option></select></label>
+<label>五小时项 <select id="quota-override"><option value="preset">按套餐预设</option><option value="on">手动开启</option><option value="off">手动关闭</option></select></label>
+<button id="quota-save">保存</button><p id="quota-msg" class="op-msg" role="status"></p></details>
+<h3>Tibo · 公共重置公告与实验性预测</h3><div id="tibo"></div>
+<div class="btnrow"><button id="tibo-show">限时查看 Tibo 详情（60 秒）</button></div><p id="tibo-msg" class="op-msg" role="status"></p><div id="tibo-ack"></div>
+<details><summary>Tibo 采集设置</summary>
+<label>数据采集 <select id="tibo-enabled"><option value="off">关闭</option><option value="on">开启</option></select></label>
+<label>概率预测 <select id="tibo-forecast"><option value="off">不接入</option><option value="on">接入 NextReset</option></select></label>
+<button id="tibo-save">保存</button><p id="tibo-error" class="op-msg" role="status"></p>
+<p class="note">数据来源：<a href="https://codex-resets.com" target="_blank" rel="noopener noreferrer">Codex Resets</a> · <a href="https://nextreset.ai/forecast/" target="_blank" rel="noopener noreferrer">NextReset 预测方法</a>。社区数据，非官方承诺；公告不代表个人账号额度已到账。</p></details>
+</section>
+</div>
+</main>
+<script>
+'use strict';
+// Daily Driver Console. Display only: every business judgement comes from the Hub.
+const $=id=>document.getElementById(id);
+const PROFILE_DEFAULT='bitmap-titles-v1,tibo-v1';
+const S={ov:null,ovOk:null,ovAt:null,ovErr:null,snap:null,snapFor:null,snapOk:null,snapErr:null,snapAt:null,
+  tibo:null,tiboErr:null,profile:PROFILE_DEFAULT,tab:'preview',selected:null,detail:null,detailErr:null,ops:new Map(),opMsg:{}};
+let gen=0,detailGen=0,loading=false,quotaDirty=false,tiboDirty=false;
+
+class ApiError extends Error{constructor(message,status){super(message);this.status=status}}
+async function api(path,body){
+  const opts=body===undefined?{credentials:'same-origin'}:{method:'POST',credentials:'same-origin',
+    headers:{'Content-Type':'application/json','X-Hub-Action':'1'},body:JSON.stringify(body)};
+  let r;
+  try{r=await fetch(path,opts)}catch(e){throw new ApiError('网络失败：'+(e&&e.message||e),0)}
+  let data=null;try{data=await r.json()}catch(e){if(r.ok)throw new ApiError('响应不是 JSON',r.status)}
+  if(!r.ok){const d=data&&data.detail!==undefined?data.detail:data;throw new ApiError('HTTP '+r.status+'：'+(typeof d==='string'?d:JSON.stringify(d)),r.status)}
+  return data;
+}
+
+// --- safe DOM helpers (text only, never innerHTML) ---
+function h(tag,attrs,...kids){const n=document.createElement(tag);
+  for(const [k,v]of Object.entries(attrs||{})){if(v==null||v===false)continue;
+    if(k==='class')n.className=v;else if(k==='text')n.textContent=String(v);else if(k==='on')for(const [ev,f]of Object.entries(v))n.addEventListener(ev,f);
+    else if(k==='disabled')n.disabled=!!v;else n.setAttribute(k,v===true?'':String(v))}
+  for(const c of kids.flat()){if(c==null||c===false)continue;n.append(typeof c==='object'?c:document.createTextNode(String(c)))}
+  return n}
+const put=(id,...kids)=>$(id).replaceChildren(...kids.flat().filter(k=>k!=null&&k!==false).map(k=>typeof k==='object'?k:document.createTextNode(String(k))));
+
+// --- value rendering: missing / null / UNKNOWN / [] / 0 stay distinct ---
+const MISSING=Symbol('missing');
+function pick(obj,path){let v=obj;for(const k of path.split('.')){if(v==null||typeof v!=='object'||!(k in v))return MISSING;v=v[k]}return v}
+function show(v,fmt){
+  if(v===MISSING)return h('span',{class:'v-missing',text:'未提供'});
+  if(v===null)return h('span',{class:'v-null',text:'null'});
+  if(typeof v==='string'&&/^unknown$/i.test(v))return h('span',{class:'v-unknown',text:v});
+  if(Array.isArray(v)&&v.length===0)return h('span',{text:'[]（空）'});
+  if(fmt)return fmt(v);
+  return typeof v==='object'?JSON.stringify(v):String(v)}
+function kv(id,rows){put(id,rows.filter(Boolean).flatMap(([k,v,fmt])=>[h('dt',{text:k}),h('dd',{},show(v,fmt))]))}
+
+// --- time: server timestamps formatted in the browser zone, zone always labelled ---
+const TZ=(()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'浏览器时区'}catch(e){return '浏览器时区'}})();
+function fmtTime(v){if(typeof v==='number')v=new Date(v*1000).toISOString();
+  const d=new Date(v);if(!v||isNaN(d))return h('span',{class:'v-unknown',text:String(v)});
+  return h('span',{title:'原始值 '+v},d.toLocaleString('zh-CN',{hour12:false,timeZone:TZ})+' ('+TZ+')')}
+const T=v=>fmtTime(v);
+function dur(sec){if(typeof sec!=='number')return String(sec);sec=Math.max(0,Math.round(sec));
+  if(sec<60)return sec+' 秒';if(sec<3600)return Math.floor(sec/60)+' 分 '+(sec%60)+' 秒';return Math.floor(sec/3600)+' 小时 '+Math.floor(sec%3600/60)+' 分'}
+const D=v=>dur(v);
+function ago(sec){return typeof sec==='number'?dur(sec)+'前':'未知'}
+
+// ================= fetch cycle =================
+// Polls skip while a cycle is running; user actions force a fresh cycle whose
+// generation supersedes any older in-flight response.
+async function load(force){
+  if(loading&&force!==true)return;loading=true;const g=++gen,profile=S.profile;
+  try{
+    const [ov,sn,tb]=await Promise.allSettled([api('/api/overview'),
+      api('/api/scene/snapshot?capabilities='+encodeURIComponent(profile)),api('/api/tibo')]);
+    if(g!==gen)return; // a newer cycle owns the screen
+    if(ov.status==='fulfilled'){S.ov=ov.value;S.ovOk=true;S.ovAt=new Date().toISOString();S.ovErr=null}else{S.ovOk=false;S.ovErr=ov.reason.message}
+    if(sn.status==='fulfilled'){S.snap=sn.value;S.snapFor=profile;S.snapOk=true;S.snapErr=null;S.snapAt=new Date().toISOString()}else{S.snapOk=false;S.snapErr=sn.reason.message}
+    if(tb.status==='fulfilled'){S.tibo=tb.value;S.tiboErr=null}else S.tiboErr=tb.reason.message;
+    render();
+  }finally{if(g===gen)loading=false}
+}
+function render(){for(const f of [renderTop,renderRuntime,renderContext,renderOverride,renderTodos,renderScene,renderEvents,renderDetail,renderTelemetry,renderTibo])
+  try{f()}catch(e){console.error(f.name,e)}}
+
+// ================= top / runtime =================
+function renderTop(){
+  document.body.classList.toggle('stale',S.ovOk===false&&!!S.ov);
+  const b=$('hub-banner');
+  if(S.ovOk===false){b.className='show';b.textContent='Hub 不可达或响应失败：'+S.ovErr+'。'+(S.ov?'下方内容是浏览器上次成功读取（'+new Date(S.ovAt).toLocaleString('zh-CN',{hour12:false})+'，浏览器时钟）的快照，不代表当前状态。':'从未成功读取，状态均未核验。')}
+  else{b.className='';b.textContent=''}
+  put('updated',S.ovAt?['overview 最近成功 ',fmtTime(S.ovAt),' · 浏览器时钟',S.ovOk===false?' · 当前未核验':'']:(S.ovOk===false?'从未成功观测 overview':'读取中…'));
+  const o=S.ov;put('env',o?'环境 '+(o.environment??'未提供')+' · 实例 '+String(o.instance_id??'未提供').slice(0,8):'');
+}
+function chip(name,state,level,extra,title){return h('li',{class:'chip lv-'+level,title:title||null},h('b',{text:name}),'·',h('span',{class:'st',text:state}),extra?h('span',{text:'· '+extra}):null)}
+function renderRuntime(){
+  const r=S.ov&&S.ov.runtime||{},cl=r.claims||{},live=S.ovOk===true;
+  const unverified=(name,last)=>chip(name,'未核验',S.ov?'warn':'unknown',S.ov?'上次：'+last:'从未观测');
+  const items=[];
+  items.push(live?chip('Hub','响应正常','ok','最近成功 '+new Date(S.ovAt).toLocaleTimeString('zh-CN',{hour12:false}),cl.personal_hub)
+    :chip('Hub',S.ovOk===false?'不可达':'读取中','bad',S.ovAt?'最近成功 '+new Date(S.ovAt).toLocaleTimeString('zh-CN',{hour12:false})+'（浏览器时钟）':'从未成功观测'));
+  const cm=r.context_monitor||{},cms=cm.status||'Unknown';
+  items.push(live?chip('Context Monitor',cms,{Active:'ok',Degraded:'warn',Stale:'warn',Stopped:'bad'}[cms]||'unknown',cm.error_category?'采样错误 '+cm.error_category:null,cl.context_monitor):unverified('Context Monitor',cms));
+  const ds=r.deepseek||{};
+  const dsText=ds.status==='Running'?'本地 UI 可达':ds.status==='Unreachable'?'本地 UI 不可达':(ds.status||'Unknown');
+  items.push(live?chip('DeepSeek',dsText,ds.status==='Running'?'ok':ds.status==='Unreachable'?'bad':'unknown','业务连接 '+(ds.business_connection||'Unknown')+(ds.last_activity?' · 最近活动 '+ago(ds.activity_age_seconds):''),cl.deepseek):unverified('DeepSeek',dsText));
+  const gb=r.grokbot||{};
+  items.push(live?(gb.status==='Connected'?chip('GrokBot','最近 Gateway 操作成功','ok',ago(gb.activity_age_seconds),cl.grokbot)
+    :chip('GrokBot',gb.status||'Unknown','unknown',gb.last_activity?'最近 Gateway 操作 '+ago(gb.activity_age_seconds)+'（超出 '+(gb.fresh_for_seconds??300)+' 秒窗口）':'无最近 Gateway 操作记录',cl.grokbot)):unverified('GrokBot',gb.status||'Unknown'));
+  const e=r.esp32||{};
+  items.push(live?(e.status==='Online'?chip('ESP32','最近 Scene 请求','ok',ago(e.age_seconds),cl.esp32)
+    :chip('ESP32',e.status||'Unknown','unknown',e.last_scene_request?'最近请求 '+ago(e.age_seconds)+'，超出 '+(e.fresh_for_seconds??45)+' 秒窗口':'从未收到带能力标记的请求',cl.esp32)):unverified('ESP32',e.status||'Unknown'));
+  const dp=r.display||{};
+  items.push(chip('显示完成',dp.display_complete||'UNKNOWN','unknown','设备未上报（回执协议未实现）'));
+  put('runtime',items);
+}
+
+// ================= work context =================
+function renderContext(){
+  const c=S.ov?S.ov.context_evidence||{}:null;
+  if(!c){put('wc');put('wc-alert',h('p',{class:'empty',text:'尚未读取到 Work Context。'}));return}
+  const alerts=[];
+  if(c.error_category){alerts.push(h('div',{class:'alert warn'},'当前采样失败（',String(c.error_category),'）。',
+    c.session_state==='ACTIVE'?'已建立的工作会话暂时保留；这种保护有时间边界，':'',
+    '若持续没有新鲜的有效观测，后端可能转为 UNKNOWN，并随之影响 Scene。'))}
+  if(c.monitor_status&&c.monitor_status!=='Active')alerts.push(h('div',{class:'alert '+(c.monitor_status==='Stopped'?'bad':'warn')},'Context Monitor 状态：'+c.monitor_status+(c.unknown_reason?'（'+c.unknown_reason+'）':'')));
+  put('wc-alert',alerts);
+  kv('wc',[['上下文判断',pick(c,'effective')],['判断原因',pick(c,'reason')],['会话状态',pick(c,'session_state')],
+    ['工作会话时长',pick(c,'work_session_seconds'),D],['会话开始',pick(c,'work_session_started_at'),T],
+    ['前台应用',pick(c,'current_foreground_app')],['前台进程',pick(c,'foreground_process')],
+    ['最近强信号',pick(c,'last_strong_work_signal.app')],['强信号时间',pick(c,'last_strong_work_signal.at'),T],
+    ['强信号年龄（采样时）',pick(c,'last_strong_work_signal.age_seconds'),D],
+    ['最近采样尝试',pick(c,'sampled_at'),T],['最近成功采样',pick(c,'last_successful_sample'),T],
+    ['采样错误',pick(c,'error_category')],['人工覆盖',pick(c,'manual_override')]]);
+}
+const MODES=[['AUTO','AUTO · 自动观察'],['CODING','CODING'],['IDLE','IDLE'],['QUIET','QUIET']];
+let overrideBusy=false;
+function renderOverride(){
+  const cur=S.ov?pick(S.ov,'context_evidence.manual_override'):MISSING;
+  put('ov-current',show(cur));
+  put('ov-buttons',MODES.map(([m,label])=>h('button',{'aria-pressed':cur===m?'true':'false',disabled:overrideBusy,on:{click:()=>setOverride(m)}},label)));
+}
+async function setOverride(mode){
+  if(overrideBusy)return;overrideBusy=true;renderOverride();$('ov-msg').className='op-msg';$('ov-msg').textContent='提交中…';
+  try{await api('/api/context',{mode});$('ov-msg').className='op-msg ok';$('ov-msg').textContent='已提交覆盖 '+mode+'，以下状态为重新读取的结果。'}
+  catch(e){$('ov-msg').className='op-msg bad';$('ov-msg').textContent='覆盖未生效：'+e.message}
+  finally{overrideBusy=false;await load(true);renderOverride()}
+}
+
+function renderTodos(){
+  const doc=S.ov&&S.ov.todos;
+  if(!doc){put('todo-status','尚未读取 overview.todos');put('todos');return}
+  const tasks=Array.isArray(doc.tasks)?doc.tasks:[];
+  put('todo-status',doc.snapshot_known?'共 '+tasks.length+' 项 · revision '+(doc.revision??'未提供')+' · '+(doc.provenance||'来源未提供'):'清单来源未知；不代表权威空清单。');
+  put('todos',tasks.map(t=>h('li',{},(t.display_title||t.title||'（无标题）')+' · '+(t.status??'未提供'))));
+}
+
+// ================= scene inspector (single snapshot response) =================
+const REQUESTER={lan_device_capability_marker:'LAN 带设备能力标记的请求（非认证设备身份）',local_or_unmarked_request:'本机或未带标记的请求'};
+function renderScene(){
+  const resp=S.snapFor===S.profile?S.snap:null,snap=resp&&resp.snapshot;
+  const st=[];
+  if(S.snapOk===false)st.push(h('div',{class:'alert bad'},'快照读取失败：'+S.snapErr+(resp?'。下方为上次读取结果，已陈旧。':'。')));
+  if(!resp){put('snap-status',st.length?st:h('p',{class:'empty',text:'读取中…'}));put('snap-head');put('panel-preview');$('panel-json').textContent='';put('panel-meta');}
+  else if(resp.status!=='available'||!snap){
+    st.push(h('div',{class:'alert warn'},'该能力组合（'+resp.profile+'）当前没有 canonical 快照：'+(resp.reason||'未说明原因')+'。快照只在设备请求 /scene 时发布；本页不会生成或用计算预览代替。'));
+    put('snap-status',st);put('snap-head');put('panel-preview',h('p',{class:'empty',text:'unavailable · 无可预览的已发布快照'}));
+    $('panel-json').textContent=JSON.stringify(resp,null,2);renderMeta(resp,null);
+  }else{
+    st.push(h('p',{class:'note'},resp.meaning||''));put('snap-status',st);
+    const sc=snap.scene||{};
+    kv('snap-head',[['page',pick(sc,'page')],['Scene version',pick(sc,'version')],['能力组合',pick(snap,'profile')],
+      ['快照发布于',pick(snap,'published_at'),T],['本次读取于',pick(resp,'read_at'),T],['请求方',pick(snap,'requester'),v=>REQUESTER[v]||v]]);
+    put('panel-preview',preview(sc));$('panel-json').textContent=JSON.stringify(sc,null,2);renderMeta(resp,snap);
+  }
+  for(const t of ['preview','json','meta']){$('tab-'+t).setAttribute('aria-selected',S.tab===t?'true':'false');$('panel-'+t).hidden=S.tab!==t}
+  $('compute-preview').textContent=S.ov?JSON.stringify(S.ov.desired_scene??null,null,2):'未读取';
+}
+function renderMeta(resp,snap){
+  const p=snap&&snap.provenance;
+  const env={...resp};delete env.snapshot;
+  const meta=snap?Object.fromEntries(Object.entries(snap).filter(([k])=>k!=='scene')):null;
+  const nodes=[];
+  if(snap){nodes.push(h('dl',{class:'kv'},...[['snapshot_id',pick(snap,'snapshot_id')],['scene_version',pick(snap,'scene_version')],['来源',pick(snap,'source')],
+    ['数据范围',pick(snap,'provenance.scope.data')],['workspace 来源',pick(snap,'provenance.workspace.provenance')],['workspace 字段来源',pick(snap,'provenance.workspace.field_provenance')],
+    ['workspace 更新',pick(snap,'provenance.workspace.updated_at')],['Todo 显示副本',pick(snap,'provenance.todos.authority')],['Todo 来源',pick(snap,'provenance.todos.provenance')],
+    ['Todo revision',pick(snap,'provenance.todos.revision')],['Todo Core 权威',pick(snap,'provenance.todos.todo_core_authority')],
+    ['当前事项 ID',pick(snap,'provenance.current_item_ref.id')],['ID 类型',pick(snap,'provenance.current_item_ref.id_kind')]]
+    .flatMap(([k,v])=>[h('dt',{text:k}),h('dd',{},show(v))])));
+    nodes.push(h('p',{class:'note'},'Scene version 只反映可见内容变化；snapshot_id 每次发布都会变，两者不能互相代替。以上元数据和 Scene 来自同一次发布。'+(p?'':' 此快照没有 provenance 字段（旧版本发布）。')))}
+  nodes.push(h('h3',{text:'原始 envelope + 快照元数据（不含 scene）'}),h('pre',{},JSON.stringify({...env,snapshot:meta},null,2)));
+  put('panel-meta',nodes);
+}
+const PAGES={workspace:'WORKSPACE',home:'HOME',interrupt:'INTERRUPT',tibo:'TIBO'};
+function pv(v){return v===undefined?h('span',{class:'unk',text:'UNKNOWN（字段缺失）'}):v===null?h('span',{class:'unk',text:'null'}):/^unknown$/i.test(String(v))?h('span',{class:'unk',text:String(v)}):String(v)}
+function todoBlock(sc,label){
+  const out=[h('div',{class:'lbl',text:label})];
+  if(!('todos'in sc))out.push(h('div',{class:'unk',text:'todos 字段缺失：来源未知，设备可能保留缓存'}));
+  else if(!Array.isArray(sc.todos))out.push(h('div',{class:'unk',text:'todos 格式无法识别'}));
+  else if(sc.todos.length===0)out.push(h('div',{text:'（清单为空 · todos: []）'}));
+  else out.push(h('ul',{},sc.todos.map(t=>h('li',{},(t.done?'■ ':'□ ')+(t.display_title||t.title||'（无标题）')))));
+  if(typeof sc.todo_remaining==='number'&&sc.todo_remaining>0)out.push(h('div',{text:'另有 '+sc.todo_remaining+' 项'}));
+  return out}
+function preview(sc){
+  const page=sc.page,tags=[sc.simulated?'SIMULATED':null,sc.stale?'STALE':null].filter(Boolean);
+  const head=h('div',{class:'pg'},h('span',{text:(PAGES[page]||String(page))+' · v'+sc.version}),h('span',{text:tags.join(' · ')}));
+  const body=[];
+  if(page==='workspace'){const w=sc.workspace||{};
+    body.push(h('div',{class:'lbl',text:'项目'}),h('div',{class:'big'},pv(w.project)),
+      h('div',{class:'lbl',text:'当前事项'}),h('div',{},pv(w.display_title||w.current_item)));
+    body.push(...todoBlock(sc,'接下来（用户顺序，后端已截取）'));
+    const sug=w.suggestion;body.push(h('div',{class:'lbl',text:'Grok Bot 建议（后端提供）'}),
+      h('div',{},!sug||/^(NONE \/ UNKNOWN|UNKNOWN|NONE)$/i.test(sug)?h('span',{class:'unk',text:'无有效建议（'+(sug??'缺失')+'）'}):String(sug)));
+    const c=sc.codex||{};body.push(h('div',{class:'lbl',text:'Codex 额度（Scene 字段）'}),
+      h('div',{},(c.show_5h?['5H ',pv(c.quota_5h_remaining),c.quota_5h_remaining!=null?'%':'',' · ']:['5H 按显示策略隐藏 · ']),'7D ',pv(c.quota_total_remaining),c.quota_total_remaining!=null?'%':''),
+      h('div',{},'数值采样（UTC）：',pv(c.observed_at)));
+  }else if(page==='home'){const r=sc.radar||{};
+    body.push(h('div',{class:'lbl',text:'日期（Hub 生成，Asia/Singapore 业务日）'}),h('div',{class:'big'},pv(sc.date)),
+      h('div',{class:'lbl',text:'天气'}),h('div',{},'由设备 Adapter 补入；Hub 侧 ',pv(sc.weather&&sc.weather.status)),
+      h('div',{class:'lbl',text:'Radar'}),h('div',{},pv(r.run_date),' · ',pv(r.status),' · ',r.fresh?'今日 / 已核验':'缓存 / 未核验'));
+    body.push(...todoBlock(sc,'今日 Todo'));
+  }else if(page==='interrupt'){const i=sc.interrupt||{};
+    body.push(h('div',{class:'big'},pv(i.title)),h('div',{},pv(i.message)),i.detail?h('div',{},String(i.detail)):null,
+      h('div',{class:'lbl',text:'事件'}),h('div',{},'id ',pv(i.id),' · v',pv(i.revision),' · ',pv(i.type),' · 优先级 ',pv(i.priority)),
+      h('div',{class:'lbl',text:'设备提示'}),h('div',{text:'请在 Hub Web 确认'}));
+  }else if(page==='tibo'){const t=sc.tibo||{};
+    body.push(h('div',{class:'lbl',text:sc.tibo_mode==='detail'?'限时详情（主动查看，无需 ACK）':sc.tibo_mode==='attention'?'注意力事件（需确认）':'模式 '+(sc.tibo_mode??'缺失')}),
+      h('div',{},'公告数据：',pv(t.status),' · 最近记录：',pv(t.kind)),h('div',{},'原帖时间（UTC）：',pv(t.announced_at)),h('div',{},'待执行公告：',pv(t.pending)),
+      h('div',{class:'lbl',text:'实验性预测'}),h('div',{},pv(t.forecast_status),' · 24h ',pv(t.p24),' / 48h ',pv(t.p48),' / 72h ',pv(t.p72)),
+      h('div',{class:'lbl',text:'说明'}),h('div',{text:'社区数据，非官方承诺；不代表个人账号额度'}));
+  }else body.push(h('div',{class:'unk',text:'未识别的 page：'+String(page)+'，请查看 Scene JSON'}));
+  return h('div',{class:'paper','aria-label':'期望内容预览，非设备实拍'},head,body);
+}
+
+// ================= events / router =================
+const ROUTES=['NOW','QUEUE','DIGEST','DROP'];
+function evMeta(e){return 'v'+e.revision+' · '+(e.kind??'?')+' · '+(e.provenance??'来源未提供')+' · 状态 '+(e.status??'未提供')+' · '+e.route+' / '+(e.reason??'无原因')}
+function renderEvents(){
+  if(!S.ov){put('now',h('p',{class:'empty',text:'尚未读取到事件。'}));put('routes');return}
+  const evs=Array.isArray(S.ov.events)?S.ov.events:[];
+  const now=evs.find(e=>e.route==='NOW');
+  put('now',now?h('div',{class:'now'},h('div',{class:'t',text:now.title}),h('div',{text:now.message}),now.detail?h('div',{class:'m',text:now.detail}):null,
+      h('div',{class:'m',text:evMeta(now)}),h('div',{class:'m'},'接收时间 ',now.received_at?fmtTime(now.received_at):show(pick(now,'received_at')),' · 计划 ',show(pick(now,'starts_at'),T),' · 过期 ',show(pick(now,'expires_at'),T)),
+      evActions(now,true))
+    :h('p',{class:'empty',text:'当前没有路由为 NOW 的事件'}));
+  const groups=ROUTES.map(r=>[r,evs.filter(e=>e.route===r)]);const other=evs.filter(e=>!ROUTES.includes(e.route));
+  if(other.length)groups.push(['其他 route',other]);
+  put('routes',groups.map(([r,list])=>h('div',{class:'route-group'},h('h3',{},h('span',{text:r}),h('span',{text:list.length+' 个'})),
+    list.length?list.map(e=>h('div',{class:'ev'},h('div',{class:'t',text:e.title}),h('div',{class:'m',text:evMeta(e)}),evActions(e,false)))
+    :h('p',{class:'empty',text:r==='NOW'?'当前没有路由为 NOW 的事件':'无'}))));
+}
+function opKey(id,op,rev){return id+'|'+op+'|'+rev}
+function evActions(e,withNote){
+  const row=h('div',{class:'btnrow'},h('button',{class:'quiet',on:{click:()=>openDetail(e.id)}},'详情'));
+  if(e.status==='active')for(const [op,label]of [['ack','确认此版本'],['cancel','取消事件']]){
+    const st=S.ops.get(opKey(e.id,op,e.revision));
+    row.append(h('button',{class:op==='cancel'?'danger':null,disabled:st&&st.state==='inflight',on:{click:()=>eventOp(e.id,op,e.revision)}},
+      st&&st.state==='inflight'?'提交中…':st&&st.state==='uncertain'?label+' · 重试（同一操作 ID）':label))}
+  const out=[row];const m=S.opMsg[e.id];if(m)out.push(h('p',{class:'op-msg '+m.cls,text:m.text}));
+  if(withNote)out.push(h('p',{class:'note',text:'确认仅针对该事件版本，不完成关联 Todo，也不证明设备已经显示。'}));
+  return out}
+async function eventOp(id,op,revision){
+  const key=opKey(id,op,revision);let st=S.ops.get(key);
+  if(st&&st.state==='inflight')return;
+  if(!st)st={command_id:crypto.randomUUID(),state:'inflight'};else st.state='inflight';  // same command_id on retry
+  S.ops.set(key,st);S.opMsg[id]=null;renderEvents();
+  try{const r=await api('/api/events/'+encodeURIComponent(id)+'/'+op,{revision,command_id:st.command_id});
+    S.ops.delete(key);S.opMsg[id]={cls:'ok',text:(op==='ack'?'已确认':'已取消')+' v'+r.revision+'（后端状态 '+r.status+'）'}}
+  catch(e){
+    if(e.status===409||e.status===404){S.ops.delete(key);S.opMsg[id]={cls:'bad',text:(e.status===409?'版本冲突：':'事件不存在：')+e.message+'。已重新读取，请按最新版本决定，不会自动重试。'}}
+    else if(e.status>=400&&e.status<500){S.ops.delete(key);S.opMsg[id]={cls:'bad',text:'请求被拒绝：'+e.message}}
+    else{st.state='uncertain';S.opMsg[id]={cls:'bad',text:'结果不确定：'+e.message+'。可重试，重试会使用同一操作 ID 和同一版本。'}}}
+  await load(true);if(S.selected===id)await openDetail(id);else renderEvents();
+}
+async function openDetail(id){
+  S.selected=id;const g=++detailGen;S.detailErr=null;renderDetail();
+  try{const d=await api('/api/events/'+encodeURIComponent(id));if(g!==detailGen)return;S.detail=d}
+  catch(e){if(g!==detailGen)return;S.detailErr=e.message}
+  renderDetail()}
+function renderDetail(){
+  if(!S.selected){return}
+  const d=S.detail&&S.detail.event&&S.detail.event.id===S.selected?S.detail:null;
+  const nodes=[];
+  if(S.detailErr)nodes.push(h('div',{class:'alert bad',text:'详情读取失败：'+S.detailErr+(d?'（下方为上次结果）':'')}));
+  if(!d){nodes.push(h('p',{class:'empty',text:S.detailErr?'':'读取中…'}));put('detail',nodes);return}
+  const e=d.event;
+  nodes.push(h('dl',{class:'kv'},...[['id',pick(e,'id')],['版本',pick(e,'revision')],['来源',pick(e,'provenance')],['状态',pick(e,'status')],['route',pick(e,'route')],['原因',pick(e,'reason')],
+    ['kind',pick(e,'kind')],['授权',pick(e,'authorization')],['优先级',pick(e,'priority')],['接收时间',pick(e,'received_at'),T],['计划时间',pick(e,'starts_at'),T],['过期时间',pick(e,'expires_at'),T],['确认时间',pick(e,'ack_at'),T]]
+    .flatMap(([k,v,f])=>[h('dt',{text:k}),h('dd',{},show(v,f))])));
+  nodes.push(h('h3',{text:'决策记录（'+(d.decisions||[]).length+'）'}),h('pre',{},JSON.stringify(d.decisions??null,null,2)),
+    h('h3',{text:'动作记录（'+(d.actions||[]).length+'）'}),h('pre',{},JSON.stringify(d.actions??null,null,2)));
+  put('detail',nodes)}
+
+// ================= telemetry =================
+function renderTelemetry(){
+  const r=S.ov&&S.ov.runtime||{},e=r.esp32||{};
+  if(!S.ov){put('esp32');put('codex',h('p',{class:'empty',text:'未读取'}));return}
+  kv('esp32',[['状态',pick(e,'status')],['最近请求',pick(e,'last_scene_request'),T],['请求年龄（服务器）',pick(e,'age_seconds'),D],['新鲜窗口',pick(e,'fresh_for_seconds'),D],
+    ['准备的 Scene 版本',pick(e,'device_requested_version')],['观测于',pick(e,'checked_at'),T]]);
+  $('esp32').append(h('dd',{class:'note',style:'grid-column:1/-1'},'“准备的 Scene 版本”是 Hub 为最近一次设备请求准备的响应版本，不是设备确认收到或显示的版本。来源：'+(e.source||'未提供')));
+  const dp=r.display||{};put('display','Display receipt · NOT IMPLEMENTED · 收到 '+(dp.received_scene||'UNKNOWN')+' · 显示完成 '+(dp.display_complete||'UNKNOWN')+' · 待刷新 '+(dp.pending_refresh||'UNKNOWN'));
+  const c=S.ov.codex||{},pol=c.display_policy||{},five=pol.five_hour||{};
+  const nodes=[h('dl',{class:'kv'},...[['状态',pick(c,'status')],['采集',pick(c,'collection')],['最近成功样本',pick(c,'updated_at'),T],['最近尝试',pick(c,'last_attempt_at'),T],['最近错误',pick(c,'last_error')],['连续失败',pick(c,'consecutive_failures')]]
+    .filter(([k,v])=>v!==MISSING||k==='状态'||k==='采集').flatMap(([k,v,f])=>[h('dt',{text:k}),h('dd',{},show(v,f))]))];
+  if(c.collection==='NOT_CONNECTED')nodes.push(h('p',{class:'note',text:'Collector 未连接：是否启用取决于 Hub 启动参数（--codex-executable），本页不会启用。'}));
+  const wins=Array.isArray(c.windows)?c.windows:[];
+  for(const [mins,label]of [[300,'5H'],[10080,'7D']]){
+    if(mins===300&&five.visible===false){nodes.push(h('div',{class:'win muted',text:'5H · 按显示策略隐藏（'+(five.reason||'未说明')+'）'}));continue}
+    const w=wins.find(x=>x.window_minutes===mins);
+    nodes.push(w?h('div',{class:'win'},h('b',{text:label+' · '+w.status}),' ',w.remaining_percent!=null?'剩余 '+w.remaining_percent+'%':h('span',{class:'v-unknown',text:'剩余 UNKNOWN'}),
+      h('div',{class:'m muted'},'采样 ',show(pick(w,'sampled_at'),T),' · 最近成功 ',show(pick(w,'last_success_at'),T),' · 重置 ',show(pick(w,'resets_at'),T)))
+      :h('div',{class:'win'},h('b',{text:label+' · UNKNOWN'}),' 无该窗口数据'))}
+  put('codex',nodes);
+  if(!quotaDirty&&!$('quota-plan').matches(':focus')&&!$('quota-override').matches(':focus')&&pol.plan){$('quota-plan').value=pol.plan;$('quota-override').value=pol.five_hour_override==null?'preset':pol.five_hour_override?'on':'off'}
+}
+function tiboState(t){if(!t)return 'UNKNOWN';if(!t.preferences||!t.preferences.enabled)return 'OFF';return t.events&&t.events.status||'UNKNOWN'}
+function renderTibo(){
+  const t=S.tibo,lc=S.ov&&S.ov.tibo_lifecycle,nodes=[];
+  if(S.tiboErr)nodes.push(h('div',{class:'alert bad',text:'Tibo 读取失败：'+S.tiboErr+(t?'（下方为上次结果）':'')}));
+  if(t){const st=tiboState(t),ev=t.events||{},fc=t.forecast||{},latest=ev.sample&&ev.sample.latest;
+    nodes.push(h('dl',{class:'kv'},...[['公告数据',st],['最近成功获取',st==='OFF'?MISSING:pick(ev,'last_success_at'),T],['最近记录',latest?(latest.kind==='banked'?'发放重置卡':'常规重置'):MISSING],
+      ['原帖发布',latest?pick(latest,'announced_at'):MISSING,T],['实验性预测',st==='OFF'?'OFF':pick(fc,'status')],
+      ...(fc.status==='FRESH'&&fc.sample?[['概率',[24,48,72].map(x=>x+'h '+(fc.sample.probabilities||{})[x]+'%').join(' · ')],['预测有效至',pick(fc.sample,'expires_at'),T]]:[])]
+      .flatMap(([k,v,f])=>[h('dt',{text:k}),h('dd',{},show(v,f))])));
+    if(ev.error||fc.error)nodes.push(h('p',{class:'note',text:'数据源请求或校验失败；旧记录仅供参考。'}));
+    if(!tiboDirty&&!$('tibo-enabled').matches(':focus')&&!$('tibo-forecast').matches(':focus')&&t.preferences){$('tibo-enabled').value=t.preferences.enabled?'on':'off';$('tibo-forecast').value=t.preferences.forecast_enabled?'on':'off'}}
+  if(lc){nodes.push(h('p',{class:'muted'},'自动注意力策略：'+(lc.automatic_strategy==='unconfigured'||!lc.policy||!lc.policy.automatic_enabled?'未配置（本页不提供开启开关）':String(lc.automatic_strategy)),
+      lc.detail?h('span',{},' · 限时详情进行中，至 ',show(pick(lc.detail,'expires_at'),T)):null));
+    $('tibo-show').textContent='限时查看 Tibo 详情（'+((lc.policy&&lc.policy.detail_seconds)||60)+' 秒）';
+    put('tibo-ack',(lc.events||[]).filter(e=>e.acknowledgment==='unacknowledged').map(e=>h('button',{on:{click:()=>tiboAck(e)}},'确认 Tibo 事件 '+e.id+' · v'+e.revision)))}
+  put('tibo',nodes.length?nodes:h('p',{class:'empty',text:'读取中…'}));
+}
+const tiboAckIds=new Map();
+async function tiboAck(e){const key=e.id+'|'+e.revision;if(!tiboAckIds.has(key))tiboAckIds.set(key,crypto.randomUUID());
+  try{await api('/api/tibo/events/'+encodeURIComponent(e.id)+'/ack',{revision:e.revision,command_id:tiboAckIds.get(key)});tiboAckIds.delete(key);msg('tibo-msg','ok','已确认 Tibo 事件 v'+e.revision)}
+  catch(x){if(x.status>=400&&x.status<500)tiboAckIds.delete(key);msg('tibo-msg','bad','确认未完成：'+x.message)}await load(true)}
+function msg(id,cls,text){$(id).className='op-msg '+cls;$(id).textContent=text}
+async function action(btn,id,fn,okText){btn.disabled=true;msg(id,'','提交中…');try{await fn();msg(id,'ok',okText)}catch(e){msg(id,'bad','失败：'+e.message)}finally{btn.disabled=false;await load(true)}}
+
+// ================= wiring =================
+$('refresh').addEventListener('click',()=>load(true));
+$('profile').addEventListener('change',()=>{S.profile=$('profile').value;render();load(true)});
+for(const t of ['preview','json','meta'])$('tab-'+t).addEventListener('click',()=>{S.tab=t;renderScene()});
+let tiboShowId=null;
+$('tibo-show').addEventListener('click',()=>{tiboShowId=tiboShowId||crypto.randomUUID();const id=tiboShowId;
+  action($('tibo-show'),'tibo-msg',async()=>{await api('/api/tibo/show',{request_id:id});tiboShowId=null},'已请求限时详情；页面是否切换仍由后端决定。')});
+$('radar').addEventListener('click',()=>action($('radar'),'radar-msg',()=>api('/api/radar/sync',{}),'已请求同步'));
+$('quota-plan').addEventListener('change',()=>quotaDirty=true);$('quota-override').addEventListener('change',()=>quotaDirty=true);
+$('quota-save').addEventListener('click',()=>action($('quota-save'),'quota-msg',async()=>{await api('/api/codex/preferences',{manual_plan:$('quota-plan').value,
+  five_hour_override:$('quota-override').value==='preset'?null:$('quota-override').value==='on'});quotaDirty=false},'已保存'));
+for(const id of ['tibo-enabled','tibo-forecast'])$(id).addEventListener('change',()=>tiboDirty=true);
+$('tibo-save').addEventListener('click',()=>action($('tibo-save'),'tibo-error',async()=>{await api('/api/tibo/preferences',{enabled:$('tibo-enabled').value==='on',forecast_enabled:$('tibo-forecast').value==='on'});tiboDirty=false},'已保存'));
+$('submit-input').addEventListener('click',()=>{let body;try{body=JSON.parse($('input').value)}catch(e){msg('input-msg','bad','JSON 无法解析：'+e.message);return}
+  action($('submit-input'),'input-msg',()=>api('/api/'+$('input-kind').value,body),'已提交')});
+render();
+load(true);setInterval(load,10000);
+</script></body></html>

@@ -1,0 +1,5 @@
+# SPDX-FileCopyrightText: 2026 Tkkdy
+# SPDX-License-Identifier: MIT
+# Local template configuration only; does not enable repository features.
+# 仅模板配置，不会开启或修改远端 Issues、PR 或 Discussions。
+blank_issues_enabled: true
