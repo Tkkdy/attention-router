@@ -35,3 +35,7 @@ jobs:
         run: python -B ci/run_basic.py
       - name: Console fixture contract (no browser or network)
         run: node hub/test_console_runtime.cjs
+      - name: Agent HTTP example (synthetic loopback)
+        run: python -B examples/test_agent_http_demo.py
+      - name: DeepSeek adapter contracts (no model)
+        run: node --test integrations/deepseek_bot/gateway-client.test.mjs

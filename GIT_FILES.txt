@@ -89,6 +89,7 @@ hub/grok_butler_adapter.py
 hub/grok_capabilities.py
 hub/hub_models.py
 hub/import_todo_shadow.py
+hub/interrupt_gateway.py
 hub/legacy_todo_guard.py
 hub/mcp_auth.py
 hub/mcp_policy.py
@@ -102,6 +103,7 @@ hub/requirements_mcp.txt
 hub/router_api.py
 hub/router_store.py
 hub/run_butler_shadow.py
+hub/run_interrupt_gateway.py
 hub/run_preview.py
 hub/runtime_view.py
 hub/semantic_resolver.py
@@ -116,6 +118,7 @@ hub/test_console_runtime.cjs
 hub/test_context_v2.py
 hub/test_grok_butler.py
 hub/test_hub.py
+hub/test_interrupt_gateway.py
 hub/test_m2.py
 hub/test_m3.py
 hub/test_mcp.py

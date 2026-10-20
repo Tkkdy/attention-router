@@ -1,6 +1,6 @@
 # 已知限制
 
-v0.1.0 为基于已独立复审通过的 offline-final2 的源码发布。基础范围：Windows 本机 Hub/Console、受鉴权本地 HTTP 集成、指定屏幕的 Scene 显示代码、任务/当前事项、上下文规则、提醒与 Web ACK、断连缓存逻辑。最终候选精确固件的真机验收尚未完成，不能把源码存在或软件测试通过写成硬件能力已通过。
+v0.1.0 为源码发布。基础范围：Windows 本机 Hub/Console、受鉴权本地 HTTP 集成、指定屏幕的 Scene 显示代码、任务/当前事项、上下文规则、提醒与 Web ACK、断连缓存逻辑。最终候选精确固件的真机验收尚未完成，不能把源码存在或软件测试通过写成硬件能力已通过。
 
 Experimental：DeepSeekBot、GrokBot/OAuth/Tunnel、Todo Core 桥接、Tibo、Codex 用量采集、Radar/天气等外部源。默认不需要它们即可使用基础设备。
 
@@ -14,13 +14,9 @@ Experimental：DeepSeekBot、GrokBot/OAuth/Tunnel、Todo Core 桥接、Tibo、Co
 
 数据库为新安装创建，不支持从私人现有数据直接导入。旧 JSON 迁移测试存在两项已知基线失败，见 VALIDATION；不在本次开源整理中重构迁移。
 
-## 已知限制：离线冷启动的中文任务标题
+## 离线中文缓存
 
-私人运行设备曾在关闭热点、彻底断电再上电后主动刷新，显示 STALE 页面和 `Todo <短 ID>` 一类 ASCII 占位标题；联网后原可辨认任务名称恢复。该观察说明中文标题离线恢复存在未关闭的问题，不能据此认定 Hub 中任务丢失，也不能声称断电缓存验收通过。当前原板精确固件身份仍为 UNKNOWN，未把它可靠归属到 M1.1-stability1 或本候选。历史还出现过 `Scene cache write failed`，未证明与这次占位标题具有同一原因。
-
-代码层面已确认：Todo Cache 保存任务 ID、ASCII 备用标题及完成状态，不保存中文位图；中文恢复依赖有效 Last Scene 中的位图，且任务 ID 与 ASCII 标题必须匹配。全页 STALE 时调用方跳过 Last Scene 保存，Standalone Home 是另一份缓存。这些条件可解释降级路径，但实际事故中的位图缺失、旧记录不匹配、STALE 跳过或写入失败尚未由原板证据区分。公开候选已经保留“未配置可选源不单独导致本地 Hub 全页 STALE”的修订，不能据私人事故推断所有默认公开部署都会失败。
-
-原板 NVS 诊断与刷写目前 **No-Go 并冻结**；诊断补丁未并入本候选。仅刷回应用不能恢复测试改变的缓存，故不以污染现用数据换取验收。完整原因定位作为后续 Issue，优先在兼容备用板/隔离数据中补验。最终公开候选硬件基础验收与私人历史根因定位分开；后者不默认阻断其他发布准备，但本版不保证离线中文标题无损恢复。主机 fake NVS 测试只支持软件结构与逻辑，不代表原板 NVS 容量、写入可靠性或断电恢复通过。
+Todo Cache 保存 ID、ASCII 备用标题和完成状态，不保存中文位图；中文恢复依赖有效 Last Scene 位图及匹配 ID/标题。全页 STALE 时跳过 Last Scene 保存，Standalone Home 使用独立缓存。离线冷启动可能显示 ASCII 短编号，联网后可重新获得标题；不保证断电后中文无损恢复。NVS 写入可靠性和精确固件实屏仍未验收，主机 fake NVS 测试不能替代真机证据。
 
 未配置 Radar/天气/互联网探测不会单独令新鲜的 Hub 本地任务或提醒全页 STALE；字段仍显示 UNKNOWN。已启用的 Home Radar/天气失败仍标旧；Hub 失联仍回退并标旧。WAN 探测与 LAN Hub 健康分别显示，WAN Offline 不代表本地任务已过期。无独立来源的 Standalone 页面仍无法证明新鲜。
 
@@ -28,9 +24,9 @@ Experimental：DeepSeekBot、GrokBot/OAuth/Tunnel、Todo Core 桥接、Tibo、Co
 
 Windows 缺少可用微软雅黑时启动/设备请求会给出警告，英文 ASCII 标题继续显示；中文字形不绘制，设备使用任务的 ASCII 备用标题。网页业务文本保留，不能把此降级描述成中文显示通过。
 
-版权署名为 2026 Tkkdy；MIT/GPL 范围及第三方许可见 [许可说明](LICENSING.md)。转接板型号/供电仍需按实物确认；官方构建与真机状态见 [验证记录](VALIDATION.md)。许可确认不等于发布批准或硬件验收。
+版权署名为 2026 Tkkdy；MIT/GPL 范围及第三方许可见 [许可说明](LICENSING.md)。转接板型号/供电仍需按实物确认；官方构建与真机状态见 [验证记录](VALIDATION.md)。许可确认不等于硬件验收。
 
 
-## v0.1.0正式公开条件
+## 发布范围
 
-v0.1.0 使用正常 Release，非 Pre-release。独立软件复审和所有者发布授权已完成；精确公开候选的核心显示、任务更新、提醒/ACK、断连恢复真机验收及真实硬件照片仍待补。所有者批准先公开源码，不将未完成事项描述为通过。NVS 中文标题仍有限制，Seeed XIAO ESP32S3 仅后续支持；不提供预编译固件。
+v0.1.0 是源码 Release，无预编译固件。main 包含后续维护；软件通过不替代精确公开固件的显示、ACK、断连恢复与断电缓存硬件验收。

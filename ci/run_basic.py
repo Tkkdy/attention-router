@@ -11,6 +11,9 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 TESTS = [
     'test_scene_snapshot',
+    'test_tibo',
+    'test_context_v2',
+    'test_interrupt_gateway',
     'test_preview_revision.PreviewRevisionTests.test_optional_radar_scope',
     'test_preview_revision.PreviewRevisionTests.test_lan_access_matrix',
     'test_attention.AttentionTests.test_routes_have_distinct_actions_and_queue_reevaluates',

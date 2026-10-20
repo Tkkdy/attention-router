@@ -3,7 +3,7 @@
 <a id="agent-http-quickstart"></a>
 ## 基础 Agent HTTP 上手 / Basic Agent HTTP quickstart
 
-使用全新解压/检出目录，按 [Windows 安装](WINDOWS.md) 安装基础锁定依赖。无需设备、Bot、OAuth、Tunnel 或模型。先确认 8765 未被其他服务使用；不要连接私人运行中的 8000。示例仅接受 `http://127.0.0.1:PORT`（1024–65535，排除 8000），禁用代理且不跟随重定向。
+使用全新解压/检出目录，按 [Windows 安装](WINDOWS.md) 安装基础锁定依赖。无需设备、Bot、OAuth、Tunnel 或模型。先确认 8765 未被其他服务使用；示例保留端口 8000，不连接该端口。示例仅接受 `http://127.0.0.1:PORT`（1024–65535，排除 8000），禁用代理且不跟随重定向。
 
 **终端 A（源码根目录）：**
 
@@ -73,11 +73,50 @@ POST /api/mcp/workspace/current-item
 
 未得到用户提醒授权时不能标 `user_reminder`。ACK 使用 `/api/events/{id}/ack`，请求为 `{"revision":1,"command_id":"ack-001"}`；它只确认事件。不要伪装任务完成。`examples/local_demo.py` 提供同源本机示例。
 
+
+<a id="autonomous-interrupt"></a>
+## AI 自主 Interrupt / Autonomous Interrupt（Experimental）
+
+实际能力名为 show_interrupt，复用已有 Interrupt 页面。它不创建新 Todo、不自动 ACK，也没有独立 Interact 页面。基础 Agent HTTP 不需要启动这个 Gateway。
+
+1. 按上面的终端 A 命令运行新的预览 Hub（默认 8765），私密输入自己的 Hub Token。
+2. 另开终端，明确授予一个 provider 长期打断权限：
+
+~~~powershell
+.\.venv\Scripts\python.exe hub\run_interrupt_gateway.py --provider deepseek --allow-autonomous-interrupts
+~~~
+
+依次私密输入 Hub Token 和**不同的** 32+ 字符 Gateway Token。监听仅为 127.0.0.1:3102；端口占用时改用 --port，不能停止其他服务。--hub-url 可指定自己的预览 loopback 端口；拒绝 8000、外网、URL 凭据及非 developer-preview Hub。权限只包含 show_interrupt；默认拒绝 Todo、配置和 ACK 等其他写入。未明确授予能力的 Gateway 调用返回 403。
+
+3. 自己的 Agent 持有 Gateway Token，向 POST /v1/butler/commands 发送 Bearer 请求。例如在第三个 PowerShell 终端进行一次合成调用：
+
+~~~powershell
+$secret = Read-Host "Provider Gateway token" -AsSecureString
+$token = [System.Net.NetworkCredential]::new("", $secret).Password
+$body = @{
+  source = "deepseek"
+  action = "show_interrupt"
+  request_id = "synthetic-interrupt-001"
+  expected_revision = 0
+  arguments = @{title = "Review ready"; message = "Please review the result"}
+} | ConvertTo-Json -Depth 4
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:3102/v1/butler/commands -Headers @{Authorization = "Bearer $token"} -ContentType "application/json" -Body $body
+Remove-Variable token, secret
+~~~
+
+同一 Token 只能代表启动时绑定的 provider；grok 使用 --provider grok 和 source=grok。标题/消息各 1–47 个可打印英文 ASCII 字符。expected_revision 是保留的命令信封字段；此事件操作不修改 Todo 修订。AI 适配器入口为 GrokButlerAdapter 的 show_interrupt 和 DeepSeek 注册工具 butler_show_interrupt；外部 Bot 仍须自行安装并显式限制工具能力。
+
+4. 打开 Hub Console 查看事件、路由与 Scene。来源为 AGENT，detail 标明 Delegated AI 和 provider；authorization=user_reminder 表示用户在启动时授予的长期打断权限，不表示用户逐条编写提醒。模型不能传入或更改授权/来源字段。停止 Gateway（其终端 Ctrl+C）即可撤销后续调用能力；已存在事件在 Console 手动 ACK 或取消，恢复正常页面，Todo 保持不变。
+
+Hub 仍通过现有 Router、队列和优先级决定展示。device_delivery=UNKNOWN，accepted 不表示 ESP32 已显示。request_id 与 source 形成稳定事件身份、revision=1；网络不确定时仅重试完全相同 ID 和内容，改变内容返回 409。已 ACK 的旧 ID 重放不会重新弹出，真正的新意图才使用新 ID。不要无限制造新 ID 重复打断。
+
+English: Start a fresh preview Hub with --api-token-prompt, then run the Gateway command above with an explicit standing owner grant. Enter distinct Hub/provider tokens privately. Only show_interrupt is permitted, bound to the selected provider. Send the JSON envelope above with that Gateway Bearer token; printable ASCII title/message are limited to 47 characters each. AGENT provenance records origin while user_reminder records the owner's standing grant. Inspect and manually ACK/cancel in the Console. Stop the Gateway to revoke further calls; existing events remain until handled. Retry identical IDs/text only; 409 stops, and an acknowledged ID cannot revive an interrupt. This does not install a Bot/chat UI or prove physical display.
+
 ## DeepSeekBot（Experimental）
 
 本包包含自有 Gateway 客户端、工具注册和 prompt 合约；第三方 patch 的原始 Apache-2.0 LICENSE/NOTICE 单独保留。完整 DS Bot/Harness、node_modules、网页构建产物和私人会话均未打包。
 
-外部项目：[DS Bot](https://github.com/FeiZhuLulu/DeepSeek-Bot)、[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。本机核对的 DS Bot 基线为 `d56c5850847b828dbc93e232fefcb81a94f80c89`，Harness 为 `5badb15009ae1756c3afe0ae0cef1faafc290ccc`；DS Bot 工作树还带有本地模块接线修改，不能当作官方原版能力。
+外部项目：[DS Bot](https://github.com/FeiZhuLulu/DeepSeek-Bot)、[DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)。已审阅的 DS Bot 基线为 `d56c5850847b828dbc93e232fefcb81a94f80c89`，Harness 为 `5badb15009ae1756c3afe0ae0cef1faafc290ccc`；适配器仍需要额外模块接线，不能当作官方原版能力。
 
 尚缺闭环：干净 checkout → 安装 Harness/DS Bot → 应用适配器/补丁 → 构建两层网页 → 创建自己的 Bot → 配置独立 Gateway token/allowlist → 连接新 Hub → 实际验收。当前没有可承诺成功的独立一键安装路径，不提供私人启动器充数。
 
@@ -107,4 +146,4 @@ DPAPI 凭据和访问策略均留在本目录 `.build/mcp-auth`，只能由创�
 
 ## Tibo 与 Codex
 
-Tibo 为可关闭的社区 Reset/预测数据页，自动注意力策略尚未配置，不承诺未来重置。Codex 用量采集需要可用的本机 Codex app-server；本次启动入口默认不启用。前台应用检测只表示工作上下文信号，不能证明 Agent 在执行、完成或等待用户，也不能自动识别项目与任务。
+Tibo 为可关闭的社区 Reset/预测数据页；自动策略默认关闭，未来 24 小时新鲜概率严格大于默认 70% 后保持到手动关闭，不承诺未来重置。Codex 用量采集需要可用的本机 Codex app-server；本次启动入口默认不启用。前台应用检测只表示工作上下文信号，不能证明 Agent 在执行、完成或等待用户，也不能自动识别项目与任务。

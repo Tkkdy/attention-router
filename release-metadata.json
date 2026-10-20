@@ -13,7 +13,6 @@
     "web-console"
   ],
   "version": "v0.1.0",
-  "candidate": "offline-final2",
   "prerelease": false,
   "published": true,
   "issues": true,
@@ -22,7 +21,7 @@
   "firmware_binaries": [],
   "release_notes": "RELEASE_NOTES.md",
   "publication_requires": [
-    "Independent software review completed for offline-final2",
+    "Reviewed public source and documented validation boundaries",
     "Explicit owner publication authorization received",
     "Passing CI on the main commit before tagging"
   ],
