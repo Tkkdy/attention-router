@@ -20,6 +20,7 @@ assets/architecture.mmd
 assets/console-demo.png
 ci/check_source.py
 ci/run_basic.py
+ci/run_mcp.py
 compile_firmware.ps1
 config.example.json
 docs/AGENTS.md
@@ -36,6 +37,9 @@ docs/WINDOWS.md
 examples/agent_http_demo.py
 examples/local_demo.py
 examples/test_agent_http_demo.py
+experiments/grok_butler/server.py
+experiments/grok_butler/test_server.py
+experiments/grok_butler/transport.py
 experiments/oauth_spike/__init__.py
 experiments/oauth_spike/oauth.py
 firmware/LICENSE

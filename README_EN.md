@@ -47,7 +47,7 @@ It creates a synthetic Todo, links Current by its returned ID, publishes an auth
 
 **AI:** The independent Gateway requires --allow-autonomous-interrupts and privately entered Hub and distinct provider-bound Gateway tokens. show_interrupt accepts printable English ASCII title/message, each 1–47 characters. AGENT provenance distinguishes AI origin from the owner's standing interruption grant. Permission is closed by default. [Enable, call, retry and disable](docs/AGENTS.md#autonomous-interrupt).
 
-GrokBot, DeepSeekBot, MCP/OAuth, Todo Core projection, Codex quota, Radar and weather are optional experiments. DeepSeekBot adapters are included; complete independent chat-web installation remains unaccepted. Basic HTTP is independent. [Integration boundaries](docs/AGENTS.md) · [Features](docs/FEATURES.md). General Agent lifecycle, execution-completion detection and physical ACK buttons are unimplemented.
+GrokBot, DeepSeekBot, MCP/OAuth, Todo Core projection, Codex quota, Radar and weather are optional experiments. DeepSeekBot adapters are included; complete independent chat-web installation remains unaccepted. Basic HTTP is independent. [Integration boundaries and optional Interrupt MCP facade](docs/AGENTS.md) · [Features](docs/FEATURES.md). General Agent lifecycle, execution-completion detection and physical ACK buttons are unimplemented.
 
 ## Hardware, security and limits
 

@@ -47,7 +47,7 @@ Copy-Item config.example.json config.local.json
 
 **AI：** 独立 Gateway 必须显式指定 --allow-autonomous-interrupts，并私密输入 Hub Token 和不同的来源绑定 Gateway Token。show_interrupt 仅接受 1–47 字符可打印英文 ASCII 标题/消息。事件来源标记为 AGENT，用户授予的是长期打断权限，没有授权不能冒充用户提醒。默认不开放权限。[启用、调用、重试与关闭](docs/AGENTS.md#autonomous-interrupt)。
 
-GrokBot、DeepSeekBot、MCP/OAuth、Todo Core 投影、Codex 额度、Radar 与天气是可选实验集成。DeepSeekBot 已含适配器，完整独立聊天网页安装尚未验收；基础 HTTP 不依赖它。[集成边界](docs/AGENTS.md) · [功能矩阵](docs/FEATURES.md)。通用 Agent 生命周期、执行完成感知、实体 ACK 按钮尚未实现。
+GrokBot、DeepSeekBot、MCP/OAuth、Todo Core 投影、Codex 额度、Radar 与天气是可选实验集成。DeepSeekBot 已含适配器，完整独立聊天网页安装尚未验收；基础 HTTP 不依赖它。[集成边界及可选 Interrupt MCP facade](docs/AGENTS.md) · [功能矩阵](docs/FEATURES.md)。通用 Agent 生命周期、执行完成感知、实体 ACK 按钮尚未实现。
 
 ## 硬件、安全与限制
 
