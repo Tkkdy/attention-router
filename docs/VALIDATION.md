@@ -27,3 +27,8 @@
 ## 未测范围
 
 精确公开固件的实屏、Wi-Fi、NVS/断电恢复、实体硬件；真实 Windows 前台采样；独立 GrokBot/DeepSeekBot 聊天网页、MCP/OAuth/Tunnel 与付费模型端到端均未在本轮验收。Hub 发布 Scene 不等于设备收到/显示。详见 [硬件](HARDWARE.md)、[限制](LIMITATIONS.md) 与 [Agent 集成](AGENTS.md)。
+
+
+## Interrupt MCP 同步（2026-10-20）
+
+选择性补入已实现的 MCP facade、鉴权传输边界与测试，未引入私人启动器、域名或服务管理。可选 MCP 回归 7/7：真实 SDK 工具发现、只读/未启用时关闭权限、OAuth 同意与 token 边界、合成客户端经 Gateway 到 Hub Scene，以及手动 ACK 后原 ID 重放不复活、改内容冲突。启动时校验实际工具清单，不把配置 allowlist 当成运行证据。真实 Grok 客户端、外部部署及 ESP32 显示仍未在本轮验收。

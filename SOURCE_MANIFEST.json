@@ -11,7 +11,7 @@
   "inherited_commits": 0,
   "private_history_audited": false,
   "hardware_acceptance": "NOT_COMPLETED_FOR_EXACT_PUBLIC_CANDIDATE",
-  "software_validation": "LOCAL: basic 48/48; targeted 67/67 (overlap); Agent HTTP 7/7; DeepSeek adapter 11/11; Console contract PASS; LIVE_CI_SEE_GITHUB_ACTIONS",
+  "software_validation": "LOCAL: basic 48/48; targeted 67/67 (overlap); Agent HTTP 7/7; DeepSeek adapter 11/11; Console contract PASS; LIVE_CI_SEE_GITHUB_ACTIONS; OPTIONAL MCP SYNC: isolated OAuth/MCP/Gateway/Hub 7/7",
   "firmware_build": "FIRMWARE_BYTES_UNCHANGED_FROM_PARENT; HISTORICAL_BUILD_REUSED; NOT_REBUILT_OR_FLASHED",
   "files": [
     {
@@ -41,8 +41,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 1573,
-      "sha256": "c35031b8a7bd744b2edd2a74fb5bccf1a36db4871eff77bbd9a54e58c8ba404a"
+      "bytes": 2196,
+      "sha256": "4997bc895eff504d173f881095ba18bcb20c305cf3f3b51bd4247dd2e774f6ae"
     },
     {
       "path": ".gitignore",
@@ -61,8 +61,8 @@
     },
     {
       "path": "GIT_FILES.txt",
-      "bytes": 5148,
-      "sha256": "68e415c736ead6512758f444b351bb956c4a40d1df7d533a0eac00566746a037"
+      "bytes": 5276,
+      "sha256": "7c1ba9b88a5ccd29b4271edb7f76144ce347377b9a1a6abbf1763b95039ccded"
     },
     {
       "path": "LICENSE",
@@ -71,18 +71,18 @@
     },
     {
       "path": "LICENSE_MAP.json",
-      "bytes": 40526,
-      "sha256": "f2cb364a567b01b284c9636843a028af627ede458d36f7e93a493ad94d943669"
+      "bytes": 41370,
+      "sha256": "d942be3fc08ccd41d0ea04e6f9a5386f2fcbba0e5fdce915a4a5b25235de296a"
     },
     {
       "path": "README.md",
-      "bytes": 5190,
-      "sha256": "a81a633b9632a2c426113d464186ca59f1c359cf4420aacf68d0e4788fb27169"
+      "bytes": 5220,
+      "sha256": "f53d4ba23b139cfba789e06925862dd974fc24fb5139a2de7136d9c1c8282a1b"
     },
     {
       "path": "README_EN.md",
-      "bytes": 5627,
-      "sha256": "26d2a1ed977fd5cd5c86dfd9f57f1d5d8f59dc3cc17116f2a97fcf4651798cb0"
+      "bytes": 5661,
+      "sha256": "00a08eedce25b95ffda0aa365c1194c79f89df300c4630882bbbbc83c5733ac3"
     },
     {
       "path": "RELEASE_NOTES.md",
@@ -120,6 +120,11 @@
       "sha256": "849598c1d4111026e9dc1106cd83c8f4b7da33f2a6267a1bb98903203c9a25ed"
     },
     {
+      "path": "ci/run_mcp.py",
+      "bytes": 2416,
+      "sha256": "8dfb12c461524721c1d47999d644da9be6858e7b38968f220b38276223561bb6"
+    },
+    {
       "path": "compile_firmware.ps1",
       "bytes": 611,
       "sha256": "bff1ccb5564968a44edd9aa85da4bed69613246ef01e9970f0e04b8ba58ed342"
@@ -131,13 +136,13 @@
     },
     {
       "path": "docs/AGENTS.md",
-      "bytes": 14978,
-      "sha256": "5e4636956b0ce726b8a2bdcfa4fd8b3249af582c5677f0c9347e467d3db15fe6"
+      "bytes": 18352,
+      "sha256": "30f9570f11ff6ff245317c4c03b6aeee1f9229e4d4e62a2d08e5e1f0d219743e"
     },
     {
       "path": "docs/CI.md",
-      "bytes": 3290,
-      "sha256": "285f59821af7bfa40845c01715fead724c14830ec4dac0f5666ee562e209386c"
+      "bytes": 4060,
+      "sha256": "30c032f8e55da7ad3a5c2b48083bfbe09e64c11e7301fa95e70bf7e90280bdc3"
     },
     {
       "path": "docs/FEATURES.md",
@@ -176,8 +181,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "bytes": 2407,
-      "sha256": "6a98d239ec1b249d442d57fbe87cefe2555aede72a0ac7c3157b825e92523595"
+      "bytes": 2955,
+      "sha256": "e73f1e87ba88b60ab82701e4a86c6942a168782f5ae5d58f0461f41e023369e6"
     },
     {
       "path": "docs/WINDOWS.md",
@@ -198,6 +203,21 @@
       "path": "examples/test_agent_http_demo.py",
       "bytes": 9323,
       "sha256": "2c3dc8e59298608588d0520313abd77636adeca28103a3c45622442c3143cd63"
+    },
+    {
+      "path": "experiments/grok_butler/server.py",
+      "bytes": 8897,
+      "sha256": "5f4ae4befa8ff91442b6b19882c9101070fbc22499555b07968dee82343cf64f"
+    },
+    {
+      "path": "experiments/grok_butler/test_server.py",
+      "bytes": 15980,
+      "sha256": "1087a53017ebf8b17ed1b14399c619026b4d92328580f5eca21c6fd9a614ed8e"
+    },
+    {
+      "path": "experiments/grok_butler/transport.py",
+      "bytes": 4706,
+      "sha256": "8cd9cd08724e3c04e65d8084a8f2fb7cfaa27ee3daa7293a6971e35022b72bb1"
     },
     {
       "path": "experiments/oauth_spike/__init__.py",

@@ -38,3 +38,10 @@ GitHub 托管 windows-latest、Python 3.13、Node 24。按 requirements.lock.txt
 workflow 只响应 push/pull_request，contents:read，不使用 secrets、pull_request_target、自托管 runner 或发布操作；checkout 不持久化凭据。官方 Actions 固定完整 SHA。保留源码精确换行字节，不修改本地/全局 Git 配置。合法改动经审查后需同步文件/许可/哈希清单，正式检查不能用 --syntax-only 替代。
 
 English: This is a limited suite, not a full regression or hardware pass. It checks exact source inventories, 48 isolated basic cases, the Console fixture contract, seven synthetic loopback HTTP cases and eleven DeepSeek adapter cases. Two legacy migration failures remain outside basic. No paid model or hardware is required. Hosted CI has read-only contents permission and no credentials; public dependency downloads still require network access.
+
+
+## 可选 MCP 回归 / Optional MCP regression
+
+独立 mcp 作业安装已有 hub/requirements_mcp.txt 后运行 python -B ci/run_mcp.py，基础依赖不增加 MCP。7 项测试在一次性源码、全新 SQLite、合成凭据与随机 loopback Gateway 下执行；拒绝外网连接和固定业务端口。覆盖 OAuth/作用域、实际 SDK tools/list、显式 Interrupt 开关、MCP 调用到 Hub Scene、ACK 后重放与冲突。不读取私人配置、不创建公网 Tunnel、不连接真实 Bot。
+
+A separate job installs the existing pinned optional MCP requirements and runs seven isolated tests. The basic installation remains unchanged. This proves synthetic OAuth/MCP/Gateway/Hub behavior, not discovery by a real Grok client or physical display.

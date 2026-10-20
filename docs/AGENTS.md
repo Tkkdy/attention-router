@@ -142,6 +142,35 @@ powershell -NoProfile -File .\start_mcp.ps1 -HubUrl http://127.0.0.1:8765 -Port 
 
 DPAPI 凭据和访问策略均留在本目录 `.build/mcp-auth`，只能由创建它的 Windows 用户使用。客户端凭据由所有者通过 `setup_mcp_auth.ps1 -ShowForManualEntry` 的本地界面手工填入安全字段，不能贴到聊天或 URL。默认不开写权限；需要时由本人使用 `remote_mcp_access.ps1 arm-write -Minutes 30`，结束后用 `off` 关闭。这里的 Bearer 适配器不是公网 OAuth 服务；不要把 18766 或 8765 直接接公网。
 
+### 可选 Interrupt MCP facade / Optional Interrupt MCP facade
+
+公开源码现包含 experiments/grok_butler/server.py。它复用现有 OAuth 协议库和 Gateway，补齐 show_interrupt 的 MCP 工具发现，不包含域名、Tunnel、私人服务管理或持久化授权数据库。
+
+先在独立环境安装已有可选依赖 hub/requirements_mcp.txt，并用该环境启动以下三个终端。若此前已安装，无需重复安装：
+
+~~~powershell
+py -3.13 -m venv .build/mcp-python
+.\.build\mcp-python\Scripts\python.exe -m pip install -r hub/requirements_mcp.txt
+~~~
+
+1. Hub：用该 Python 运行 hub/run_preview.py --api-token-prompt，私密输入 Hub Token。
+2. Gateway：用该 Python 运行 hub/run_interrupt_gateway.py --provider grok --allow-autonomous-interrupts，私密输入 Hub Token 与不同的 Grok Gateway Token。
+3. MCP facade：
+
+~~~powershell
+.\.build\mcp-python\Scripts\python.exe -B -m experiments.grok_butler.server --scope butler:write --allow-autonomous-interrupts
+~~~
+
+私密输入终端 2 的 Grok Gateway Token，再输入自己另行生成的 32+ 字符随机 owner pairing code。默认仅监听 127.0.0.1:3103，客户端入口为 http://127.0.0.1:3103/mcp。OAuth 同意页由本人填写 pairing code，不要将其贴到聊天、源码或命令行。默认 scope=butler:read 且不开放 Interrupt；只有 write scope 与显式能力开关同时满足，show_interrupt 才进入实际工具清单。Gateway 还会独立检查来源和能力。
+
+启动时直接读取 SDK 的实际 tools/list，并校验 show_interrupt 是否符合开关；缺失或意外暴露时拒绝启动。服务器版本为 d3-interrupt-1。启动清单是服务端证据；客户端须在完成 OAuth 后再次调用 tools/list，确认出现 show_interrupt，才能算客户端发现成功。已有连接器可能需要重新连接并重新授权；不要根据源码配置假定客户端已经刷新。
+
+随后调用 show_interrupt，遵循本页前述 ID/重试/ASCII/ACK 约束。此示例 Gateway 只授予 Interrupt，facade scope 中的其他工具仍可能由 Gateway 返回 action_forbidden，不会因此自动获得 Todo 权限。Hub 接受事件不代表 ESP32 实屏完成。停止 facade/Gateway 会撤销后续访问；已有事件在 Console 处理。这里的 OAuth 状态仅在内存中，重启后需要重新授权。
+
+English: Install the existing optional MCP requirements in a separate environment, then run the three terminals above with synthetic/fresh Hub data. Use distinct Hub/Gateway/pairing secrets, entered privately. The facade defaults to read-only; write scope plus the explicit Interrupt flag is required. It verifies the actual SDK tool registry before listening. An OAuth client must independently discover show_interrupt through tools/list; a startup list does not prove client discovery. This sample Gateway grants only Interrupt, so unrelated Todo tools remain denied. OAuth state is ephemeral. External Grok client, public HTTPS/Tunnel deployment and physical display are not accepted by these synthetic tests.
+
+验证命令：python -B ci/run_mcp.py（需使用安装了可选 MCP 依赖的 Python）。7 项隔离测试包含 OAuth/权限、实际工具发现、MCP → Gateway → Hub → Scene、手动 ACK 后重放与 409 冲突。无真实模型或私人服务参与。
+
 公网 OAuth 还需补齐独立服务部署、自己的 HTTPS/Tunnel origin、回调注册与客户端验收；包内 OAuth 库并不组成已验收的远程安装器。未准备好这些步骤前，只使用本地 HTTP 集成，绝不将 Hub 端口直接公开。
 
 ## Tibo 与 Codex

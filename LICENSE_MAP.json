@@ -142,6 +142,12 @@
       "role": "original-project-content"
     },
     {
+      "path": "ci/run_mcp.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
       "path": "compile_firmware.ps1",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
@@ -233,6 +239,24 @@
     },
     {
       "path": "examples/test_agent_http_demo.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "experiments/grok_butler/server.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "experiments/grok_butler/test_server.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "experiments/grok_butler/transport.py",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
       "role": "original-project-content"
