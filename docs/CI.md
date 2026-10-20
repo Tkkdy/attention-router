@@ -2,7 +2,7 @@
 <!-- SPDX-License-Identifier: MIT -->
 # 轻量 CI / Limited CI
 
-本 workflow 是首发的有限检查集，不是“全项目测试通过”声明。历史离线命令结果保留，平台当前状态见 [GitHub Actions](https://github.com/Tkkdy/attention-router/actions)。正式标签只在对应 main 提交 CI 通过后创建；最终候选真机验收另行进行。
+本 workflow 是首发的有限检查集，不是“全项目测试通过”声明。历史离线命令结果保留，平台当前状态见 [GitHub Actions](https://github.com/Tkkdy/attention-router/actions)。v0.1.0 对应 main 提交 `3ba371afbabbb72b11acb0b52c636d08112d0c14` 的 [Actions 运行 39403342507](https://github.com/Tkkdy/attention-router/actions/runs/39403342507) 已于 2026-10-20 UTC 完成并成功；该记录与历史离线检查分开。最终候选真机验收仍未完成。
 
 ## 检查范围
 
@@ -60,6 +60,12 @@ The two named legacy JSON migration failures above remain unchanged and are expl
 
 ## 首次平台配置修正 / Initial platform configuration fix
 
-首次 GitHub Actions 在启动 job 前报告第 31 行 YAML 语法错误：未加引号的 `--only-binary=:all:` 含冒号与空格组合。现仅给完整 run 字符串加引号，命令、依赖、测试与权限不变。首次失败记录保留，修正后的状态以对应提交 Actions 为准。
+首次 GitHub Actions 在启动 job 前报告第 31 行 YAML 语法错误：未加引号的 `--only-binary=:all:` 含冒号与空格组合。现仅给完整 run 字符串加引号，命令、依赖、测试与权限不变。首次失败记录保留；修正后 main 提交 `3ba371af` 的 [运行 39403342507](https://github.com/Tkkdy/attention-router/actions/runs/39403342507) 已成功，覆盖本页列出的有限集合。
 
-The first platform run failed YAML parsing before any job started. Quoting the dependency-install command fixes its colon-space syntax without changing the command, dependencies, tests, or permissions.
+The first platform run failed YAML parsing before any job started. Quoting the dependency-install command fixed its colon-space syntax without changing the command, dependencies, tests, or permissions. Separately from the historical offline results, [run 39403342507](https://github.com/Tkkdy/attention-router/actions/runs/39403342507) succeeded on 2026-10-20 UTC for main commit `3ba371afbabbb72b11acb0b52c636d08112d0c14`, including dependency installation and the limited checks above. This is not full regression or hardware acceptance.
+
+## Agent HTTP 示例检查 / Agent HTTP example checks
+
+`python -B examples/test_agent_http_demo.py` 在独立临时拷贝中启动无监控 Hub，使用新数据库、随机本机端口和合成凭据，验证真实 Python HTTP 客户端。只允许 `127.0.0.1` 且拒绝 8000，覆盖鉴权、Todo/Current、提醒与 ACK、幂等重放、丢失响应重试和修订冲突。该检查单独运行，未扩张已有 workflow，也未改写历史 19 项计数。
+
+Run the command above separately for the Agent example. It uses a temporary source copy, fresh synthetic data and credentials, no monitoring, and an ephemeral loopback HTTP listener. External connections and private port 8000 are rejected. The existing workflow and its historical 19-test count are unchanged.

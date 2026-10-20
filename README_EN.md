@@ -6,11 +6,11 @@
 
 A local-first AI attention router powered by ESP32 e-paper, bringing tasks, work context, and important alerts into focus.
 
-Attention Router brings tasks, work context, and authorized alerts to an ESP32 e-paper display. It is a physical attention interface for a Personal Agent: a place to see what you are working on and what needs a response. Routing currently uses deterministic rules; general Agent lifecycle management is not implemented.
+Attention Router brings tasks, work context, and authorized alerts to an ESP32 e-paper display. You can also run the Web Console by itself without hardware, a Bot or a model subscription. It is a physical attention interface for a Personal Agent: a place to see what you are working on and what needs a response. Routing currently uses deterministic rules; general Agent lifecycle management is not implemented.
 
 Work can be scattered across browsers, editors, and Agent conversations. Home provides a small task view, Workspace keeps the current item visible, and Interrupt surfaces an authorized alert. Acknowledging an alert is separate from completing its Todo.
 
-> **v0.1.0 source release.** Build and deploy from source using the installation guides. This is a normal GitHub Release, not a Pre-release, based on independently reviewed offline-final2. Final hardware acceptance of the exact public firmware and a real hardware product photo remain outstanding. The owner approved source publication with these limitations; a normal Release does not imply hardware acceptance. No precompiled firmware is supplied.
+> **v0.1.0 is published as source; no precompiled firmware is supplied.** The [limited GitHub Actions checks passed](https://github.com/Tkkdy/attention-router/actions/runs/39403342507) for release baseline `3ba371af`. This is not full regression or final hardware acceptance. Acceptance of the exact public firmware and a hardware photograph remain outstanding; see [validation records](docs/VALIDATION.md).
 
 ## Real interface and architecture
 
@@ -81,6 +81,16 @@ In another terminal, create synthetic sample tasks, Current, and an alert:
 
 Click ACK in the Console and verify that the alert clears without completing its Todo. A manual CODING override supplies work context. AUTO normally requires 120 seconds of continuous strong signals to enter a work session and 900 seconds without strong signals to leave it. This does not detect whether an Agent has finished. The demonstration writes data and is intended for a new isolated installation.
 
+### Connect an ordinary Agent
+
+In a **fresh isolated installation**, add `--api-token-prompt` when starting the Hub and privately enter your own random 32+ character token. In another terminal, run:
+
+```powershell
+.\.venv\Scripts\python.exe examples\agent_http_demo.py
+```
+
+Enter the same token without echo. The example reads revisions, creates a synthetic Todo, links Current to its real ID, publishes an explicitly authorized synthetic reminder, and verifies ACK leaves the Todo pending. Transport retries retain the original request; a 409 re-reads revisions and stops. Only `127.0.0.1` is accepted; private port 8000 is rejected. See the [bilingual HTTP quickstart](docs/AGENTS.md#agent-http-quickstart) for both terminal commands. No GrokBot, DeepSeekBot, OAuth, Tunnel or paid model is required. The existing Cookie-based `local_demo.py` remains available.
+
 `config.local.json` accepts `port`, `device_host`, and `monitor`. If the port is occupied, choose another one and add `--url http://127.0.0.1:YOUR_PORT` to the demo; do not terminate unrelated services. The [English installation guide](docs/INSTALL_EN.md) contains full toolchain steps and troubleshooting.
 
 ## Hardware and firmware
@@ -99,7 +109,7 @@ powershell -NoProfile -File .\compile_firmware.ps1 -ArduinoCli .\.build\toolchai
 
 This only compiles. Set `device_host` to the PC's specific private LAN IPv4 and use the matching IP/port in the firmware. Restart only your own isolated Hub. Firewall changes are manual and should be limited to the device source on a trusted LAN. Generated firmware may embed Wi-Fi credentials: never publish `.build`, `private_config.h`, or personal `.bin` files.
 
-Flashing requires separate approval of the target board and write scope, plus verified backup/rollback conditions for any existing data. The currently used original board remains **No-Go**; prefer a compatible spare device for a bounded test. Restoring the application alone does not restore NVS. No binary is provided until safe user configuration, credential checks, and hardware acceptance are satisfied; no new onboarding/configuration feature is being developed for this release.
+Use an owner-confirmed compatible test device for hardware trials. Before writing an existing device, verify rollback of the application and necessary data; **restoring the application alone does not restore NVS**. The original-board No-Go and detailed safety gates remain in the [hardware reference](docs/HARDWARE.md) and [English installation guide](docs/INSTALL_EN.md). Precompiled firmware awaits safe configuration and specified-hardware acceptance.
 
 ## Network, limitations, and evidence
 

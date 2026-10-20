@@ -64,8 +64,8 @@
     },
     {
       "path": "GIT_FILES.txt",
-      "bytes": 4998,
-      "sha256": "79e69c5d0252523cd44211d8766a68feea6eb2274c9cbd43dcfc15d2ae6aa53c"
+      "bytes": 5061,
+      "sha256": "6bedcb67049a8dea1e30839d5c94a0f12ba5376edadef2943a558ef7f9b8557b"
     },
     {
       "path": "LICENSE",
@@ -74,18 +74,18 @@
     },
     {
       "path": "LICENSE_MAP.json",
-      "bytes": 39481,
-      "sha256": "7f771048d03a467e8baa43c69d8d6f4f946aae166b4b36bca7ac890975fba818"
+      "bytes": 39902,
+      "sha256": "f95946f5f1331ac633af0bfcc9ea5421b6b06df7308969c067f26c62565c60c5"
     },
     {
       "path": "README.md",
-      "bytes": 11279,
-      "sha256": "d0b149d1fdf6bbd430e4afd10f1d4e8c29e2adf2bc524a0d07ae94f82316ab2c"
+      "bytes": 12205,
+      "sha256": "4ad7418aa1021d2533710402e56ee18b7e23418f40f7dac0b5076f0e3b364e8f"
     },
     {
       "path": "README_EN.md",
-      "bytes": 13661,
-      "sha256": "7b114ca6e1fcb68e937353916e09e896665b8191d6b5b06b65481eb354a0e202"
+      "bytes": 14556,
+      "sha256": "0b617b21c372a89ded38d0c7834c9ba8ce116c8d24fe4368fab193c08df36ada"
     },
     {
       "path": "RELEASE_NOTES.md",
@@ -134,13 +134,13 @@
     },
     {
       "path": "docs/AGENTS.md",
-      "bytes": 6379,
-      "sha256": "549050bc747eb2e4402db907083e76803dc2bfa1e44792700ffcbfa3ba7c4c9a"
+      "bytes": 11135,
+      "sha256": "6eec84341baf7fb5274a130990a9a0d0047e80c6cb8a0ce399f8f4fa1a737b16"
     },
     {
       "path": "docs/CI.md",
-      "bytes": 7022,
-      "sha256": "8999b80c27b5e617d21c19c2baae9498cbf527023adc562ea2ff527fb0e80dcd"
+      "bytes": 8457,
+      "sha256": "a7ec42426a3578c7ae3b6ce1ac444f506bb0af5e558c159fd861ee05bad95c84"
     },
     {
       "path": "docs/FEATURES.md",
@@ -154,8 +154,8 @@
     },
     {
       "path": "docs/INSTALL_EN.md",
-      "bytes": 18522,
-      "sha256": "84365da1d7540918512c038c65479c47c7eee6230ae4e8623b107c30f691cbb6"
+      "bytes": 19304,
+      "sha256": "d5062054d7005a728f18cdadd1bf8eabe68131249cd5ed5226be98f34d19df19"
     },
     {
       "path": "docs/LICENSING.md",
@@ -188,9 +188,19 @@
       "sha256": "856e7946ab9b1144b9da9ebee8476b64f7c25a83745e1605123e15260fb7a9e9"
     },
     {
+      "path": "examples/agent_http_demo.py",
+      "bytes": 7258,
+      "sha256": "613097d2a4a964057aec88e839919626bde06ffeb7680b584acda184321bd907"
+    },
+    {
       "path": "examples/local_demo.py",
       "bytes": 2401,
       "sha256": "4e813dda2471b2234e2886b168d35d63cf409201b78d899ef79f1565115de9f0"
+    },
+    {
+      "path": "examples/test_agent_http_demo.py",
+      "bytes": 9323,
+      "sha256": "2c3dc8e59298608588d0520313abd77636adeca28103a3c45622442c3143cd63"
     },
     {
       "path": "experiments/oauth_spike/__init__.py",
@@ -509,8 +519,8 @@
     },
     {
       "path": "hub/router_api.py",
-      "bytes": 12618,
-      "sha256": "e0bd0dccfbccdd30adc07203161f72907a8e0296fb2388bac4525efe47a3fd52"
+      "bytes": 12721,
+      "sha256": "3d6eda74c9ae749f853a1df8beafe8754c394fa7ead8729b6dc438998063a494"
     },
     {
       "path": "hub/router_store.py",

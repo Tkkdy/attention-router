@@ -1,5 +1,46 @@
 # 可选 Agent 与模型集成
 
+<a id="agent-http-quickstart"></a>
+## 基础 Agent HTTP 上手 / Basic Agent HTTP quickstart
+
+使用全新解压/检出目录，按 [Windows 安装](WINDOWS.md) 安装基础锁定依赖。无需设备、Bot、OAuth、Tunnel 或模型。先确认 8765 未被其他服务使用；不要连接私人运行中的 8000。示例仅接受 `http://127.0.0.1:PORT`（1024–65535，排除 8000），禁用代理且不跟随重定向。
+
+**终端 A（源码根目录）：**
+
+```powershell
+.\.venv\Scripts\python.exe hub\run_preview.py --api-token-prompt
+```
+
+在不回显的本地提示中输入自己生成的 **32+ 字符 ASCII 无空白随机 Token**。不要将凭据放入命令行、源码、URL、截图或聊天。基础配置默认本机 8765；不要复制私人数据库。Hub 重启后需再次私密输入同一个 Token；该启动入口不保存凭据。
+
+**终端 B（同一目录）：**
+
+```powershell
+.\.venv\Scripts\python.exe examples\agent_http_demo.py
+```
+
+输入相同 Token。运行示例即授权它在这个全新预览中创建一条**合成提醒**，不是授权 Agent 自行打断真实工作。打开 <http://127.0.0.1:8765/> 查看：
+
+1. 脚本先检查 `/health` 的 `developer-preview` 环境，再使用 Bearer GET `/api/overview` 读取 Todo/Workspace revision。
+2. 通过现有 `/api/mcp/todos/upsert` 增加合成 Todo，用同一请求重放确认未重复创建。Todo 保留接口已有的 `MCP` 来源元数据；标题标明 Synthetic，不宣称真实用户任务。
+3. 通过 `/api/workspace/sync` 将 Current 关联到返回的**真实 Todo ID**，不使用同名任务冒充关联；不清空其他任务。
+4. 通过 `/api/events` 发布 `provenance=SIMULATED`、`authorization=user_reminder` 的合成提醒。Console 可显示 Interrupt 和提醒的 ACK。
+5. 在 Console 点 ACK 后回终端 B 按回车，或直接回车由脚本 ACK。脚本重放相同 ACK，再读取状态，确认 Todo 仍是 pending。
+
+任务与提醒会留在该预览的数据目录，便于查看；脚本不自动删除数据。每次重新启动示例会创建新的演示身份。网络错误最多做 3 次原请求尝试，始终保持相同 body、request_id/command_id 和 revision。若仍失败，写入可能已成功，先检查 Console，**不要盲目重新运行**。409 时脚本重读当前修订号、报告冲突并停止，不修改 revision 强行覆盖；人工判断后的新意图才使用新 ID。示例不会更改工作上下文或自动配置任何可选采集源。
+
+原 `examples/local_demo.py` 是无需 Bearer 的同源 Cookie 示例，继续保留；此处仅补充独立 Agent 的 Bearer、重试与冲突路径。Hub 权限模型没有变化。`/health` 和 `/api/overview` 的 `release_version` 表示产品版本；旧 `version` 标识及 Scene 修订号保持原义。
+
+### English entry
+
+Use a fresh source checkout and install the base locked dependencies from the [English installation guide](INSTALL_EN.md). In terminal A run `python hub/run_preview.py --api-token-prompt`; privately enter your own random 32+ character ASCII token without whitespace. In terminal B run `python examples/agent_http_demo.py` and enter the same token without echo. Do not put it in arguments, source, URLs or chat. If changing ports, configure only your own fresh Hub as documented and pass `--url http://127.0.0.1:PORT` to the example; port 8000 is always refused.
+
+Open the Console at <http://127.0.0.1:8765/> to inspect the synthetic Todo, Current linked by its returned ID, and explicitly authorized synthetic reminder. Click ACK there and press Enter in terminal B, or press Enter to let the script ACK. The script verifies ACK replay and that the Todo remains pending. This requires no device, Bot, OAuth, Tunnel, account or paid model. The script disables proxies and redirects and refuses non-preview Hubs before sending a Bearer token. It does not enable optional sources.
+
+Transport failures retry the exact request up to three total attempts. A 409 reads current revisions and stops without overwriting; decide on a new intent before using a new ID. Each new script invocation creates a new demo identity, so inspect the Console after an uncertain failure before rerunning. Data remains in the fresh preview for inspection. The existing Cookie-based `local_demo.py` remains available. The launcher does not store the token; enter it again after restarting your own preview Hub.
+
+Run `python -B examples/test_agent_http_demo.py` for isolated real-HTTP checks with fresh temporary data and an ephemeral loopback listener. The three existing limited CI commands remain documented in [CI.md](CI.md); these checks do not prove hardware or a full Bot integration.
+
 ## 不依赖 Bot 的最小接入（Preview）
 
 Hub、Console、路由规则、ESP32 显示和 Web ACK 不需要 GrokBot、DeepSeek 或任何模型订阅。任务/事件可由用户或自有脚本产生，路由本身不调用 LLM。

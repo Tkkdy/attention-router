@@ -6,11 +6,11 @@
 
 A local-first AI attention router powered by ESP32 e-paper, bringing tasks, work context, and important alerts into focus.
 
-Attention Router 是基于 ESP32 墨水屏的本地优先注意力路由器：将任务、工作上下文和重要提醒放到桌面，让你知道现在做什么、哪些事情需要回应。它是 Personal Agent 在物理世界的注意力交互终端；当前由确定性规则路由，并未实现通用 Agent 生命周期管理。
+Attention Router 是基于 ESP32 墨水屏的本地优先注意力路由器：将任务、工作上下文和重要提醒放到桌面，让你知道现在做什么、哪些事情需要回应。也可以先单独运行 Web Console，无需硬件、Bot 或模型订阅。它是 Personal Agent 在物理世界的注意力交互终端；当前由确定性规则路由，并未实现通用 Agent 生命周期管理。
 
 当工作分散在浏览器、编辑器与 Agent 会话中，桌面屏幕提供一个稳定的入口：Home 看待办，Workspace 保留当前事项，Interrupt 显示得到授权的提醒。任务与提醒确认分开处理，避免一次 ACK 被误当成工作已经完成。
 
-> **v0.1.0 源码发布。** 可按教程从源码构建和部署，使用正常 GitHub Release，非 Pre-release。基线 offline-final2 已通过独立软件复审；精确公开候选固件尚未完成最终真机闭环验收，真实硬件宣传照片待补。所有者批准先发布源码，不将普通 Release 等同于硬件验收通过。本次不提供预编译固件。
+> **v0.1.0 已发布，提供源码，不提供预编译固件。** 发布基线 `3ba371af` 的[有限 GitHub Actions 检查已通过](https://github.com/Tkkdy/attention-router/actions/runs/39403342507)；这不代表全量回归或最终真机验收通过。精确公开固件的最终硬件验收及实拍仍待完成，详见[验证记录](docs/VALIDATION.md)。
 
 ## 真实界面与系统关系
 
@@ -81,6 +81,16 @@ Copy-Item config.example.json config.local.json
 
 在 Console 点击 ACK，确认提醒消失且 Todo 未被误标完成。手动 CODING 可提供工作上下文输入；自动模式默认需要连续强信号 120 秒进入工作会话，900 秒无强信号退出。它不识别 Agent 是否已完成任务。演示会写入新安装数据，仅在隔离目录运行。
 
+### 用普通 Agent 接入
+
+在**全新隔离安装**中，启动 Hub 时加 `--api-token-prompt`，私密输入自己的 32+ 字符随机 Token；另开终端运行：
+
+```powershell
+.\.venv\Scripts\python.exe examples\agent_http_demo.py
+```
+
+输入相同 Token（不回显）。示例依次读取 revision、创建合成 Todo、用其真实 ID 设置 Current、发布明确授权的合成提醒，再验证 ACK 不完成 Todo。网络重试保留原请求，409 会重读修订号后停止；仅连接 `127.0.0.1`，拒绝私人 8000 端口。完整两终端命令与安全边界见 [Agent HTTP 上手](docs/AGENTS.md#agent-http-quickstart)。不需要 GrokBot、DeepSeekBot、OAuth、Tunnel 或收费模型。原 Cookie 演示 `local_demo.py` 仍可使用。
+
 `config.local.json` 支持 `port`、`device_host`、`monitor`。端口占用时换端口，不停止别人的服务；示例同时加 `--url http://127.0.0.1:新端口`。完整依赖、启停、固件构建和排查见 [Windows 安装指南](docs/WINDOWS.md)。
 
 ## 指定硬件与固件
@@ -91,7 +101,7 @@ Copy-Item config.example.json config.local.json
 
 设备与 Hub 在可信 LAN 中；将 `device_host` 设为电脑指定私有 IPv4，固件地址使用相同 IP/端口，重启的只应是自己的隔离 Hub。防火墙按需手工限制到设备来源，不自动修改。构建产物可能包含 Wi-Fi 凭据，禁止公开 `.build`、`private_config.h` 或个人 `.bin`。
 
-当前现用原板刷写仍 **No-Go**；优先在兼容备用设备安排另行批准的有限验收。仅恢复应用不恢复 NVS。预编译固件需安全配置能力、无凭据校验与指定硬件验收均满足后再考虑，本轮不开发首次配网功能。
+首次硬件尝试请使用经所有者确认的兼容测试设备；现有设备写入前须验证应用与必要数据的完整回退，**仅恢复应用不恢复 NVS**。作者原板的 No-Go 限制和具体安全门槛保留在[硬件说明](docs/HARDWARE.md)及[英文安装指南](docs/INSTALL_EN.md)。预编译固件仍待安全配置与指定硬件验收完成。
 
 ## 网络、安全与已知限制
 

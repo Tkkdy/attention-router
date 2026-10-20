@@ -27,6 +27,9 @@ from work_context import WorkSessionConfig, WorkContext
 from pydantic import BaseModel, ConfigDict, Field
 
 
+RELEASE_VERSION = "0.1.0"
+
+
 class ShowTibo(BaseModel):
     model_config = ConfigDict(extra="forbid")
     request_id: str = Field(pattern=r"^[A-Za-z0-9_-]{1,80}$")
@@ -162,7 +165,7 @@ def create_router_app(data_dir: Path | None = None, *, start_monitor: bool = Tru
 
     @application.get("/health")
     def health():
-        return {"status": "ok", "version": "1.0-m3", "environment": environment, "instance_id": instance_id}
+        return {"status": "ok", "version": "1.0-m3", "release_version": RELEASE_VERSION, "environment": environment, "instance_id": instance_id}
 
     @application.get("/scene")
     def scene(request: Request, capabilities: str = ""):
@@ -182,7 +185,7 @@ def create_router_app(data_dir: Path | None = None, *, start_monitor: bool = Tru
                 service._action(db, None, "MCP_READ_RECEIVED", request_id=request_id,
                     environment=environment, instance_id=instance_id)
         snapshot = service.overview()
-        return {**snapshot, "runtime": runtime_view.view(snapshot["context_evidence"], snapshot["delivery"], start_monitor), "environment": environment, "instance_id": instance_id,
+        return {**snapshot, "release_version": RELEASE_VERSION, "runtime": runtime_view.view(snapshot["context_evidence"], snapshot["delivery"], start_monitor), "environment": environment, "instance_id": instance_id,
                 "request_id": request_id if re.fullmatch(r"[A-Za-z0-9_-]{1,80}", request_id) else None}
 
     @application.get("/api/events/{event_id}")

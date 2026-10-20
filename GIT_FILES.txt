@@ -33,7 +33,9 @@ docs/NETWORK.md
 docs/PUBLISHING.md
 docs/VALIDATION.md
 docs/WINDOWS.md
+examples/agent_http_demo.py
 examples/local_demo.py
+examples/test_agent_http_demo.py
 experiments/oauth_spike/__init__.py
 experiments/oauth_spike/oauth.py
 firmware/LICENSE

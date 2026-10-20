@@ -4,7 +4,7 @@
 
 [English overview](../README_EN.md) · [中文安装说明](WINDOWS.md) · [中文硬件说明](HARDWARE.md)
 
-This guide is self-contained for an English-speaking installer. It describes future installation operations; **none of these device operations was performed for offline-final2**. The exact public candidate still needs safe core hardware acceptance. Historical software tests and observations on a private device do not prove that acceptance.
+This guide covers the published v0.1.0 source release. You can run the Web Console without a device, Bot or model. The hardware sections are instructions for your own approved test hardware; **none of those device operations was performed for the historical offline-final2 review**. The exact public firmware still needs safe core hardware acceptance. Historical software tests and private-device observations do not prove that acceptance.
 
 The current owner's in-use original board remains **No-Go for flashing**. Prefer a compatible spare board, a separate test network and synthetic tasks. Commands below do not authorize changes to an existing service, device or its data. This candidate contains source only, not ready-to-flash firmware.
 
@@ -67,7 +67,7 @@ If the port is occupied, choose an unused port and update the Hub, firmware URL 
 
 ## 3. Install a project-local Arduino toolchain
 
-Use the historically verified versions below; this documentation-only revision did not reinstall or rebuild them:
+Use the historically verified versions below; the post-release documentation and Agent example checks do not reinstall or rebuild this toolchain:
 
 | Tool / dependency | Version |
 | --- | --- |
@@ -140,7 +140,7 @@ Get-FileHash -Algorithm SHA256 .\SOURCE_MANIFEST.json
 Get-ChildItem -LiteralPath .build/firmware -Filter *.bin | Get-FileHash -Algorithm SHA256
 ```
 
-These commands record identity, not hardware acceptance or a rollback backup. Keep the artifacts private and use the same approved build for subsequent device checks. No firmware build was rerun for this documentation-only revision.
+These commands record identity, not hardware acceptance or a rollback backup. Keep the artifacts private and use the same approved build for subsequent device checks. No firmware build is implied by the post-release documentation and Agent example checks.
 
 ## 5. Upload and serial observation — future, separately approved operation
 
@@ -197,4 +197,6 @@ Chinese titles can fall back to ASCII short IDs after an offline cold boot; hist
 
 Optional device NTP/weather/Radar is experimental. `DASHBOARD_INTERNET_CHECK_URL`, `DASHBOARD_INTERNET_CHECK_STATUS` and `DASHBOARD_INTERNET_CHECK_LOCATION` must match a stable credential-free endpoint's status and Location header (empty if absent). An empty probe URL keeps Internet UNKNOWN and prevents new device NTP/weather/Radar acquisition even with working local Scene. NTP also requires a timezone and both NTP servers; weather requires coordinates and a valid local date and runs only in Standalone/Hub Home; native device Radar needs its URL and a valid date and runs only in Standalone. Probe success is only a prerequisite, not proof of those services. Hub-side Radar is a separate path. Leave all optional services unconfigured for the core test if not needed.
 
-Software evidence is deliberately limited: historical stability 9/9 and core 86/88; the two preserved legacy JSON migration failures are `test_atomic_migration_keeps_json_and_restarts` and `test_invalid_migration_is_atomic`. Existing limited CI passed 19/19 locally and in the supplied independent review, not on GitHub Actions. No complete suite, dependency installation, upload or hardware test was repeated for offline-final2. Existing product, runtime, test and CI code is unchanged; this revision adds installation documentation and corrects release licensing metadata only.
+Software evidence is deliberately limited. Historical offline review recorded stability 9/9 and core 86/88, with two preserved legacy JSON migration failures: `test_atomic_migration_keeps_json_and_restarts` and `test_invalid_migration_is_atomic`. The historical offline-final2 review did not repeat a complete suite, dependency installation, upload or hardware test. Separately, after publication, [GitHub Actions run 39403342507](https://github.com/Tkkdy/attention-router/actions/runs/39403342507) completed successfully for main commit `3ba371afbabbb72b11acb0b52c636d08112d0c14` on 2026-10-20 UTC. That run installed the locked Python dependencies and ran source/manifest checks, the 19-test limited basic set and the Console fixture contract. It does not prove full regression, an external Bot integration or hardware acceptance. See [CI scope](CI.md).
+
+For a credential-based Agent walkthrough with no model, see the [bilingual HTTP quickstart](AGENTS.md#agent-http-quickstart). Product identity is exposed as `release_version: "0.1.0"` in `/health` and `/api/overview`; legacy `version` fields retain their existing API/runtime meanings. Scene `version` remains a display revision, not a product release.
