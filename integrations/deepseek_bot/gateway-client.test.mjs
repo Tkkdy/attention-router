@@ -201,3 +201,19 @@ test('natural-language conversation reference is bound by runtime, not the model
   assert.equal(received.arguments.conversation_ref,'bot-stable-id')
   assert.equal(received.arguments.original_user_message,original)
 })
+
+
+test('autonomous Interrupt is opt-in and exposes only English display text', () => {
+  const definitions = new Map()
+  const rt = {
+    config: { butlerGateway: { origin: 'http://127.0.0.1:33102', botIds: ['b'], getToken: () => 'synthetic',
+      naturalLanguageOnly: false, allowedActions: ['get_context', 'show_interrupt'], bindConversation: true } },
+    ctx: { tools: { register: tool => definitions.set(tool.name, tool) } },
+  }
+  registerTodoTools(rt, definition => definition)
+  assert.deepEqual([...definitions.keys()], ['butler_get_context', 'butler_show_interrupt'])
+  const tool = definitions.get('butler_show_interrupt')
+  assert.deepEqual(Object.keys(tool.parameters), ['request_id', 'expected_revision', 'title', 'message'])
+  assert.match(tool.description, /autonomous Interrupt/)
+  assert.equal(tool.parameters.expected_revision.required, true)
+})

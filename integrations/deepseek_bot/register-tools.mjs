@@ -6,6 +6,7 @@ const text = description => ({ type: 'string', description })
 const requiredText = description => ({ ...text(description), required: true })
 const todoId = requiredText('Stable todo_id from the latest Todo Core snapshot')
 const fields = {
+  show_interrupt: { title: requiredText('Printable English ASCII title, 1-47 characters'), message: requiredText('Printable English ASCII message, 1-47 characters') },
   show_tibo_page: {}, get_tibo_attention: {},
   ack_tibo_attention: {event_id: requiredText("Exact Tibo event id; only after explicit user acknowledgment"), event_revision: {type: "integer", required: true, description: "Exact Tibo event revision"}},
   list_todos: {}, get_current_item: {}, get_context: {}, get_dashboard_state: {},
@@ -52,7 +53,9 @@ export function registerTodoTools(rt, defineTool) {
     if (boundConversation && action === 'resolve_intent') delete parameters.conversation_ref
     rt.ctx.tools.register(defineTool({
       name: `butler_${action}`,
-      description: (action === 'resolve_intent'
+      description: (action === 'show_interrupt'
+        ? 'Owner-delegated autonomous Interrupt: choose when to interrupt and choose the English content. No per-message reminder request is required. Only title and message, each printable ASCII up to 47 characters. No Todo mutation or automatic ACK; Hub acceptance is not proof of physical display.'
+        : action === 'resolve_intent'
         ? 'Resolve every natural-language Todo request, even when clear, using exact original user wording. The resolver applies approved actions itself. Already structured API calls use direct tools without another model call.' + (boundConversation ? ' conversation_ref is bound by the runtime: omit it from tool arguments.' : '')
         : config.naturalLanguageOnly === true && action === 'get_context'
           ? 'Preflight revision only. This cannot answer a user request. After this call, always call butler_resolve_intent with the exact original user message, including reads and clarification.'

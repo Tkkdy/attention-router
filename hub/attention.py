@@ -66,7 +66,7 @@ class EventInput(Input):
     priority: int = Field(default=5, ge=0, le=9)
     starts_at: datetime | None = None
     expires_at: datetime | None = None
-    provenance: Literal["SIMULATED", "USER"] = "SIMULATED"
+    provenance: Literal["SIMULATED", "USER", "AGENT"] = "SIMULATED"
 
     @field_validator("title", "message", "detail")
     @classmethod

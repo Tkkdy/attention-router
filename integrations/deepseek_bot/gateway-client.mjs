@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 const READS = new Set(['list_todos', 'get_current_item', 'get_context', 'get_dashboard_state', 'get_tibo_attention'])
 export const ACTIONS = Object.freeze([
-  ...READS, 'show_tibo_page', 'ack_tibo_attention', 'create_todo', 'update_todo', 'complete_todo', 'delete_todo',
+  ...READS, 'show_interrupt', 'show_tibo_page', 'ack_tibo_attention', 'create_todo', 'update_todo', 'complete_todo', 'delete_todo',
   'reorder_todos', 'set_current_item', 'set_pending_question', 'publish_suggestion', 'publish_attention_event', 'ack_interrupt', 'resolve_intent',
 ])
 export const isWrite = action => !READS.has(action)

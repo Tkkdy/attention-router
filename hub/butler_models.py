@@ -93,6 +93,18 @@ class AttentionInput(Input):
     def device_text(cls, value):
         return DeviceText.check(value)
 
+class InterruptDisplay(Input):
+    title: str = Field(min_length=1, max_length=47)
+    message: str = Field(min_length=1, max_length=47)
+
+    @field_validator('title', 'message')
+    @classmethod
+    def printable_ascii(cls, value):
+        DeviceText.check(value)
+        if any(ord(char) < 32 or ord(char) > 126 for char in value):
+            raise ValueError('printable English ASCII required')
+        return value
+
 class InterruptAck(Input):
     event_id: Identifier
     event_revision: int = Field(ge=1, strict=True)
@@ -133,9 +145,12 @@ class Intent(Input):
     source_hint: str | None = Field(default=None, max_length=500)
     conversation_ref: Identifier | None = None
 
+INTERRUPT_ACTIONS = frozenset({'show_interrupt'})
+
 TIBO_ACTIONS = {'show_tibo_page', 'ack_tibo_attention', 'get_tibo_attention'}
 
 SCHEMAS = {
+    'show_interrupt': InterruptDisplay,
     'show_tibo_page': Empty, 'ack_tibo_attention': InterruptAck, 'get_tibo_attention': Empty,
     'list_todos': Empty, 'get_current_item': Empty, 'get_context': Empty,
     'create_todo': Create, 'update_todo': Update, 'complete_todo': TodoTarget,
@@ -151,7 +166,7 @@ class Command(Input):
     source: Literal['deepseek', 'grok']
     request_id: Identifier
     expected_revision: Revision | None = None
-    action: Literal['list_todos', 'get_current_item', 'get_context', 'create_todo',
+    action: Literal['show_interrupt', 'list_todos', 'get_current_item', 'get_context', 'create_todo',
                     'update_todo', 'complete_todo', 'delete_todo', 'reorder_todos',
                     'set_current_item', 'set_pending_question', 'resolve_intent',
                     'publish_suggestion', 'request_clarification', 'publish_attention_event', 'ack_interrupt', 'get_dashboard_state',
