@@ -12,6 +12,8 @@ A local-first desktop attention router. A Windows Hub stores tasks, work context
 
 [Quickstart](#windows-quickstart) · [Hardware](docs/HARDWARE.md) · [Agent integration](docs/AGENTS.md) · [Features and plans](docs/FEATURES.md)
 
+Optional experimental hardware: [ESP32-S3 + JD79668 four-color panel](docs/HARDWARE_JD79668.md#english); the original profile remains the default.
+
 ## See it in use
 
 - **Home:** Keep the first three pending tasks in view.

@@ -1,6 +1,17 @@
 // SPDX-FileCopyrightText: 2026 Tkkdy
+// SPDX-FileCopyrightText: 2026 flowersea123
 // SPDX-License-Identifier: GPL-3.0-only
+#include <Arduino.h>
+#include "config.h"
+#if DASHBOARD_PANEL == DASHBOARD_PANEL_GDEM042F52
+#include "gdem042f52_display.h"
+// Retain the existing page palette; this backend also accepts EPD_YELLOW.
+constexpr uint16_t GxEPD_BLACK = EPD_BLACK;
+constexpr uint16_t GxEPD_WHITE = EPD_WHITE;
+constexpr uint16_t GxEPD_RED = EPD_RED;
+#else
 #include <GxEPD2_3C.h>
+#endif
 #include <SPI.h>
 #include "utf8_text.h"
 #include <string.h>
@@ -8,8 +19,12 @@
 #include "config.h"
 #include "pages.h"
 
+#if DASHBOARD_PANEL == DASHBOARD_PANEL_GDEM042F52
+GDEM042F52Display display;
+#else
 using Panel = GxEPD2_420c_GDEY042Z98;
 GxEPD2_3C<Panel, Panel::HEIGHT> display(Panel(PIN_CS, PIN_DC, PIN_RST, PIN_BUSY));
+#endif
 
 
 namespace {
@@ -260,15 +275,27 @@ const char* pageName(Page page) {
 }
 
 void initDisplay() {
+#if DASHBOARD_PANEL == DASHBOARD_PANEL_GDEM042F52
+  if (!display.begin()) Serial.println("JD79668 GPIO/SPI initialization failed");
+#else
   display.init(SERIAL_BAUD);
+#endif
   display.setRotation(0);
 
 }
 
-void renderPage(const Scene& scene) {
+bool renderPage(const Scene& scene) {
+#if DASHBOARD_PANEL == DASHBOARD_PANEL_GDEM042F52
+  draw(scene);
+  return display.update();
+#else
   display.setFullWindow();
   display.firstPage();
   do {
     draw(scene);
   } while (display.nextPage());
+  // GxEPD2's paged API provides no refresh-success result. Completion here
+  // preserves the original semantics, not physical delivery confirmation.
+  return true;
+#endif
 }

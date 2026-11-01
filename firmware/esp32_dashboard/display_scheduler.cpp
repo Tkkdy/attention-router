@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Tkkdy
+// SPDX-FileCopyrightText: 2026 flowersea123
 // SPDX-License-Identifier: GPL-3.0-only
 #include "display_scheduler.h"
 
@@ -8,6 +9,8 @@
 namespace {
 
 constexpr unsigned long DISPLAY_MAX_COALESCE_MS = 10000UL;
+constexpr unsigned long DISPLAY_RETRY_INITIAL_MS = 30000UL;
+constexpr unsigned long DISPLAY_RETRY_MAX_MS = 300000UL;
 
 unsigned long earlierDeadline(unsigned long now, unsigned long first,
                               unsigned long second) {
@@ -65,18 +68,40 @@ void DisplayScheduler::force(const Scene& scene) {
   hasPendingScene_ = true;
   pendingSince_ = millis();
   renderDueAt_ = pendingSince_;
+  // An explicit manual redraw may bypass the automatic retry cooldown.
+  consecutiveFailures_ = 0;
 }
 
 void DisplayScheduler::tick(unsigned long now) {
   if (!hasPendingScene_ || static_cast<int32_t>(now - renderDueAt_) < 0) {
     return;
   }
+  // New data and urgency upgrades must not cause a tight failure/retry loop.
+  if (consecutiveFailures_ &&
+      static_cast<int32_t>(now - retryNotBefore_) < 0) {
+    return;
+  }
 
   Serial.print("Rendering ");
   Serial.println(pageName(pendingScene_.page));
-  renderPage(pendingScene_);
+  if (!renderPage(pendingScene_)) {
+    // A failed refresh may have changed the physical panel partially. Even the
+    // previous successful scene can no longer be assumed to be on the screen.
+    hasRenderedScene_ = false;
+    if (consecutiveFailures_ < 5) ++consecutiveFailures_;
+    unsigned long retryDelay = DISPLAY_RETRY_INITIAL_MS << (consecutiveFailures_ - 1);
+    if (retryDelay > DISPLAY_RETRY_MAX_MS) retryDelay = DISPLAY_RETRY_MAX_MS;
+    // Measure from completion, since renderPage() can block for a BUSY timeout.
+    retryNotBefore_ = millis() + retryDelay;
+    renderDueAt_ = retryNotBefore_;
+    Serial.print("Refresh failed; scene pending, retry in ");
+    Serial.print(retryDelay);
+    Serial.println(" ms");
+    return;
+  }
   renderedScene_ = pendingScene_;
   hasRenderedScene_ = true;
   hasPendingScene_ = false;
+  consecutiveFailures_ = 0;
   Serial.println("Refresh complete");
 }

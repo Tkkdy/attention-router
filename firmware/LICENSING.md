@@ -16,6 +16,16 @@ Copyright (c) 2026 Tkkdy，限本项目原创部分。
 
 ## 本次与未来发行边界
 
+可选 `gdem042f52_display.*` 驱动由 flowersea123 贡献，采用 GPL-3.0-only。
+初始化参数核对 Good Display 的 `A32-GDEM042F52-20240618.rar` Arduino 示例，
+资料入口为 <https://www.good-display.com/product/564.html>；不分发厂商压缩包或位图，
+不将厂商参考材料重新授权。该配置使用 Adafruit GFX，不链接 GxEPD2。
+
+The optional JD79668 adapter is contributed by flowersea123 under GPL-3.0-only.
+Initialization values were checked against the Good Display sample above; vendor
+archives/bitmaps are not distributed or relicensed. This profile uses Adafruit GFX
+without linking GxEPD2.
+
 本次提供项目源码，不附 `.bin`、第三方库、ESP32 SDK 或字体文件。用户按 [Windows 构建说明](../docs/WINDOWS.md) 安装指定依赖。Hub 是独立 HTTP 进程，不链接 GxEPD2；其独立原创部分按 MIT 授权。
 
 未来若分发固件二进制、镜像或整机，需要针对实际组合核对全部组件许可，并满足 GPLv3 对应源码、修改通知、构建/安装材料以及适用的安装信息要求；ESP32 SDK 内不同组件不可一概称为 LGPL 或 GPL。本次没有作出二进制发行合规已完成的承诺。

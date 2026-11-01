@@ -18,8 +18,14 @@ THIRD_PARTY_NOTICES.md
 assets/ASSET_INDEX.md
 assets/architecture.mmd
 assets/console-demo.png
+assets/device-interrupt.jpg
+assets/device-tibo.jpg
+assets/device-workspace.jpg
+assets/grok-bot-concept.png
+assets/hardware-overview.jpg
 ci/check_source.py
 ci/run_basic.py
+ci/run_display.py
 ci/run_mcp.py
 compile_firmware.ps1
 config.example.json
@@ -27,6 +33,7 @@ docs/AGENTS.md
 docs/CI.md
 docs/FEATURES.md
 docs/HARDWARE.md
+docs/HARDWARE_JD79668.md
 docs/INSTALL_EN.md
 docs/LICENSING.md
 docs/LIMITATIONS.md
@@ -50,6 +57,8 @@ firmware/esp32_dashboard/connectivity_manager.h
 firmware/esp32_dashboard/display_scheduler.cpp
 firmware/esp32_dashboard/display_scheduler.h
 firmware/esp32_dashboard/esp32_dashboard.ino
+firmware/esp32_dashboard/gdem042f52_display.cpp
+firmware/esp32_dashboard/gdem042f52_display.h
 firmware/esp32_dashboard/hub_client.cpp
 firmware/esp32_dashboard/hub_client.h
 firmware/esp32_dashboard/internet_monitor.cpp
@@ -170,6 +179,7 @@ start_mcp.ps1
 tests/authority_state.cpp
 tests/cache_recovery.cpp
 tests/display_contract.cpp
+tests/display_retry.cpp
 tests/fakes/Arduino.h
 tests/fakes/ArduinoJson.h
 tests/fakes/HTTPClient.h
@@ -179,6 +189,10 @@ tests/fault_recovery.cpp
 tests/graphics_fakes/GxEPD2_3C.h
 tests/graphics_fakes/SPI.h
 tests/hub_parser.cpp
+tests/jd79668_driver.cpp
+tests/jd79668_fakes/Adafruit_GFX.h
+tests/jd79668_fakes/Arduino.h
+tests/jd79668_fakes/SPI.h
 tests/optional_fakes/HTTPClient.h
 tests/optional_sources.cpp
 tests/parser_fakes/ArduinoJson.h

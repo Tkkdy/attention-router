@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Tkkdy
+// SPDX-FileCopyrightText: 2026 flowersea123
 // SPDX-License-Identifier: GPL-3.0-only
 #pragma once
 
@@ -6,4 +7,4 @@
 
 const char* pageName(Page page);
 void initDisplay();
-void renderPage(const Scene& scene);
+bool renderPage(const Scene& scene);

@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Tkkdy
+// SPDX-FileCopyrightText: 2026 flowersea123
 // SPDX-License-Identifier: MIT
 #include <cassert>
 #include <cstdio>
@@ -22,7 +23,7 @@ std::string fakeRadarPayloadStatus = "SUCCESS";
 int renderCount = 0;
 
 const char* pageName(Page) { return "HOME"; }
-void renderPage(const Scene&) { ++renderCount; }
+bool renderPage(const Scene&) { ++renderCount; return true; }
 
 Scene home(const HubSceneData& hub, const WeatherAdapter& weather,
            const RadarAdapter& radar, LinkState internet, const Scene* cached) {
