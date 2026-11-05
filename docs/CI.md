@@ -10,9 +10,12 @@ python -B ci/run_basic.py
 node hub/test_console_runtime.cjs
 python -B examples/test_agent_http_demo.py
 node --test integrations/deepseek_bot/gateway-client.test.mjs
+python -B ci/run_display.py
 ~~~
 
 ## 范围
+
+- display：原三色页面、四色驱动、刷新失败重试及故障恢复的 C++ 模拟测试，无硬件或网络访问。
 
 - source：解析 Python 语法、不导入应用；拒绝私密/生成文件；核对清单、字节数与 SHA-256。manifest 不记录自身哈希，GIT_FILES 包含所有公开文件。
 - basic：48 项合成测试，包括原 19 项稳定性/路由/Scene 检查，加 Tibo 自动页、工作上下文与 AI Interrupt。名称以脚本 TESTS 为准。
@@ -45,3 +48,7 @@ English: This is a limited suite, not a full regression or hardware pass. It che
 独立 mcp 作业安装已有 hub/requirements_mcp.txt 后运行 python -B ci/run_mcp.py，基础依赖不增加 MCP。7 项测试在一次性源码、全新 SQLite、合成凭据与随机 loopback Gateway 下执行；拒绝外网连接和固定业务端口。覆盖 OAuth/作用域、实际 SDK tools/list、显式 Interrupt 开关、MCP 调用到 Hub Scene、ACK 后重放与冲突。不读取私人配置、不创建公网 Tunnel、不连接真实 Bot。
 
 A separate job installs the existing pinned optional MCP requirements and runs seven isolated tests. The basic installation remains unchanged. This proves synthetic OAuth/MCP/Gateway/Hub behavior, not discovery by a real Grok client or physical display.
+
+The display job runs `python -B ci/run_display.py` with g++ on Ubuntu. It covers
+the original page contract, JD79668 driver, retry scheduling and fault recovery
+using synthetic hardware, without flashing or network access.

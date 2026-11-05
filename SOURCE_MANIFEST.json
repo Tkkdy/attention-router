@@ -11,8 +11,8 @@
   "inherited_commits": 0,
   "private_history_audited": false,
   "hardware_acceptance": "NOT_COMPLETED_FOR_EXACT_PUBLIC_CANDIDATE",
-  "software_validation": "LOCAL: basic 48/48; targeted 67/67 (overlap); Agent HTTP 7/7; DeepSeek adapter 11/11; Console contract PASS; LIVE_CI_SEE_GITHUB_ACTIONS; OPTIONAL MCP SYNC: isolated OAuth/MCP/Gateway/Hub 7/7",
-  "firmware_build": "FIRMWARE_BYTES_UNCHANGED_FROM_PARENT; HISTORICAL_BUILD_REUSED; NOT_REBUILT_OR_FLASHED",
+  "software_validation": "HISTORICAL_BASELINE: LOCAL: basic 48/48; targeted 67/67 (overlap); Agent HTTP 7/7; DeepSeek adapter 11/11; Console contract PASS; LIVE_CI_SEE_GITHUB_ACTIONS; OPTIONAL MCP SYNC: isolated OAuth/MCP/Gateway/Hub 7/7; PR: ci/run_display.py PASS; Hub not rerun locally",
+  "firmware_build": "PR: ESP32-S3/JD79668 and classic ESP32/GDEY042Z98 compiled with ESP32 core 3.3.12, GFX 1.13.0, BusIO 1.17.4, ArduinoJson 7.4.3; GxEPD2 1.6.9 for default profile; no flashing",
   "files": [
     {
       "path": ".gitattributes",
@@ -41,8 +41,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 2196,
-      "sha256": "4997bc895eff504d173f881095ba18bcb20c305cf3f3b51bd4247dd2e774f6ae"
+      "bytes": 2564,
+      "sha256": "a2302ad3b06ec1940deb9fc4a67f0d26d1d5c08231a8213e94203914e951c3e0"
     },
     {
       "path": ".gitignore",
@@ -61,8 +61,8 @@
     },
     {
       "path": "GIT_FILES.txt",
-      "bytes": 5276,
-      "sha256": "7c1ba9b88a5ccd29b4271edb7f76144ce347377b9a1a6abbf1763b95039ccded"
+      "bytes": 5703,
+      "sha256": "041369ad6f97cb646951b2ba8482c4985ba3e2708e352a23bfd5d577d62c2cbb"
     },
     {
       "path": "LICENSE",
@@ -71,18 +71,18 @@
     },
     {
       "path": "LICENSE_MAP.json",
-      "bytes": 41370,
-      "sha256": "d942be3fc08ccd41d0ea04e6f9a5386f2fcbba0e5fdce915a4a5b25235de296a"
+      "bytes": 45454,
+      "sha256": "85f1d6760a8796b2aae09c398c6dec7104c00970649455f3abd3d4d6983fbd33"
     },
     {
       "path": "README.md",
-      "bytes": 5220,
-      "sha256": "f53d4ba23b139cfba789e06925862dd974fc24fb5139a2de7136d9c1c8282a1b"
+      "bytes": 18886,
+      "sha256": "945bcf1b2a565011037d6345793e935ff365a6fc4768adcd02b42741cf8922a6"
     },
     {
       "path": "README_EN.md",
-      "bytes": 5661,
-      "sha256": "00a08eedce25b95ffda0aa365c1194c79f89df300c4630882bbbbc83c5733ac3"
+      "bytes": 8497,
+      "sha256": "77a64923d78c10c05cd61ca8ef5fcbeb550cde7f7711ba401771186c5fa88c8d"
     },
     {
       "path": "RELEASE_NOTES.md",
@@ -96,8 +96,8 @@
     },
     {
       "path": "assets/ASSET_INDEX.md",
-      "bytes": 2465,
-      "sha256": "44647987dfa679bf02ea4b8edea34941fdaec08e485879382ae4200c37f1dc7d"
+      "bytes": 4341,
+      "sha256": "ea437f4b99f51af4c49442228f524c75417850dd4594d943a18d8b8733393c7f"
     },
     {
       "path": "assets/architecture.mmd",
@@ -110,6 +110,31 @@
       "sha256": "3c284910ddc72a95baf12bb00114787c075945f366e4eda861b04b2fc4475348"
     },
     {
+      "path": "assets/device-interrupt.jpg",
+      "bytes": 2223937,
+      "sha256": "dd33d2937076df0136a502903e52d966c1cfa9b4833709a65d771ad6e91b7a19"
+    },
+    {
+      "path": "assets/device-tibo.jpg",
+      "bytes": 1905499,
+      "sha256": "1d388e9e206b9d82cff08b6f33daa340c6fe51634fc000d06910b2c706528ed2"
+    },
+    {
+      "path": "assets/device-workspace.jpg",
+      "bytes": 2675390,
+      "sha256": "cd41035cf0178eebd71f792b7499b21369ce79a683f2b7e30241b92b7badf8d7"
+    },
+    {
+      "path": "assets/grok-bot-concept.png",
+      "bytes": 2123871,
+      "sha256": "ce50396cf89eb8d7a22084411e57a2e51c241fbe7d4f2ebaffcec4459770ca26"
+    },
+    {
+      "path": "assets/hardware-overview.jpg",
+      "bytes": 3116082,
+      "sha256": "247da63a8f261567db8970e0d9143762a185f5a5875249f54350e195b5d9f3dc"
+    },
+    {
       "path": "ci/check_source.py",
       "bytes": 3325,
       "sha256": "7287e183d40f37d9ea49c49eca783127c7cf618e5bbf32bf49135d0ece4624af"
@@ -120,14 +145,19 @@
       "sha256": "849598c1d4111026e9dc1106cd83c8f4b7da33f2a6267a1bb98903203c9a25ed"
     },
     {
+      "path": "ci/run_display.py",
+      "bytes": 2032,
+      "sha256": "e130c49d19ee9f88669d8ad27ecd05e4406a15e381eb26cd730de175c9c1b948"
+    },
+    {
       "path": "ci/run_mcp.py",
       "bytes": 2416,
       "sha256": "8dfb12c461524721c1d47999d644da9be6858e7b38968f220b38276223561bb6"
     },
     {
       "path": "compile_firmware.ps1",
-      "bytes": 611,
-      "sha256": "bff1ccb5564968a44edd9aa85da4bed69613246ef01e9970f0e04b8ba58ed342"
+      "bytes": 982,
+      "sha256": "cae3fd97ddb13f9bf5396dfa05c08c14b95c68d918901dfcaa668fc510e7a2b0"
     },
     {
       "path": "config.example.json",
@@ -141,8 +171,8 @@
     },
     {
       "path": "docs/CI.md",
-      "bytes": 4060,
-      "sha256": "30c032f8e55da7ad3a5c2b48083bfbe09e64c11e7301fa95e70bf7e90280bdc3"
+      "bytes": 4449,
+      "sha256": "cbeefefc4cdfd0a2d48e360944d081dac06b8dac953b56de3a903ea496c89572"
     },
     {
       "path": "docs/FEATURES.md",
@@ -151,8 +181,13 @@
     },
     {
       "path": "docs/HARDWARE.md",
-      "bytes": 3448,
-      "sha256": "7a9eb7ee7d07d5de08f5b8dad0d1bed6e1ba0fd57caffaa3b2c72c2907ad4137"
+      "bytes": 3537,
+      "sha256": "c7ea72223b5d4c97ea1ce88a4969e2dedebb83a12403411c1a5e0ffe98237433"
+    },
+    {
+      "path": "docs/HARDWARE_JD79668.md",
+      "bytes": 2184,
+      "sha256": "8d473a3ac4941c50506fe1887c3b1532ae09fc3fd4b06c918104248f93b06f05"
     },
     {
       "path": "docs/INSTALL_EN.md",
@@ -236,13 +271,13 @@
     },
     {
       "path": "firmware/LICENSING.md",
-      "bytes": 2411,
-      "sha256": "917acd34e63be83a37d6aa123bfb1a7081df8f23aa60ee5d3c178dd9e2b0f981"
+      "bytes": 3056,
+      "sha256": "70af888da21449fe152e2a602141f953a183d11d67239ae21b90c3387767182c"
     },
     {
       "path": "firmware/esp32_dashboard/config.h",
-      "bytes": 457,
-      "sha256": "6545e828d4e41f97462bed5021de716eca38a22d2e0413dc7f40e7d69f18f50a"
+      "bytes": 1084,
+      "sha256": "6813c1cd99a31f557331463d9f7dc63f4900622bb862a3997c5c106d7edfbfc5"
     },
     {
       "path": "firmware/esp32_dashboard/connectivity_manager.cpp",
@@ -256,18 +291,28 @@
     },
     {
       "path": "firmware/esp32_dashboard/display_scheduler.cpp",
-      "bytes": 2448,
-      "sha256": "f6d748af91c14def18e69238caadf330fd4a77e7437c862de87243577ab88927"
+      "bytes": 3636,
+      "sha256": "bf08ca08ff91212828e43d23411dc0e0d01563dcbc77869df05e5afa07efc13b"
     },
     {
       "path": "firmware/esp32_dashboard/display_scheduler.h",
-      "bytes": 690,
-      "sha256": "3790993c9812d4d8a3b4cca6189b4d8d53df7b2ada8c986e04d501c3ce2998e0"
+      "bytes": 850,
+      "sha256": "0aa9c8161955a71c14cd5fb29f5f234a9f98b2bbb4ae890cf534cfa3ecdc08a2"
     },
     {
       "path": "firmware/esp32_dashboard/esp32_dashboard.ino",
       "bytes": 8202,
       "sha256": "fe0a034ddaaff3f467d9b0a4061b93dd8590dce30139603d456fe265e455b039"
+    },
+    {
+      "path": "firmware/esp32_dashboard/gdem042f52_display.cpp",
+      "bytes": 5153,
+      "sha256": "3f94e4432f6d6bcbac0df5f256c729445e96e7a94cc32d290fe532b8655db201"
+    },
+    {
+      "path": "firmware/esp32_dashboard/gdem042f52_display.h",
+      "bytes": 1429,
+      "sha256": "31095aa37ef735fb3a23879c8a73e36d5de405d141fa16036d0950461b4a6663"
     },
     {
       "path": "firmware/esp32_dashboard/hub_client.cpp",
@@ -301,13 +346,13 @@
     },
     {
       "path": "firmware/esp32_dashboard/pages.cpp",
-      "bytes": 9642,
-      "sha256": "8819f9aac2d0577321b6472bdbd8a5f9ed252f21863bab3ae96c104534f23f0d"
+      "bytes": 10532,
+      "sha256": "4b4c1bf734d405e5514e86bd365c7adc81bd56d487a3c005d698871175d894cd"
     },
     {
       "path": "firmware/esp32_dashboard/pages.h",
-      "bytes": 203,
-      "sha256": "4ac86d4382d1e1100fb31a17c1bb29de98b59b9b8c0cc44b1eae9720dda432e8"
+      "bytes": 248,
+      "sha256": "5fcc0318cd4132ebd66bd718841310f0aeaa686b9dd1eb028696ddcc31c9e910"
     },
     {
       "path": "firmware/esp32_dashboard/private_config.example.h",
@@ -866,8 +911,13 @@
     },
     {
       "path": "tests/display_contract.cpp",
-      "bytes": 6390,
-      "sha256": "bb1820324b0817993937a107a4a9bc4b9c2bd1bdb836352ce5aac9babb2fe1a0"
+      "bytes": 6562,
+      "sha256": "c4b029d3a36b8682ee799ada3b9b35871fb05daa2cd20dded95b4b6a1e3a54f1"
+    },
+    {
+      "path": "tests/display_retry.cpp",
+      "bytes": 4094,
+      "sha256": "1106cf2c430c622e376166b9cb027a1b16126dd49cb398b94583043d71701c97"
     },
     {
       "path": "tests/fakes/Arduino.h",
@@ -896,8 +946,8 @@
     },
     {
       "path": "tests/fault_recovery.cpp",
-      "bytes": 6525,
-      "sha256": "2d62c71267d08437af6448b1d40168b788a8ebab19840a04156decc702459938"
+      "bytes": 6583,
+      "sha256": "9107e80a3e5fc00303abed8d756711a3fb52fd14e19a2eb2c74543f76ea8ed5a"
     },
     {
       "path": "tests/graphics_fakes/GxEPD2_3C.h",
@@ -913,6 +963,26 @@
       "path": "tests/hub_parser.cpp",
       "bytes": 5095,
       "sha256": "b84190f6fc37e689fbfb10381701322587aa73e66d8d2d047ebf8a91dc30015e"
+    },
+    {
+      "path": "tests/jd79668_driver.cpp",
+      "bytes": 3021,
+      "sha256": "8fb05b76b4e6c04dc148eefb846904cdb027dcd69cf698ce1114bfe392d8cb36"
+    },
+    {
+      "path": "tests/jd79668_fakes/Adafruit_GFX.h",
+      "bytes": 269,
+      "sha256": "9a479a9f973b6b3127121356945924b29f1aa5107208805141da613bd072a3a4"
+    },
+    {
+      "path": "tests/jd79668_fakes/Arduino.h",
+      "bytes": 837,
+      "sha256": "865d71bb6ef44352753f73c3684eb6c0285357a9f1a461195ad9bad1d0fc7ba4"
+    },
+    {
+      "path": "tests/jd79668_fakes/SPI.h",
+      "bytes": 381,
+      "sha256": "76c9fb19fedaf68216012b1a7e52e409ad4ffdc506558aa90d37943848a2d7f5"
     },
     {
       "path": "tests/optional_fakes/HTTPClient.h",

@@ -1,5 +1,7 @@
 # 硬件与接线
 
+可选实验配置：[ESP32-S3 + JD79668 四色屏 / English](HARDWARE_JD79668.md)。
+
 ## 已核对的范围
 
 源码 `config.h` / `pages.cpp` 与本机 GxEPD2 1.6.9 的 `gdey3c/GxEPD2_420c_GDEY042Z98.h` 一致：GDEY042Z98、400×300、黑白红三色，驱动类 `GxEPD2_420c_GDEY042Z98`。厂商页面也列为 SSD1683、SPI：

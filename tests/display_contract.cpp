@@ -1,4 +1,5 @@
 // SPDX-FileCopyrightText: 2026 Tkkdy
+// SPDX-FileCopyrightText: 2026 flowersea123
 // SPDX-License-Identifier: MIT
 #include <cassert>
 #include <cstring>
@@ -9,6 +10,8 @@
 #include "../firmware/esp32_dashboard/display_scheduler.h"
 #include "../firmware/esp32_dashboard/pages.h"
 #include "../firmware/esp32_dashboard/scene.h"
+#include "../firmware/esp32_dashboard/config.h"
+static_assert(PIN_MOSI == 23, "Default profile retains classic ESP32 GPIO23");
 
 FakeSerial Serial;
 unsigned long fakeNow = 0;

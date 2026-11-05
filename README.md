@@ -10,6 +10,8 @@
 
 [English](README_EN.md) · [五分钟体验](#五分钟先体验不需要硬件) · [接入自己的-agent](#bring-your-own-agent让你的-ai-自己接进来) · [硬件指南](docs/HARDWARE.md) · [功能与 Roadmap](docs/FEATURES.md) · [v0.1.0 源码发布](https://github.com/Tkkdy/attention-router/releases/tag/v0.1.0)
 
+可选实验硬件：[ESP32-S3 + JD79668 四色屏](docs/HARDWARE_JD79668.md)；原硬件配置保持默认。
+
 我们已经习惯用手机、电脑和 AI 说话：告诉它今天要做什么、正在忙哪个项目、下一步准备怎么办。AI 知道的事情越来越多，但当它想提醒你时，你通常还是得**自己打开聊天窗口，主动去找它**。
 
 我想把这个过程反过来。

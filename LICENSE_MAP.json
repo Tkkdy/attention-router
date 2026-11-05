@@ -7,7 +7,7 @@
       "upstream": "https://letsencrypt.org/documents/isrg-cp-cps-v5.5/#95-intellectual-property-rights"
     }
   },
-  "noassertion_meaning": "Used for license/notice documents themselves, not an assertion that project source lacks a license. See license_identifier_described and original terms.",
+  "noassertion_meaning": "Preserves original license/notice terms; supplied assets retain only the display authorization described in assets/ASSET_INDEX.md. No additional ownership or license is inferred. See role, notes, license_identifier_described and original terms.",
   "files": [
     {
       "path": ".gitattributes",
@@ -42,7 +42,7 @@
     {
       "path": ".github/workflows/ci.yml",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -66,7 +66,7 @@
     {
       "path": "GIT_FILES.txt",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -78,19 +78,19 @@
     {
       "path": "LICENSE_MAP.json",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
       "path": "README.md",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
       "path": "README_EN.md",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -102,7 +102,7 @@
     {
       "path": "SOURCE_MANIFEST.json",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -130,6 +130,36 @@
       "role": "original-project-content"
     },
     {
+      "path": "assets/device-interrupt.jpg",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "owner-supplied-display-asset",
+      "notes": "Existing upstream asset; display authorization and limitations are recorded in assets/ASSET_INDEX.md. This contribution asserts no ownership or additional license."
+    },
+    {
+      "path": "assets/device-tibo.jpg",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "owner-supplied-display-asset",
+      "notes": "Existing upstream asset; display authorization and limitations are recorded in assets/ASSET_INDEX.md. This contribution asserts no ownership or additional license."
+    },
+    {
+      "path": "assets/device-workspace.jpg",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "owner-supplied-display-asset",
+      "notes": "Existing upstream asset; display authorization and limitations are recorded in assets/ASSET_INDEX.md. This contribution asserts no ownership or additional license."
+    },
+    {
+      "path": "assets/grok-bot-concept.png",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "owner-supplied-display-asset",
+      "notes": "Existing upstream asset; display authorization and limitations are recorded in assets/ASSET_INDEX.md. This contribution asserts no ownership or additional license."
+    },
+    {
+      "path": "assets/hardware-overview.jpg",
+      "spdx_license_expression": "NOASSERTION",
+      "role": "owner-supplied-display-asset",
+      "notes": "Existing upstream asset; display authorization and limitations are recorded in assets/ASSET_INDEX.md. This contribution asserts no ownership or additional license."
+    },
+    {
       "path": "ci/check_source.py",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
@@ -142,6 +172,12 @@
       "role": "original-project-content"
     },
     {
+      "path": "ci/run_display.py",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 flowersea123 (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
       "path": "ci/run_mcp.py",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
@@ -150,7 +186,7 @@
     {
       "path": "compile_firmware.ps1",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -168,7 +204,7 @@
     {
       "path": "docs/CI.md",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -180,7 +216,13 @@
     {
       "path": "docs/HARDWARE.md",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "docs/HARDWARE_JD79668.md",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -284,13 +326,13 @@
     {
       "path": "firmware/LICENSING.md",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
       "path": "firmware/esp32_dashboard/config.h",
       "spdx_license_expression": "GPL-3.0-only",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -308,19 +350,31 @@
     {
       "path": "firmware/esp32_dashboard/display_scheduler.cpp",
       "spdx_license_expression": "GPL-3.0-only",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
       "path": "firmware/esp32_dashboard/display_scheduler.h",
       "spdx_license_expression": "GPL-3.0-only",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
       "path": "firmware/esp32_dashboard/esp32_dashboard.ino",
       "spdx_license_expression": "GPL-3.0-only",
       "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/gdem042f52_display.cpp",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 flowersea123 (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "firmware/esp32_dashboard/gdem042f52_display.h",
+      "spdx_license_expression": "GPL-3.0-only",
+      "copyright": "2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -362,13 +416,13 @@
     {
       "path": "firmware/esp32_dashboard/pages.cpp",
       "spdx_license_expression": "GPL-3.0-only",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
       "path": "firmware/esp32_dashboard/pages.h",
       "spdx_license_expression": "GPL-3.0-only",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -1054,7 +1108,13 @@
     {
       "path": "tests/display_contract.cpp",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/display_retry.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -1090,7 +1150,7 @@
     {
       "path": "tests/fault_recovery.cpp",
       "spdx_license_expression": "MIT",
-      "copyright": "2026 Tkkdy (original contributions only)",
+      "copyright": "2026 Tkkdy; 2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
@@ -1109,6 +1169,30 @@
       "path": "tests/hub_parser.cpp",
       "spdx_license_expression": "MIT",
       "copyright": "2026 Tkkdy (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/jd79668_driver.cpp",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 flowersea123 (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/jd79668_fakes/Adafruit_GFX.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 flowersea123 (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/jd79668_fakes/Arduino.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 flowersea123 (original contributions only)",
+      "role": "original-project-content"
+    },
+    {
+      "path": "tests/jd79668_fakes/SPI.h",
+      "spdx_license_expression": "MIT",
+      "copyright": "2026 flowersea123 (original contributions only)",
       "role": "original-project-content"
     },
     {
